@@ -646,7 +646,6 @@ footer{border-top:1px solid var(--ln);padding:clamp(50px,6vw,80px) 0 32px}
 .fm-head{margin-bottom:22px}
 .fm-head h3{font-size:clamp(24px,3.4vw,32px);font-weight:700;letter-spacing:-.035em;line-height:1.05;margin:14px 0 10px}
 .fm-head p{font-size:14px;color:var(--mu);font-weight:300;line-height:1.6}
-#bookForm{display:flex;flex-direction:column;gap:14px}
 .fm-row{display:grid;grid-template-columns:1fr 1fr;gap:14px}
 .fm-field{display:flex;flex-direction:column;gap:7px;font-size:12.5px;color:var(--mu);font-weight:500;letter-spacing:.01em}
 .req{color:rgb(var(--acc))}
@@ -665,6 +664,13 @@ footer{border-top:1px solid var(--ln);padding:clamp(50px,6vw,80px) 0 32px}
 .btn-wa:hover{box-shadow:0 12px 30px -10px rgba(37,211,102,.6)}
 .btn-wa svg{width:17px;height:17px}
 .fm-note{font-size:12px;color:var(--dm);text-align:center;margin-top:4px;line-height:1.5}
+/* Calendly scheduler embed */
+.fm-cal{width:min(700px,100%)}
+.cal-wrap{position:relative;height:min(660px,64vh);margin-top:6px;
+  border:1px solid var(--ln);border-radius:14px;overflow:hidden;background:#fff}
+.cal-load{position:absolute;inset:0;display:grid;place-items:center;color:#8a8a93;font-size:13px}
+#calWidget{position:relative;z-index:2;height:100%}
+.fm-actions-1{grid-template-columns:1fr;margin-top:14px}
 @media(max-width:520px){
   .fm-row,.fm-actions{grid-template-columns:1fr}
   .fm-card{padding:24px 20px 26px}
@@ -1087,42 +1093,23 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
 
 <!-- ═══════ CONTACT / BOOKING FORM MODAL ═══════ -->
 <div class="fm" id="fm" aria-hidden="true">
-  <div class="fm-card" role="dialog" aria-modal="true" aria-labelledby="fmTitle">
+  <div class="fm-card fm-cal" role="dialog" aria-modal="true" aria-labelledby="fmTitle">
     <button class="fm-x" id="fmX" aria-label="Close">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
     </button>
     <div class="fm-head">
       <div class="eyebrow"><span class="dot"></span>&nbsp;Book a free call</div>
-      <h3 id="fmTitle">Tell us about your project.</h3>
-      <p>Fill this in and we'll reply within a few hours — or hit WhatsApp for an instant reply.</p>
+      <h3 id="fmTitle">Pick a time that works.</h3>
+      <p>Grab a 30-minute slot below — or message us on WhatsApp for an instant reply.</p>
     </div>
-    <form id="bookForm" novalidate>
-      <input type="hidden" name="access_key" id="w3key">
-      <input type="hidden" name="subject" value="New enquiry from getsitenow.in">
-      <input type="hidden" name="from_name" value="GetSiteNow website">
-      <input type="text" name="botcheck" class="fm-hp" tabindex="-1" autocomplete="off" aria-hidden="true">
-      <div class="fm-row">
-        <label class="fm-field">Your name<span class="req">*</span>
-          <input name="name" id="f_name" required autocomplete="name" placeholder="Rohit Sharma">
-        </label>
-        <label class="fm-field">WhatsApp / phone<span class="req">*</span>
-          <input name="phone" id="f_phone" required inputmode="tel" autocomplete="tel" placeholder="+91 98765 43210">
-        </label>
-      </div>
-      <label class="fm-field">Email
-        <input name="email" id="f_email" type="email" autocomplete="email" placeholder="you@company.com">
-      </label>
-      <label class="fm-field">What do you need?
-        <textarea name="message" id="f_msg" rows="3" placeholder="A new website, an app, branding, SEO…"></textarea>
-      </label>
-      <div class="fm-actions">
-        <button type="submit" class="btn" id="fmSend"><span>Send message</span>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg></button>
-        <button type="button" class="btn btn-wa" id="fmWa"><span>WhatsApp us</span>
-          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-2-1.2 7.5 7.5 0 01-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.4.2-.4v-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 00-.7.3A2.9 2.9 0 006 8.7a5 5 0 001.1 2.7 11.5 11.5 0 004.4 3.9c.6.3 1.1.4 1.5.5a3.5 3.5 0 001.6.1c.5-.1 1.4-.6 1.6-1.1a2 2 0 00.1-1.1c0-.1-.2-.2-.4-.3z"/></svg></button>
-      </div>
-      <div class="fm-note" id="fmNote">No spam, ever. Your details go straight to our inbox and WhatsApp.</div>
-    </form>
+    <div class="cal-wrap">
+      <div class="cal-load" id="calLoad">Loading scheduler…</div>
+      <div class="calendly-inline-widget" id="calWidget" data-auto-load="false" style="min-width:280px;height:100%"></div>
+    </div>
+    <div class="fm-actions fm-actions-1">
+      <button type="button" class="btn btn-wa" id="fmWa"><span>Prefer WhatsApp? Message us</span>
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-2-1.2 7.5 7.5 0 01-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.4.2-.4v-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 00-.7.3A2.9 2.9 0 006 8.7a5 5 0 001.1 2.7 11.5 11.5 0 004.4 3.9c.6.3 1.1.4 1.5.5a3.5 3.5 0 001.6.1c.5-.1 1.4-.6 1.6-1.1a2 2 0 00.1-1.1c0-.1-.2-.2-.4-.3z"/></svg></button>
+    </div>
   </div>
 </div>
 
@@ -1140,10 +1127,10 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
 /* ── CONTACT FORM SETTINGS ──
    WHATSAPP: your WhatsApp Business number — country code, digits only, no + or spaces.
              e.g. India 98765 43210  →  "919876543210"
-   WEB3FORMS: free key from web3forms.com (enter getsitenow.in@gmail.com to get it).
-              Leave "" and the Send button falls back to opening the visitor's email app. */
+   Calendly handles the booking — visitors pick a time, you get an email + calendar invite. */
 const WHATSAPP  = "910000000000";   /* ← replace with your real WhatsApp Business number */
-const WEB3FORMS = "";               /* ← paste your web3forms.com access key here */
+/* ── Calendly — paste your scheduling link (e.g. https://calendly.com/getsitenow/30min) ── */
+const CALENDLY  = "https://calendly.com/getsitenow-in/30min";   /* ← replace with your real Calendly link */
 
 const HEADLINE = ["Websites","that","*pay for*","|","*themselves.*"];
 
@@ -1701,23 +1688,36 @@ $('#lbX').onclick=closeLb;
 lb.addEventListener('click',e=>{ if(e.target===lb) closeLb(); });
 addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
 
-/* ══════════════ CONTACT / BOOKING FORM ══════════════
+/* ══════════════ BOOK A CALL — CALENDLY ══════════════
    - opens as a modal on ANY "Book a call" / "Contact us" click
-   - "Send message" emails you via Web3Forms (WEB3FORMS key); falls back to the
-     visitor's mail app if no key is set yet
-   - "WhatsApp us" opens WhatsApp with the details pre-typed, straight to WHATSAPP  */
+   - the Calendly scheduler loads inside it (visitor picks a time → you get an
+     email + calendar invite automatically)
+   - the WhatsApp button is the instant-reply alternative
+   - Calendly loads LAZILY (only the first time the modal opens) so it never
+     slows down the page.                                                       */
 (function(){
-  const fm=$('#fm'), form=$('#bookForm'),
-        fName=$('#f_name'), fPhone=$('#f_phone'), fEmail=$('#f_email'), fMsg=$('#f_msg'),
-        note=$('#fmNote'), sendBtn=$('#fmSend');
+  const fm=$('#fm'), waBtn=$('#fmWa');
   if(!fm) return;
-  $('#w3key').value = (typeof WEB3FORMS==='string' ? WEB3FORMS : '');
 
-  const openForm=(prefill)=>{
-    if(prefill && !fMsg.value) fMsg.value=prefill;
+  let calDone=false;
+  function loadCalendly(){
+    if(calDone || typeof CALENDLY!=='string' || !CALENDLY) return;
+    calDone=true;
+    const w=$('#calWidget');
+    w.dataset.url = CALENDLY + (CALENDLY.includes('?')?'&':'?') + 'hide_gdpr_banner=1';
+    const css=document.createElement('link');
+    css.rel='stylesheet'; css.href='https://assets.calendly.com/assets/external/widget.css';
+    document.head.appendChild(css);
+    const s=document.createElement('script');
+    s.src='https://assets.calendly.com/assets/external/widget.js'; s.async=true;
+    s.onload=()=>{ if(window.Calendly){ window.Calendly.initInlineWidget({url:w.dataset.url, parentElement:w}); } };
+    document.head.appendChild(s);
+  }
+
+  const openForm=()=>{
     fm.classList.add('on'); fm.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
-    setTimeout(()=>fName.focus(),300);
+    loadCalendly();
   };
   const closeForm=()=>{ fm.classList.remove('on'); fm.setAttribute('aria-hidden','true'); document.body.style.overflow=''; };
 
@@ -1726,72 +1726,17 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
     const t=e.target.closest('.js-book, a.btn[href="#contact"], .dock a.btn, .plan .btn');
     if(!t) return;
     e.preventDefault();
-    const plan=t.closest('.plan'); const p=plan?('Interested in the '+plan.querySelector('h4').textContent+' plan.'):'';
-    openForm(p);
+    openForm();
   });
   $('#fmX').onclick=closeForm;
   fm.addEventListener('click',e=>{ if(e.target===fm) closeForm(); });
   addEventListener('keydown',e=>{ if(e.key==='Escape' && fm.classList.contains('on')) closeForm(); });
 
-  /* validation — name + phone are required for either action */
-  const valid=()=>{
-    let ok=true;
-    [[fName],[fPhone]].forEach(([el])=>{
-      const f=el.closest('.fm-field'); const bad=!el.value.trim();
-      f.classList.toggle('err',bad); if(bad) ok=false;
-    });
-    if(!ok){ note.textContent='Please add your name and number so we can reach you.'; note.style.color='#ff6b6b'; }
-    return ok;
+  /* WhatsApp — instant-reply alternative */
+  waBtn.onclick=()=>{
+    const msg="Hi GetSiteNow! I'd like to book a call about a website / project.";
+    window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(msg),'_blank');
   };
-  [fName,fPhone].forEach(el=>el.addEventListener('input',()=>el.closest('.fm-field').classList.remove('err')));
-
-  /* WhatsApp — details pre-typed, sent straight to your number */
-  $('#fmWa').onclick=()=>{
-    if(!valid()) return;
-    const lines=[
-      "Hi GetSiteNow! I'd like to book a call.",
-      "Name: "+fName.value.trim(),
-      "Phone: "+fPhone.value.trim(),
-      fEmail.value.trim() && ("Email: "+fEmail.value.trim()),
-      fMsg.value.trim()   && ("About: "+fMsg.value.trim())
-    ].filter(Boolean);
-    window.open('https://wa.me/'+WHATSAPP+'?text='+encodeURIComponent(lines.join('\n')),'_blank');
-  };
-
-  /* Send — email via Web3Forms, with a mailto fallback if no key is set */
-  form.addEventListener('submit',async e=>{
-    e.preventDefault();
-    if(!valid()) return;
-
-    if(!WEB3FORMS){                                   // no key yet → open their mail app
-      const body=encodeURIComponent(
-        'Name: '+fName.value.trim()+'\nPhone: '+fPhone.value.trim()+
-        '\nEmail: '+fEmail.value.trim()+'\n\n'+fMsg.value.trim());
-      location.href='mailto:getsitenow.in@gmail.com?subject='+
-        encodeURIComponent('New enquiry from '+fName.value.trim())+'&body='+body;
-      return;
-    }
-
-    sendBtn.disabled=true; sendBtn.querySelector('span').textContent='Sending…';
-    try{
-      const r=await fetch('https://api.web3forms.com/submit',{
-        method:'POST',
-        headers:{'Accept':'application/json'},
-        body:new FormData(form)
-      });
-      const j=await r.json();
-      if(j.success){
-        form.reset();
-        note.textContent="Got it — we'll be in touch within a few hours. ✓"; note.style.color='';
-        const t=$('#toast'); t.innerHTML=CK+' Message sent'; t.classList.add('on'); setTimeout(()=>t.classList.remove('on'),2400);
-        setTimeout(closeForm,1400);
-      } else throw new Error(j.message||'failed');
-    }catch(err){
-      note.textContent='Something went wrong — please WhatsApp us instead.'; note.style.color='#ff6b6b';
-    }finally{
-      sendBtn.disabled=false; sendBtn.querySelector('span').textContent='Send message';
-    }
-  });
 })();
 
 /* ── copy email ── */
