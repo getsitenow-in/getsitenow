@@ -716,6 +716,12 @@ footer{border-top:1px solid var(--ln);padding:clamp(50px,6vw,80px) 0 32px}
 .wd-submit:hover{transform:translateY(-2px)}
 .wd-submit:disabled{opacity:.6;cursor:default;transform:none}
 .wd-submit svg{width:18px;height:18px;fill:currentColor}
+.wd-alt{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:2px}
+.wd-alt>span{color:var(--dm);font-size:12px}
+.wd-alt-btn{background:none;border:0;color:var(--mu);font-family:inherit;font-size:12.5px;font-weight:500;
+  cursor:pointer;padding:4px 2px;transition:color .25s;text-decoration:underline;
+  text-underline-offset:3px;text-decoration-color:transparent}
+.wd-alt-btn:hover{color:var(--tx);text-decoration-color:var(--ln2)}
 .wd-msg{font-size:12.5px;text-align:center;min-height:15px}
 .wd-msg.err{color:#ff6b6b}.wd-msg.ok{color:rgb(var(--acc))}
 .wd-fine{font-size:11px;color:var(--mu);text-align:center;line-height:1.5;opacity:.85}
@@ -1164,7 +1170,7 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
       <div class="f-c"><h5>Pages</h5>
         <a href="#about">Studio</a><a href="#services">Services</a><a href="#work">Work</a><a href="/about">About</a></div>
       <div class="f-c"><h5>More</h5>
-        <a href="#ecosystem">Ecosystem</a><a href="#reel">Reel</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a></div>
+        <a href="#ecosystem">Ecosystem</a><a href="#reel">Reel</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="/portal">Client login</a></div>
       <div class="f-c"><h5>Get in touch</h5>
         <a href="mailto:getsitenow.in@gmail.com">getsitenow.in@gmail.com</a>
         <a href="https://www.instagram.com/getsitenow?igsh=MWU0NngyYzgxMHp5Yw==" target="_blank" rel="noopener">Instagram</a></div>
@@ -1214,15 +1220,19 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
     </div>
     <div class="wd-body">
       <form class="wd-form" id="leadForm" novalidate>
-        <p class="wd-intro">Tell us what you need and where to reach you. We'll reply on WhatsApp with a custom price &amp; timeline — usually within a few hours.</p>
+        <p class="wd-intro">Tell us what you need and where to reach you. Send it your way — WhatsApp, email, or just submit — and we'll reply with a custom price &amp; timeline, usually within a few hours.</p>
         <div class="wd-svc-tag" id="leadSvcTag" hidden><span class="wd-dot"></span><span id="leadSvcLabel"></span></div>
         <div class="wd-field">
           <label for="leadName">Your name <i>*</i></label>
           <input class="wd-input" id="leadName" name="name" type="text" autocomplete="name" placeholder="e.g. Rahul Sharma" required>
         </div>
         <div class="wd-field">
-          <label for="leadPhone">WhatsApp number <i>*</i></label>
+          <label for="leadPhone">Phone / WhatsApp <i>*</i></label>
           <input class="wd-input" id="leadPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="e.g. +91 98765 43210" required>
+        </div>
+        <div class="wd-field">
+          <label for="leadEmail">Email <span style="color:var(--mu);font-weight:400">(optional)</span></label>
+          <input class="wd-input" id="leadEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com">
         </div>
         <div class="wd-field">
           <label for="leadService">Service you're interested in</label>
@@ -1234,8 +1244,13 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
         </div>
         <button class="wd-submit" id="leadSend" type="submit">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-2-1.2 7.5 7.5 0 01-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.4.2-.4v-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 00-.7.3A2.9 2.9 0 006 8.7a5 5 0 001.1 2.7 11.5 11.5 0 004.4 3.9c.6.3 1.1.4 1.5.5a3.5 3.5 0 001.6.1c.5-.1 1.4-.6 1.6-1.1a2 2 0 00.1-1.1c0-.1-.2-.2-.4-.3z"/></svg>
-          <span id="leadSendTx">Send &amp; open WhatsApp</span>
+          <span id="leadSendTx">Send on WhatsApp</span>
         </button>
+        <div class="wd-alt">
+          <button type="button" class="wd-alt-btn" id="leadEmailBtn">Email instead</button>
+          <span>·</span>
+          <button type="button" class="wd-alt-btn" id="leadSaveBtn">Just send my details</button>
+        </div>
         <div class="wd-msg" id="leadMsgOut" role="status" aria-live="polite"></div>
         <p class="wd-fine">Your details are stored securely so we can get back to you. We never share them.</p>
       </form>
@@ -1888,8 +1903,9 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
   const wd=$('#wd'), wdTitle=$('#wdTitle');
   const leadForm=$('#leadForm'), leadSvcTag=$('#leadSvcTag'), leadSvcLabel=$('#leadSvcLabel'),
         leadService=$('#leadService'), leadName=$('#leadName'), leadPhone=$('#leadPhone'),
-        leadMsg=$('#leadMsg'), leadSend=$('#leadSend'), leadSendTx=$('#leadSendTx'),
-        leadMsgOut=$('#leadMsgOut');
+        leadEmail=$('#leadEmail'), leadMsg=$('#leadMsg'), leadSend=$('#leadSend'),
+        leadSendTx=$('#leadSendTx'), leadMsgOut=$('#leadMsgOut'),
+        leadEmailBtn=$('#leadEmailBtn'), leadSaveBtn=$('#leadSaveBtn');
 
   function openDrawer(service){
     if(!wd) return;  // drawer missing (shouldn't happen) — nothing to open
@@ -1930,15 +1946,19 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
      safe for the browser. Returns true on success, false if not configured. */
   function saveLead(d){
     if(!SUPABASE_URL || !SUPABASE_ANON_KEY) return Promise.resolve(false);
-    return fetch(SUPABASE_URL.replace(/\/+$/,'') + '/rest/v1/leads', {
+    const post=(row)=>fetch(SUPABASE_URL.replace(/\/+$/,'') + '/rest/v1/leads', {
       method:'POST',
       headers:{
         'Content-Type':'application/json',
         'apikey':SUPABASE_ANON_KEY,
         'Prefer':'return=minimal'
       },
-      body:JSON.stringify({ name:d.name, phone:d.phone, service:d.service, message:d.message, source:'website' })
+      body:JSON.stringify(row)
     }).then(r=>r.ok).catch(()=>false);
+    const full={ name:d.name, phone:d.phone, email:d.email, service:d.service, message:d.message, source:'website' };
+    /* if the "email" column hasn't been added yet, retry without it so the
+       lead still saves (add it with:  alter table leads add column email text;) */
+    return post(full).then(ok=> ok ? true : (()=>{ const {email,...rest}=full; return post(rest); })());
   }
 
   /* build the WhatsApp deep-link with the enquiry pre-written */
@@ -1954,26 +1974,56 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
     return "mailto:getsitenow.in@gmail.com?subject="+encodeURIComponent("New enquiry")+"&body="+txt;  // fallback if no WhatsApp number set
   }
 
-  if(leadForm){
-    leadForm.addEventListener('submit',e=>{
-      e.preventDefault();
-      const name=(leadName.value||'').trim();
-      const phone=(leadPhone.value||'').trim();
-      if(name.length<2){ showLead('Please enter your name.','err'); leadName.focus(); return; }
-      if(phone.replace(/\D/g,'').length<7){ showLead('Please enter a valid WhatsApp number.','err'); leadPhone.focus(); return; }
-      const data={ name, phone, service:(leadService.value||'').trim(), message:(leadMsg.value||'').trim() };
-      /* 1 ▸ open WhatsApp immediately, inside the click gesture (no popup block) */
-      window.open(waHandoff(data),'_blank');
-      /* 2 ▸ save the lead to your database in the background */
-      leadSend.disabled=true; const old=leadSendTx.textContent; leadSendTx.textContent='Sending…';
-      saveLead(data).then(ok=>{
-        showLead(ok ? "Sent! We've saved your details." : 'Opening WhatsApp…','ok');
-      }).finally(()=>{
-        leadSend.disabled=false; leadSendTx.textContent=old;
-        leadForm.reset(); if(leadSvcTag) leadSvcTag.hidden=true;
-        setTimeout(closeDrawer,1500);
-      });
+  /* build a mailto link addressed to you, with the enquiry pre-written */
+  function mailHandoff(d){
+    const subject="New enquiry"+(d.service?(" · "+d.service):"");
+    const body=[
+      "Hi GetSiteNow,","",
+      "I'd like to enquire about: "+(d.service||"your services"),"",
+      "Name: "+d.name,
+      "Phone / WhatsApp: "+d.phone,
+      d.email?("Email: "+d.email):null,
+      d.message?("Details: "+d.message):null
+    ].filter(Boolean).join("\n");
+    return "mailto:getsitenow.in@gmail.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
+  }
+
+  function collectLead(){
+    const name=(leadName.value||'').trim();
+    const phone=(leadPhone.value||'').trim();
+    if(name.length<2){ showLead('Please enter your name.','err'); leadName.focus(); return null; }
+    if(phone.replace(/\D/g,'').length<7){ showLead('Please enter a valid phone / WhatsApp number.','err'); leadPhone.focus(); return null; }
+    return { name, phone, email:(leadEmail.value||'').trim(),
+             service:(leadService.value||'').trim(), message:(leadMsg.value||'').trim() };
+  }
+
+  function busy(on){ [leadSend,leadEmailBtn,leadSaveBtn].forEach(b=>{ if(b) b.disabled=on; }); }
+  function finishLead(){ leadForm.reset(); if(leadSvcTag) leadSvcTag.hidden=true; setTimeout(closeDrawer,1600); }
+
+  /* one path, three ways to send:  'whatsapp' | 'email' | 'save' (query only) */
+  function submitLead(mode){
+    const data=collectLead(); if(!data) return;
+    /* open the chosen channel synchronously (inside the click → no popup block) */
+    if(mode==='whatsapp') window.open(waHandoff(data),'_blank');
+    else if(mode==='email') window.open(mailHandoff(data),'_blank');
+    /* every path also saves the lead to your database */
+    busy(true); const old=leadSendTx.textContent; leadSendTx.textContent='Sending…';
+    saveLead(data).then(ok=>{
+      busy(false); leadSendTx.textContent=old;
+      if(mode==='save'){
+        if(ok){ showLead("Thanks! Your enquiry has been sent.",'ok'); finishLead(); }
+        else   showLead("Couldn't send — please try WhatsApp or Email.",'err');
+      }else{
+        showLead(ok ? "Sent! We've saved your details." : (mode==='email'?'Opening your email…':'Opening WhatsApp…'),'ok');
+        finishLead();
+      }
     });
+  }
+
+  if(leadForm){
+    leadForm.addEventListener('submit',e=>{ e.preventDefault(); submitLead('whatsapp'); });
+    if(leadEmailBtn) leadEmailBtn.addEventListener('click',()=>submitLead('email'));
+    if(leadSaveBtn)  leadSaveBtn.addEventListener('click',()=>submitLead('save'));
   }
 
   /* floating WhatsApp bubble → open the drawer */

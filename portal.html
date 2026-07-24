@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Portal · GetSiteNow</title>
+<meta name="description" content="GetSiteNow client & admin portal — log in to manage projects and enquiries." />
+<meta name="robots" content="noindex, nofollow" />
+<meta name="theme-color" content="#08090A" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0c0a'/%3E%3Ctext x='32' y='45' font-family='Verdana,sans-serif' font-size='38' font-weight='800' text-anchor='middle' fill='%23a4e232'%3ES%3C/text%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#08090A;--bg2:#0F1012;--tx:#F3F2EE;--mu:#8B8C93;--dm:#55565E;--ln:rgba(255,255,255,.11);--ln2:rgba(255,255,255,.2);--acc:164,226,50;--sans:'Inter Tight',-apple-system,sans-serif;--sf:rgba(255,255,255,.04)}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--tx);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:rgb(var(--acc));text-decoration:none}a:hover{text-decoration:underline}
+header{border-bottom:1px solid var(--ln);position:sticky;top:0;background:rgba(8,9,10,.85);backdrop-filter:blur(14px);z-index:10}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 22px;max-width:1180px;margin:0 auto}
+.wm img{height:22px;width:auto;display:block}
+.hd-r{display:flex;align-items:center;gap:14px}
+.who{font-size:12.5px;color:var(--mu)}
+.lnk{font-size:13px;color:var(--mu);cursor:pointer;background:none;border:0;font-family:inherit}
+.lnk:hover{color:var(--tx)}
+.wrap{max-width:1180px;margin:0 auto;padding:26px 22px 80px}
+.eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgb(var(--acc));font-weight:600}
+h1{font-size:clamp(26px,4vw,40px);font-weight:700;letter-spacing:-.04em;line-height:1.05;margin:12px 0 6px}
+h2{font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--tx);margin:0}
+.sub{color:var(--mu);font-size:14px;font-weight:300}
+
+/* auth card */
+.auth{max-width:420px;margin:8vh auto 0;border:1px solid var(--ln);border-radius:20px;
+  background:var(--bg2);padding:clamp(26px,4vw,38px);box-shadow:0 40px 100px -40px rgba(0,0,0,.8)}
+.tabs{display:flex;gap:6px;background:var(--sf);border:1px solid var(--ln);border-radius:100px;padding:4px;margin:18px 0 22px}
+.tab{flex:1;text-align:center;padding:9px;border-radius:100px;font-size:13px;font-weight:600;color:var(--mu);cursor:pointer;border:0;background:none;font-family:inherit;transition:.25s}
+.tab.on{background:rgb(var(--acc));color:#08090A}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+.field label{font-size:12px;font-weight:600;color:var(--tx)}
+.field input{width:100%;background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:12px 13px;
+  color:var(--tx);font-family:inherit;font-size:14px;outline:none;transition:border-color .25s,background .25s}
+.field input:focus{border-color:rgb(var(--acc));background:rgba(var(--acc),.05)}
+.field input::placeholder{color:var(--mu)}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border:0;border-radius:100px;
+  background:rgb(var(--acc));color:#08090A;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;transition:transform .2s,opacity .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn:disabled{opacity:.6;cursor:default;transform:none}
+.btn-sm{width:auto;padding:9px 15px;font-size:12.5px}
+.btn-g{background:transparent;color:var(--tx);border:1px solid var(--ln)}
+.msg{font-size:12.5px;text-align:center;min-height:16px;margin-top:12px}
+.msg.err{color:#ff6b6b}.msg.ok{color:rgb(var(--acc))}
+.msg.info{color:var(--mu)}
+
+/* dashboard */
+.hidden{display:none!important}
+.panel{border:1px solid var(--ln);border-radius:16px;background:var(--bg2);padding:20px;margin-top:22px}
+.panel-h{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
+.count{font-size:12px;color:var(--dm);border:1px solid var(--ln);border-radius:100px;padding:2px 10px}
+.tbl-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
+th{text-align:left;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dm);font-weight:600;padding:0 12px 10px;border-bottom:1px solid var(--ln)}
+td{padding:11px 12px;border-bottom:1px solid var(--ln);color:#cfd0d2;vertical-align:top}
+td.nm{color:var(--tx);font-weight:500;white-space:nowrap}
+.muted{color:var(--dm)}
+.empty{color:var(--mu);font-size:13.5px;padding:22px 4px;text-align:center}
+
+/* projects */
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.pcard{border:1px solid var(--ln);border-radius:14px;padding:16px 17px;background:var(--sf)}
+.pcard h3{font-size:15px;font-weight:600;letter-spacing:-.01em;margin-bottom:6px}
+.pcard p{font-size:13px;color:var(--mu);font-weight:300;margin:6px 0}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.02em;
+  padding:4px 10px;border-radius:100px;background:rgba(var(--acc),.12);color:rgb(var(--acc));border:1px solid rgba(var(--acc),.3)}
+.badge .d{width:6px;height:6px;border-radius:50%;background:rgb(var(--acc))}
+.pmeta{font-size:11.5px;color:var(--dm);margin-top:8px}
+.row-form{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
+.row-form .field{margin:0}
+.full{grid-column:1/-1}
+select{width:100%;background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:9px 11px;color:var(--tx);font-family:inherit;font-size:13px;outline:none}
+select:focus{border-color:rgb(var(--acc))}
+.pstatus{display:flex;align-items:center;gap:8px;margin-top:10px}
+.pstatus select{max-width:170px}
+@media(max-width:560px){.row-form{grid-template-columns:1fr}}
+.center{min-height:70vh;display:grid;place-items:center;color:var(--mu);font-size:14px}
+footer{border-top:1px solid var(--ln);text-align:center;padding:26px;color:var(--dm);font-size:12px}
+</style>
+</head>
+<body>
+<header><div class="hd">
+  <a class="wm" href="/"><img src="/logo.png" alt="GetSiteNow"></a>
+  <div class="hd-r">
+    <span class="who hidden" id="who"></span>
+    <a class="lnk" href="/">← Site</a>
+    <button class="lnk hidden" id="logoutBtn" type="button">Log out</button>
+  </div>
+</div></header>
+
+<!-- boot / loading -->
+<div class="center" id="bootView">Loading…</div>
+
+<!-- AUTH -->
+<main class="wrap hidden" id="authView">
+  <div class="auth">
+    <div class="eyebrow">GetSiteNow portal</div>
+    <h1 style="font-size:26px" id="authTitle">Welcome back</h1>
+    <div class="tabs">
+      <button class="tab on" id="tabLogin" type="button">Log in</button>
+      <button class="tab" id="tabSignup" type="button">Sign up</button>
+    </div>
+    <form id="authForm">
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input id="password" type="password" autocomplete="current-password" placeholder="••••••••" minlength="6" required>
+      </div>
+      <button class="btn" id="authBtn" type="submit"><span id="authBtnTx">Log in</span></button>
+      <div class="msg" id="authMsg" role="status" aria-live="polite"></div>
+    </form>
+  </div>
+</main>
+
+<!-- ADMIN -->
+<main class="wrap hidden" id="adminView">
+  <div class="eyebrow">Admin</div>
+  <h1>Your dashboard</h1>
+  <p class="sub">Every enquiry from your site, and the projects you're running.</p>
+
+  <div class="panel">
+    <div class="panel-h"><h2>Leads / enquiries</h2><span class="count" id="leadsCount">—</span></div>
+    <div class="tbl-wrap">
+      <table id="leadsTbl">
+        <thead><tr><th>When</th><th>Name</th><th>Phone</th><th>Email</th><th>Service</th><th>Message</th></tr></thead>
+        <tbody id="leadsBody"></tbody>
+      </table>
+    </div>
+    <div class="empty hidden" id="leadsEmpty">No leads yet.</div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h"><h2>Projects</h2><span class="count" id="projCount">—</span></div>
+    <form id="projForm" class="row-form">
+      <div class="field"><label for="pClient">Client email</label><input id="pClient" type="email" placeholder="client@example.com" required></div>
+      <div class="field"><label for="pTitle">Project title</label><input id="pTitle" type="text" placeholder="e.g. Business website" required></div>
+      <div class="field"><label for="pStatus">Status</label>
+        <select id="pStatus">
+          <option>Discovery</option><option>Design</option><option>Build</option><option>Review</option><option>Live</option>
+        </select>
+      </div>
+      <div class="field"><label for="pLink">Link (optional)</label><input id="pLink" type="url" placeholder="https://…"></div>
+      <div class="field full"><label for="pDetails">Details / note (optional)</label><input id="pDetails" type="text" placeholder="Anything the client should see"></div>
+      <div class="full"><button class="btn btn-sm" id="projAddBtn" type="submit">Add project</button>
+        <span class="msg" id="projMsg" style="display:inline;margin-left:10px"></span></div>
+    </form>
+    <div id="adminProjList"></div>
+  </div>
+</main>
+
+<!-- CLIENT -->
+<main class="wrap hidden" id="clientView">
+  <div class="eyebrow">Your projects</div>
+  <h1>Welcome<span id="clientName"></span></h1>
+  <p class="sub">Here's where your projects stand. Questions? Just reply on WhatsApp.</p>
+  <div class="panel">
+    <div class="pgrid" id="clientProjList"></div>
+    <div class="empty hidden" id="clientEmpty">No projects assigned yet. We'll add yours here as soon as we kick off.</div>
+  </div>
+</main>
+
+<footer>© 2026 GetSiteNow · <a href="/">Back to site</a></footer>
+
+<script>
+/* ══════════ CONFIG ══════════
+   Same Supabase project as the main site. The publishable key is browser-safe.
+   ADMIN_EMAIL = the email YOU sign up / log in with to get the admin dashboard.
+   Everyone else who signs up gets the client view.                            */
+const SUPABASE_URL  = "https://znevkigmdwnyeucsrlzy.supabase.co";
+const SUPABASE_KEY  = "sb_publishable_a2pEEWwaC4cXeMvF_4-ivQ_XzZTRKF6";
+const ADMIN_EMAIL   = "getsitenow.in@gmail.com";
+const SKEY = "gsn_session";
+
+const $=s=>document.querySelector(s);
+const AUTH=SUPABASE_URL.replace(/\/+$/,'')+"/auth/v1";
+const REST=SUPABASE_URL.replace(/\/+$/,'')+"/rest/v1";
+
+/* ---------- session storage ---------- */
+function saveSession(d){
+  const s={ access_token:d.access_token, refresh_token:d.refresh_token,
+            email:(d.user&&d.user.email)||d.email,
+            expires_at: Date.now() + ((d.expires_in||3600)*1000) };
+  localStorage.setItem(SKEY, JSON.stringify(s)); return s;
+}
+function getSession(){ try{ return JSON.parse(localStorage.getItem(SKEY)); }catch(e){ return null; } }
+function clearSession(){ localStorage.removeItem(SKEY); }
+
+/* ---------- api helpers ---------- */
+function authHeaders(){ const s=getSession();
+  return { 'apikey':SUPABASE_KEY, 'Authorization':'Bearer '+(s?s.access_token:SUPABASE_KEY), 'Content-Type':'application/json' }; }
+
+async function apiSignup(email,password){
+  const r=await fetch(AUTH+"/signup",{method:'POST',headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json'},
+    body:JSON.stringify({email,password})});
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok) throw new Error(j.msg||j.error_description||j.error||'Sign up failed');
+  return j;
+}
+async function apiLogin(email,password){
+  const r=await fetch(AUTH+"/token?grant_type=password",{method:'POST',headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json'},
+    body:JSON.stringify({email,password})});
+  const j=await r.json().catch(()=>({}));
+  if(!r.ok) throw new Error(j.msg||j.error_description||j.error||'Login failed');
+  return j;
+}
+async function apiRefresh(refresh_token){
+  const r=await fetch(AUTH+"/token?grant_type=refresh_token",{method:'POST',headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json'},
+    body:JSON.stringify({refresh_token})});
+  if(!r.ok) return null;
+  return r.json().catch(()=>null);
+}
+
+/* ---------- view switching ---------- */
+function show(id){ ['bootView','authView','adminView','clientView'].forEach(v=>{ const el=$('#'+v); if(el) el.classList.toggle('hidden', v!==id); }); }
+function esc(s){ return (s==null?'':String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+function fmtDate(s){ try{ return new Date(s).toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}); }catch(e){ return s||''; } }
+
+function enterApp(){
+  const s=getSession(); if(!s){ show('authView'); return; }
+  $('#who').textContent=s.email; $('#who').classList.remove('hidden');
+  $('#logoutBtn').classList.remove('hidden');
+  if((s.email||'').toLowerCase()===ADMIN_EMAIL.toLowerCase()){ show('adminView'); loadLeads(); loadAdminProjects(); }
+  else { const nm=(s.email||'').split('@')[0]; $('#clientName').textContent=nm?(', '+nm):''; show('clientView'); loadClientProjects(); }
+}
+
+/* ---------- ADMIN: leads ---------- */
+async function loadLeads(){
+  const body=$('#leadsBody'); body.innerHTML='';
+  try{
+    const r=await fetch(REST+"/leads?select=*&order=created_at.desc",{headers:authHeaders()});
+    const rows=await r.json();
+    if(!Array.isArray(rows)||!rows.length){ $('#leadsEmpty').classList.remove('hidden'); $('#leadsCount').textContent='0'; return; }
+    $('#leadsEmpty').classList.add('hidden'); $('#leadsCount').textContent=rows.length;
+    body.innerHTML=rows.map(l=>`<tr>
+      <td class="muted" style="white-space:nowrap">${esc(fmtDate(l.created_at))}</td>
+      <td class="nm">${esc(l.name)}</td>
+      <td style="white-space:nowrap">${esc(l.phone)}</td>
+      <td>${esc(l.email)||'<span class="muted">—</span>'}</td>
+      <td>${esc(l.service)||'<span class="muted">—</span>'}</td>
+      <td>${esc(l.message)||'<span class="muted">—</span>'}</td></tr>`).join('');
+  }catch(e){ $('#leadsEmpty').textContent='Could not load leads. Check the admin read policy in Supabase.'; $('#leadsEmpty').classList.remove('hidden'); }
+}
+
+/* ---------- ADMIN: projects ---------- */
+async function loadAdminProjects(){
+  const list=$('#adminProjList');
+  try{
+    const r=await fetch(REST+"/projects?select=*&order=created_at.desc",{headers:authHeaders()});
+    const rows=await r.json();
+    $('#projCount').textContent=Array.isArray(rows)?rows.length:'0';
+    if(!Array.isArray(rows)||!rows.length){ list.innerHTML='<div class="empty">No projects yet. Add one above.</div>'; return; }
+    const opts=['Discovery','Design','Build','Review','Live'];
+    list.innerHTML='<div class="pgrid">'+rows.map(p=>`<div class="pcard">
+      <h3>${esc(p.title)}</h3>
+      <div class="pmeta">${esc(p.client_email)}</div>
+      ${p.details?`<p>${esc(p.details)}</p>`:''}
+      ${p.link?`<p><a href="${esc(p.link)}" target="_blank" rel="noopener">Open link ↗</a></p>`:''}
+      <div class="pstatus">
+        <select data-id="${esc(p.id)}">${opts.map(o=>`<option${o===p.status?' selected':''}>${o}</option>`).join('')}</select>
+        <span class="pmeta upd" data-for="${esc(p.id)}"></span>
+      </div></div>`).join('')+'</div>';
+    list.querySelectorAll('select[data-id]').forEach(sel=>{
+      sel.addEventListener('change',async()=>{
+        const id=sel.getAttribute('data-id'); const note=list.querySelector('.upd[data-for="'+id+'"]');
+        sel.disabled=true; if(note) note.textContent='saving…';
+        const ok=await updateProjectStatus(id, sel.value);
+        sel.disabled=false; if(note) note.textContent=ok?'saved ✓':'failed';
+        setTimeout(()=>{ if(note) note.textContent=''; },2000);
+      });
+    });
+  }catch(e){ list.innerHTML='<div class="empty">Could not load projects.</div>'; }
+}
+async function updateProjectStatus(id,status){
+  try{ const r=await fetch(REST+"/projects?id=eq."+encodeURIComponent(id),{method:'PATCH',headers:Object.assign(authHeaders(),{'Prefer':'return=minimal'}),body:JSON.stringify({status})}); return r.ok; }
+  catch(e){ return false; }
+}
+
+/* ---------- CLIENT: own projects ---------- */
+async function loadClientProjects(){
+  const list=$('#clientProjList');
+  try{
+    const r=await fetch(REST+"/projects?select=*&order=created_at.desc",{headers:authHeaders()});
+    const rows=await r.json();
+    if(!Array.isArray(rows)||!rows.length){ $('#clientEmpty').classList.remove('hidden'); return; }
+    $('#clientEmpty').classList.add('hidden');
+    list.innerHTML=rows.map(p=>`<div class="pcard">
+      <span class="badge"><span class="d"></span>${esc(p.status||'Discovery')}</span>
+      <h3 style="margin-top:10px">${esc(p.title)}</h3>
+      ${p.details?`<p>${esc(p.details)}</p>`:''}
+      ${p.link?`<p><a href="${esc(p.link)}" target="_blank" rel="noopener">View ↗</a></p>`:''}
+      <div class="pmeta">Started ${esc(fmtDate(p.created_at))}</div></div>`).join('');
+  }catch(e){ $('#clientEmpty').textContent='Could not load your projects right now.'; $('#clientEmpty').classList.remove('hidden'); }
+}
+
+/* ---------- auth UI ---------- */
+let mode='login';
+function setMode(m){
+  mode=m;
+  $('#tabLogin').classList.toggle('on',m==='login');
+  $('#tabSignup').classList.toggle('on',m==='signup');
+  $('#authTitle').textContent = m==='login' ? 'Welcome back' : 'Create your account';
+  $('#authBtnTx').textContent = m==='login' ? 'Log in' : 'Sign up';
+  $('#password').autocomplete = m==='login' ? 'current-password' : 'new-password';
+  amsg('','');
+}
+function amsg(t,cls){ const el=$('#authMsg'); el.textContent=t||''; el.className='msg '+(cls||''); }
+
+$('#tabLogin').onclick=()=>setMode('login');
+$('#tabSignup').onclick=()=>setMode('signup');
+
+$('#authForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const email=$('#email').value.trim(), password=$('#password').value;
+  if(!email||password.length<6){ amsg('Enter a valid email and a 6+ character password.','err'); return; }
+  const btn=$('#authBtn'); btn.disabled=true; const old=$('#authBtnTx').textContent; $('#authBtnTx').textContent='Please wait…';
+  try{
+    if(mode==='signup'){
+      const j=await apiSignup(email,password);
+      if(j.access_token){ saveSession(j); enterApp(); }
+      else { amsg('Account created. Check your email to confirm, then log in.','ok'); setMode('login'); }
+    }else{
+      const j=await apiLogin(email,password);
+      saveSession(j); enterApp();
+    }
+  }catch(err){ amsg(err.message||'Something went wrong.','err'); }
+  finally{ btn.disabled=false; $('#authBtnTx').textContent=old; }
+});
+
+$('#logoutBtn').onclick=async()=>{
+  const s=getSession();
+  try{ if(s) await fetch(AUTH+"/logout",{method:'POST',headers:authHeaders()}); }catch(e){}
+  clearSession(); location.reload();
+};
+
+/* ---------- admin: add project ---------- */
+$('#projForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const row={ client_email:$('#pClient').value.trim().toLowerCase(), title:$('#pTitle').value.trim(),
+              status:$('#pStatus').value, link:$('#pLink').value.trim(), details:$('#pDetails').value.trim() };
+  if(!row.client_email||!row.title){ pmsg('Client email and title are required.','err'); return; }
+  const btn=$('#projAddBtn'); btn.disabled=true;
+  try{
+    const r=await fetch(REST+"/projects",{method:'POST',headers:Object.assign(authHeaders(),{'Prefer':'return=minimal'}),body:JSON.stringify(row)});
+    if(!r.ok){ const j=await r.json().catch(()=>({})); throw new Error(j.message||'Could not add project'); }
+    pmsg('Added ✓','ok'); $('#projForm').reset(); loadAdminProjects();
+  }catch(err){ pmsg(err.message,'err'); }
+  finally{ btn.disabled=false; }
+});
+function pmsg(t,cls){ const el=$('#projMsg'); el.textContent=t||''; el.className='msg '+(cls||''); }
+
+/* ---------- boot ---------- */
+(async function boot(){
+  const s=getSession();
+  if(!s){ show('authView'); return; }
+  if(s.expires_at && s.expires_at < Date.now()+30000){
+    const j=s.refresh_token ? await apiRefresh(s.refresh_token) : null;
+    if(j && j.access_token){ saveSession(j); } else { clearSession(); show('authView'); return; }
+  }
+  enterApp();
+})();
+</script>
+</body>
+</html>
