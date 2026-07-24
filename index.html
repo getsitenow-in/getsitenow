@@ -626,9 +626,11 @@ footer{border-top:1px solid var(--ln);padding:clamp(50px,6vw,80px) 0 32px}
 .f-c a:hover{color:rgb(var(--acc));transform:translateX(3px)}
 .f-bot{display:flex;justify-content:space-between;align-items:center;gap:16px 20px;flex-wrap:wrap;
   padding-top:26px;border-top:1px solid var(--ln);font-size:12.5px;color:var(--dm)}
-.f-legal{display:flex;gap:18px;flex-wrap:wrap}
-.f-legal a{color:var(--mu);transition:color .3s}
+.f-legal{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;
+  margin-top:22px;padding-top:22px;border-top:1px solid var(--ln)}
+.f-legal a{color:var(--mu);font-size:12.5px;transition:color .3s}
 .f-legal a:hover{color:var(--tx)}
+@media(max-width:640px){.f-legal{justify-content:flex-start;gap:16px}}
 .socials{display:flex;gap:8px}
 .soc{width:34px;height:34px;border-radius:50%;border:1px solid var(--ln);display:grid;place-items:center;
   color:var(--mu);transition:.4s var(--e)}
@@ -690,9 +692,31 @@ footer{border-top:1px solid var(--ln);padding:clamp(50px,6vw,80px) 0 32px}
 .wd-ico{width:34px;height:34px;border-radius:50%;border:1px solid var(--ln);background:transparent;
   color:var(--tx);display:grid;place-items:center;cursor:pointer;transition:.3s var(--e-soft)}
 .wd-ico:hover{background:var(--sf2);border-color:var(--ln2)}
-.wd-body{flex:1;position:relative;background:#fff}
-.wd-body iframe{width:100%;height:100%;border:0;position:relative;z-index:2}
-.wd-load{position:absolute;inset:0;z-index:1;display:grid;place-items:center;color:#8a8a93;font-size:13px}
+.wd-body{flex:1;position:relative;background:var(--bg2);overflow-y:auto}
+.wd-form{padding:20px 18px 24px;display:flex;flex-direction:column;gap:14px}
+.wd-intro{font-size:12.5px;color:var(--mu);line-height:1.55;margin:-2px 0 2px}
+.wd-svc-tag{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
+  padding:6px 13px;border-radius:100px;background:rgba(var(--acc),.12);
+  border:1px solid rgba(var(--acc),.35);color:rgb(var(--acc));font-size:12px;font-weight:600}
+.wd-field{display:flex;flex-direction:column;gap:6px}
+.wd-field label{font-size:12px;font-weight:600;color:var(--tx);letter-spacing:.01em}
+.wd-field label i{color:rgb(var(--acc));font-style:normal}
+.wd-input,.wd-ta{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--ln);
+  border-radius:12px;padding:12px 13px;color:var(--tx);font-family:inherit;font-size:14px;
+  transition:border-color .25s,background .25s;outline:none;-webkit-appearance:none}
+.wd-input:focus,.wd-ta:focus{border-color:rgb(var(--acc));background:rgba(var(--acc),.05)}
+.wd-input::placeholder,.wd-ta::placeholder{color:var(--mu)}
+.wd-ta{resize:vertical;min-height:72px;line-height:1.5}
+.wd-submit{margin-top:4px;display:inline-flex;align-items:center;justify-content:center;gap:9px;
+  width:100%;padding:14px;border:0;border-radius:100px;background:#25D366;color:#04210f;
+  font-family:inherit;font-weight:700;font-size:14.5px;cursor:pointer;
+  transition:transform .2s var(--e-soft),opacity .2s}
+.wd-submit:hover{transform:translateY(-2px)}
+.wd-submit:disabled{opacity:.6;cursor:default;transform:none}
+.wd-submit svg{width:18px;height:18px;fill:currentColor}
+.wd-msg{font-size:12.5px;text-align:center;min-height:15px}
+.wd-msg.err{color:#ff6b6b}.wd-msg.ok{color:rgb(var(--acc))}
+.wd-fine{font-size:11px;color:var(--mu);text-align:center;line-height:1.5;opacity:.85}
 @media(max-width:520px){.wd-panel{width:100%}}
 #toast{position:fixed;bottom:96px;left:50%;transform:translate(-50%,20px);z-index:1200;
   padding:12px 20px;border-radius:100px;background:rgb(var(--acc));color:#0B0C0A;
@@ -862,6 +886,25 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
   .dock{bottom:calc(14px + env(safe-area-inset-bottom))}
   #top{bottom:calc(86px + env(safe-area-inset-bottom))}
 }
+
+/* ── MORE CAPABILITIES — clickable service chips (price on request) ── */
+#capabilities .caps{display:grid;gap:36px}
+.cap-group .cap-h{display:flex;align-items:baseline;gap:10px;margin-bottom:15px}
+.cap-group .cap-h .ce{font-size:16px;line-height:1}
+.cap-group .cap-h b{font-size:14px;font-weight:600;letter-spacing:.01em;color:var(--tx)}
+.cap-group .cap-h span{font-size:12px;color:var(--mu);font-weight:400}
+.cap-list{display:flex;flex-wrap:wrap;gap:10px}
+.cap-chip{display:inline-flex;align-items:center;gap:9px;padding:10px 15px;border:1px solid var(--ln);
+  border-radius:100px;background:rgba(255,255,255,.03);color:var(--tx);font-family:inherit;
+  font-size:13.5px;font-weight:500;line-height:1;cursor:pointer;
+  transition:border-color .25s,background .25s,transform .25s,color .25s}
+.cap-chip .tag{display:inline-flex;opacity:.45;transition:opacity .25s,color .25s}
+.cap-chip .tag svg{width:13px;height:13px;display:block}
+.cap-chip:hover{border-color:rgb(var(--acc));background:rgba(var(--acc),.09);transform:translateY(-2px)}
+.cap-chip:hover .tag{opacity:1;color:rgb(var(--acc))}
+.cap-note{margin-top:30px;font-size:12.5px;color:var(--mu);display:flex;align-items:center;gap:8px}
+.cap-note svg{width:15px;height:15px;flex:none;color:rgb(var(--acc))}
+@media(max-width:640px){.cap-chip{font-size:13px;padding:9px 13px}#capabilities .caps{gap:30px}}
 </style>
 </head>
 <body>
@@ -984,6 +1027,20 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
       </div>
     </div>
     <div class="rows rv" id="svc"></div>
+  </div>
+</section>
+
+<!-- 02+ MORE CAPABILITIES — everything else we build, price on request -->
+<section id="capabilities">
+  <div class="wrap">
+    <div class="slab">
+      <div class="slab-k rv"><b>＋</b><i></i> Also available</div>
+      <div class="slab-x">
+        <h2 class="rv">Not just sites.<br/>The whole build.</h2>
+        <p class="rv">Websites, apps, business software, AI and automation — all under one roof. Tap anything you need and we'll send you a custom price on WhatsApp.</p>
+      </div>
+    </div>
+    <div class="caps rv" id="caps"></div>
   </div>
 </section>
 
@@ -1153,14 +1210,14 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
     </div>
     <div class="f-bot">
       <span>© 2026 GetSiteNow. All rights reserved.</span>
-      <nav class="f-legal">
-        <a href="/about">About</a><a href="/privacy">Privacy</a><a href="/terms">Terms</a><a href="/refund">Refunds</a>
-      </nav>
       <div class="socials">
         <a class="soc" href="https://www.instagram.com/getsitenow?igsh=MWU0NngyYzgxMHp5Yw==" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
         <a class="soc" href="mailto:getsitenow.in@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="M3 7l9 6 9-6"/></svg></a>
       </div>
     </div>
+    <nav class="f-legal">
+      <a href="/about">About</a><a href="/privacy">Privacy</a><a href="/terms">Terms &amp; Conditions</a><a href="/refund">Refund &amp; Cancellation</a>
+    </nav>
   </div>
 </footer>
 
@@ -1186,17 +1243,39 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
   <div class="wd-bg" id="wdBg"></div>
   <aside class="wd-panel" role="dialog" aria-modal="true" aria-label="Contact form">
     <div class="wd-head">
-      <b><span class="wd-dot"></span> Message us</b>
+      <b><span class="wd-dot"></span> <span id="wdTitle">Message us</span></b>
       <div class="wd-actions">
-        <a class="wd-ico" id="wdOpen" href="#" target="_blank" rel="noopener" title="Open in new tab" aria-label="Open in new tab">
-          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M7 17L17 7M8 7h9v9"/></svg></a>
         <button class="wd-ico" id="wdX" aria-label="Close">
           <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
       </div>
     </div>
     <div class="wd-body">
-      <div class="wd-load" id="wdLoad">Loading form…</div>
-      <iframe id="wdFrame" title="Contact form" allow="clipboard-write"></iframe>
+      <form class="wd-form" id="leadForm" novalidate>
+        <p class="wd-intro">Tell us what you need and where to reach you. We'll reply on WhatsApp with a custom price &amp; timeline — usually within a few hours.</p>
+        <div class="wd-svc-tag" id="leadSvcTag" hidden><span class="wd-dot"></span><span id="leadSvcLabel"></span></div>
+        <div class="wd-field">
+          <label for="leadName">Your name <i>*</i></label>
+          <input class="wd-input" id="leadName" name="name" type="text" autocomplete="name" placeholder="e.g. Rahul Sharma" required>
+        </div>
+        <div class="wd-field">
+          <label for="leadPhone">WhatsApp number <i>*</i></label>
+          <input class="wd-input" id="leadPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="e.g. +91 98765 43210" required>
+        </div>
+        <div class="wd-field">
+          <label for="leadService">Service you're interested in</label>
+          <input class="wd-input" id="leadService" name="service" type="text" placeholder="e.g. Business website">
+        </div>
+        <div class="wd-field">
+          <label for="leadMsg">Anything else? <span style="color:var(--mu);font-weight:400">(optional)</span></label>
+          <textarea class="wd-ta" id="leadMsg" name="message" placeholder="Budget, timeline, or details about your project…"></textarea>
+        </div>
+        <button class="wd-submit" id="leadSend" type="submit">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-2-1.2 7.5 7.5 0 01-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.4.2-.4v-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 00-.7.3A2.9 2.9 0 006 8.7a5 5 0 001.1 2.7 11.5 11.5 0 004.4 3.9c.6.3 1.1.4 1.5.5a3.5 3.5 0 001.6.1c.5-.1 1.4-.6 1.6-1.1a2 2 0 00.1-1.1c0-.1-.2-.2-.4-.3z"/></svg>
+          <span id="leadSendTx">Send &amp; open WhatsApp</span>
+        </button>
+        <div class="wd-msg" id="leadMsgOut" role="status" aria-live="polite"></div>
+        <p class="wd-fine">Your details are stored securely so we can get back to you. We never share them.</p>
+      </form>
     </div>
   </aside>
 </div>
@@ -1243,6 +1322,23 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
 /* ── WhatsApp form (Whatsform) — the "Message us" button opens this; submissions
       land in your WhatsApp from the customer's own number ── */
 const WHATSFORM = "https://whatsform.com/RkWJ3L";
+
+/* ── SUPABASE — your own lead database (name, number, service, message) ──
+   Get these 2 values from your Supabase project:  Settings ▸ API
+     • SUPABASE_URL      = "Project URL"     (e.g. https://abcd1234.supabase.co)
+     • SUPABASE_ANON_KEY = the "anon public" key (long string)
+   The anon key is SAFE to sit in this file — it's built for the browser.
+   ⚠ NEVER paste the "service_role" secret key here.
+   Leave both "" and the site still works: leads just skip the DB and go
+   straight to WhatsApp until you fill these in.                              */
+const SUPABASE_URL      = "https://znevkigmdwnyeucsrlzy.supabase.co";
+const SUPABASE_ANON_KEY = "sb_publishable_a2pEEWwaC4cXeMvF_4-ivQ_XzZTRKF6";
+
+/* ── your WhatsApp business number, full international form, digits only ──
+     India  98765 43210  →  "919876543210"
+   Leave "" and the form falls back to your Whatsform link.                  */
+const WA_NUMBER = "918796870355";
+
 /* ── Calendly — the "Book a call" scheduler ── */
 const CALENDLY  = "https://calendly.com/getsitenow-in/30min";   /* ← replace with your real Calendly link */
 
@@ -1529,6 +1625,31 @@ $('#svc').innerHTML=SERVICES.map((s,i)=>`
     <p>${s.d}</p>
     <span class="arrow">${AR}</span>
   </a>`).join('');
+
+/* ── MORE CAPABILITIES — everything else we build. Tapping a chip opens the
+      WhatsApp form pre-tagged with that service, so you know exactly what the
+      customer wants and can reply with a price. Edit freely. ── */
+const CAPS = [
+  { e:"🌐", g:"Websites & Portals", items:["Business websites","E-commerce stores","Landing pages","Portfolio websites","Admin dashboards","Customer portals","Booking systems","Real estate portals","Job portals","Hotel & travel booking","Food delivery sites","Healthcare portals"] },
+  { e:"📱", g:"Mobile & Web Apps", items:["React Native apps","Flutter apps","Native Android (Kotlin)","Native iOS (Swift)","Social media apps","Delivery apps","Taxi booking apps","Fitness apps","Learning apps","Chat apps","Expense trackers","Banking apps"] },
+  { e:"💼", g:"Business Software", items:["CRM","ERP system","HRMS","Inventory management","Billing & invoicing","Accounting systems","POS (Point of Sale)","Payroll system","Analytics dashboards"] },
+  { e:"🤖", g:"AI Products", items:["AI chatbots","Customer-support bots","AI agents","AI content writer","AI voice assistant","Document summarizer","Image analysis","OCR (scan documents)","Voice AI"] },
+  { e:"⚙️", g:"Automation Tools", items:["WhatsApp automation","Email automation","Workflow automation","Report generation","Invoice generator","Data scraping tools"] },
+  { e:"🔌", g:"APIs & Backend", items:["REST APIs","Authentication systems","Payment integrations","Notification systems","Database management","Cloud deployment","Firebase integration","Push notifications","Login / OTP systems"] },
+  { e:"🎮", g:"Games", items:["2D games","3D games","Multiplayer games","Puzzle games","Educational games"] }
+];
+const TAG_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0l-6.6-6.6A2 2 0 0 1 3.4 12V5a2 2 0 0 1 2-2h7a2 2 0 0 1 1.4.6l6.8 6.8a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.2" fill="currentColor" stroke="none"/></svg>';
+const capsEl=$('#caps');
+if(capsEl){
+  capsEl.innerHTML = CAPS.map(c=>`
+    <div class="cap-group">
+      <div class="cap-h"><span class="ce">${c.e}</span><b>${c.g}</b><span>· price on request</span></div>
+      <div class="cap-list">
+        ${c.items.map(it=>`<button type="button" class="cap-chip" data-svc="${it.replace(/"/g,'&quot;')}">${it}<span class="tag">${TAG_SVG}</span></button>`).join('')}
+      </div>
+    </div>`).join('') + `
+    <div class="cap-note"><span class="tag">${TAG_SVG}</span>Tap any service above — send your details on WhatsApp and we'll reply with a custom price and timeline.</div>`;
+}
 
 /* ══════════════ THE JOURNEY — footprints walked along a path ══════════════
    Footprints are placed by sampling the actual SVG path with getPointAtLength(),
@@ -1846,23 +1967,98 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
   fm.addEventListener('click',e=>{ if(e.target===fm) closeForm(); });
   addEventListener('keydown',e=>{ if(e.key==='Escape' && fm.classList.contains('on')) closeForm(); });
 
-  /* ── WhatsApp form DRAWER — the Whatsform renders inside a slide-in panel ──
-     iframe src is set only on first open (lazy). "Open in new tab" in the drawer
-     header is the fallback in case Whatsform ever blocks embedding.            */
-  const wd=$('#wd'), wdFrame=$('#wdFrame'), wdOpen=$('#wdOpen');
-  let wdReady=false;
-  function openDrawer(){
-    if(!wd){ window.open(WHATSFORM,'_blank','noopener'); return; }   // safety fallback
-    if(!wdReady){ wdFrame.src=WHATSFORM; wdOpen.href=WHATSFORM; wdReady=true; }
+  /* ── LEAD DRAWER — native form that (1) saves the lead to Supabase and
+     (2) hands off to WhatsApp with everything pre-written. A capability chip
+     passes its service name so the row + the WhatsApp message are tagged.     */
+  const wd=$('#wd'), wdTitle=$('#wdTitle');
+  const leadForm=$('#leadForm'), leadSvcTag=$('#leadSvcTag'), leadSvcLabel=$('#leadSvcLabel'),
+        leadService=$('#leadService'), leadName=$('#leadName'), leadPhone=$('#leadPhone'),
+        leadMsg=$('#leadMsg'), leadSend=$('#leadSend'), leadSendTx=$('#leadSendTx'),
+        leadMsgOut=$('#leadMsgOut');
+
+  function openDrawer(service){
+    if(!wd){ if(WHATSFORM) window.open(WHATSFORM,'_blank','noopener'); return; }  // safety fallback
+    if(service){
+      if(leadService) leadService.value=service;
+      if(leadSvcLabel) leadSvcLabel.textContent=service;
+      if(leadSvcTag) leadSvcTag.hidden=false;
+      if(wdTitle) wdTitle.textContent='Get pricing · '+service;
+    }else{
+      if(leadSvcTag) leadSvcTag.hidden=true;
+      if(wdTitle) wdTitle.textContent='Message us';
+    }
+    showLead('','');
     wd.classList.add('on'); wd.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
+    setTimeout(()=>{ if(leadName && !leadName.value) leadName.focus(); },420);
   }
+  /* capability chips → open the form pre-tagged with that service */
+  document.addEventListener('click',e=>{
+    const c=e.target.closest('.cap-chip');
+    if(!c) return;
+    e.preventDefault();
+    openDrawer(c.dataset.svc);
+  });
   function closeDrawer(){ if(!wd) return;
     wd.classList.remove('on'); wd.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
   if(wd){
     $('#wdX').onclick=closeDrawer;
     $('#wdBg').onclick=closeDrawer;
     addEventListener('keydown',e=>{ if(e.key==='Escape' && wd.classList.contains('on')) closeDrawer(); });
+  }
+
+  /* helpers */
+  function showLead(m,cls){ if(!leadMsgOut) return; leadMsgOut.textContent=m||''; leadMsgOut.className='wd-msg '+(cls||''); }
+
+  /* save one lead row to your Supabase table via its auto-generated REST API.
+     Uses the anon public key with an INSERT-only Row-Level-Security policy —
+     safe for the browser. Returns true on success, false if not configured. */
+  function saveLead(d){
+    if(!SUPABASE_URL || !SUPABASE_ANON_KEY) return Promise.resolve(false);
+    return fetch(SUPABASE_URL.replace(/\/+$/,'') + '/rest/v1/leads', {
+      method:'POST',
+      headers:{
+        'Content-Type':'application/json',
+        'apikey':SUPABASE_ANON_KEY,
+        'Prefer':'return=minimal'
+      },
+      body:JSON.stringify({ name:d.name, phone:d.phone, service:d.service, message:d.message, source:'website' })
+    }).then(r=>r.ok).catch(()=>false);
+  }
+
+  /* build the WhatsApp deep-link with the enquiry pre-written */
+  function waHandoff(d){
+    const body=[
+      "Hi GetSiteNow, I'd like a price for:",
+      "• Service: "+(d.service||"General enquiry"),
+      "• Name: "+d.name,
+      d.message ? ("• Details: "+d.message) : null
+    ].filter(Boolean).join("\n");
+    const txt=encodeURIComponent(body);
+    if(WA_NUMBER) return "https://wa.me/"+WA_NUMBER.replace(/\D/g,'')+"?text="+txt;
+    return WHATSFORM;  // fall back to your Whatsform link until a number is set
+  }
+
+  if(leadForm){
+    leadForm.addEventListener('submit',e=>{
+      e.preventDefault();
+      const name=(leadName.value||'').trim();
+      const phone=(leadPhone.value||'').trim();
+      if(name.length<2){ showLead('Please enter your name.','err'); leadName.focus(); return; }
+      if(phone.replace(/\D/g,'').length<7){ showLead('Please enter a valid WhatsApp number.','err'); leadPhone.focus(); return; }
+      const data={ name, phone, service:(leadService.value||'').trim(), message:(leadMsg.value||'').trim() };
+      /* 1 ▸ open WhatsApp immediately, inside the click gesture (no popup block) */
+      window.open(waHandoff(data),'_blank');
+      /* 2 ▸ save the lead to your database in the background */
+      leadSend.disabled=true; const old=leadSendTx.textContent; leadSendTx.textContent='Sending…';
+      saveLead(data).then(ok=>{
+        showLead(ok ? "Sent! We've saved your details." : 'Opening WhatsApp…','ok');
+      }).finally(()=>{
+        leadSend.disabled=false; leadSendTx.textContent=old;
+        leadForm.reset(); if(leadSvcTag) leadSvcTag.hidden=true;
+        setTimeout(closeDrawer,1500);
+      });
+    });
   }
 
   /* "Message us" (inside the Book-a-call modal) → close it, open the drawer */
