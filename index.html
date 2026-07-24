@@ -624,13 +624,15 @@ footer{border-top:1px solid var(--ln);padding:clamp(50px,6vw,80px) 0 32px}
 .f-c h5{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--dm);margin-bottom:18px;font-weight:600}
 .f-c a{display:block;font-size:13.5px;color:var(--mu);padding:5px 0;transition:.3s;font-weight:300}
 .f-c a:hover{color:rgb(var(--acc));transform:translateX(3px)}
-.f-bot{display:flex;justify-content:space-between;align-items:center;gap:16px 20px;flex-wrap:wrap;
+.f-bot{display:flex;justify-content:space-between;align-items:center;gap:14px 24px;flex-wrap:wrap;
   padding-top:26px;border-top:1px solid var(--ln);font-size:12.5px;color:var(--dm)}
-.f-legal{display:flex;gap:22px;flex-wrap:wrap;justify-content:center;
-  margin-top:22px;padding-top:22px;border-top:1px solid var(--ln)}
-.f-legal a{color:var(--mu);font-size:12.5px;transition:color .3s}
+.f-bot-l{display:flex;align-items:center;gap:8px 16px;flex-wrap:wrap}
+.f-legal{display:flex;flex-wrap:wrap;align-items:center}
+.f-legal a{color:var(--mu);font-size:12.5px;transition:color .3s;position:relative;padding-left:23px}
+.f-legal a::before{content:'';position:absolute;left:10px;top:50%;width:3px;height:3px;border-radius:50%;
+  background:var(--dm);transform:translateY(-50%)}
 .f-legal a:hover{color:var(--tx)}
-@media(max-width:640px){.f-legal{justify-content:flex-start;gap:16px}}
+@media(max-width:640px){.f-legal a{padding-left:17px}.f-legal a::before{left:7px}}
 .socials{display:flex;gap:8px}
 .soc{width:34px;height:34px;border-radius:50%;border:1px solid var(--ln);display:grid;place-items:center;
   color:var(--mu);transition:.4s var(--e)}
@@ -887,24 +889,24 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
   #top{bottom:calc(86px + env(safe-area-inset-bottom))}
 }
 
-/* ── MORE CAPABILITIES — clickable service chips (price on request) ── */
-#capabilities .caps{display:grid;gap:36px}
-.cap-group .cap-h{display:flex;align-items:baseline;gap:10px;margin-bottom:15px}
-.cap-group .cap-h .ce{font-size:16px;line-height:1}
-.cap-group .cap-h b{font-size:14px;font-weight:600;letter-spacing:.01em;color:var(--tx)}
-.cap-group .cap-h span{font-size:12px;color:var(--mu);font-weight:400}
-.cap-list{display:flex;flex-wrap:wrap;gap:10px}
-.cap-chip{display:inline-flex;align-items:center;gap:9px;padding:10px 15px;border:1px solid var(--ln);
-  border-radius:100px;background:rgba(255,255,255,.03);color:var(--tx);font-family:inherit;
-  font-size:13.5px;font-weight:500;line-height:1;cursor:pointer;
-  transition:border-color .25s,background .25s,transform .25s,color .25s}
-.cap-chip .tag{display:inline-flex;opacity:.45;transition:opacity .25s,color .25s}
-.cap-chip .tag svg{width:13px;height:13px;display:block}
-.cap-chip:hover{border-color:rgb(var(--acc));background:rgba(var(--acc),.09);transform:translateY(-2px)}
-.cap-chip:hover .tag{opacity:1;color:rgb(var(--acc))}
-.cap-note{margin-top:30px;font-size:12.5px;color:var(--mu);display:flex;align-items:center;gap:8px}
+/* ── MORE CAPABILITIES — clean, clickable service pills (price on request) ── */
+#capabilities .caps{display:grid;gap:38px}
+.cap-group .cap-h{display:flex;align-items:center;gap:11px;margin-bottom:16px}
+.cap-group .cap-h .ce{font-size:15px;line-height:1}
+.cap-group .cap-h b{font-size:13.5px;font-weight:600;letter-spacing:.01em;color:var(--tx)}
+.cap-group .cap-h .pill-req{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dm);
+  font-weight:600;border:1px solid var(--ln);padding:3px 9px;border-radius:100px;white-space:nowrap}
+.cap-list{display:flex;flex-wrap:wrap;gap:9px}
+.cap-chip{display:inline-flex;align-items:center;padding:9px 16px;border:1px solid var(--ln);
+  border-radius:100px;background:transparent;color:var(--mu);font-family:inherit;
+  font-size:13px;font-weight:500;line-height:1;cursor:pointer;white-space:nowrap;
+  transition:border-color .25s var(--e-soft),background .25s,color .25s,transform .25s}
+.cap-chip:hover{border-color:rgba(var(--acc),.55);background:rgba(var(--acc),.08);
+  color:var(--tx);transform:translateY(-1px)}
+.cap-note{margin-top:30px;padding-top:24px;border-top:1px solid var(--ln);
+  font-size:12.5px;color:var(--mu);display:flex;align-items:center;gap:9px}
 .cap-note svg{width:15px;height:15px;flex:none;color:rgb(var(--acc))}
-@media(max-width:640px){.cap-chip{font-size:13px;padding:9px 13px}#capabilities .caps{gap:30px}}
+@media(max-width:640px){.cap-chip{font-size:12.5px;padding:8px 13px}#capabilities .caps{gap:30px}}
 </style>
 </head>
 <body>
@@ -1209,15 +1211,17 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
         <a href="https://www.instagram.com/getsitenow?igsh=MWU0NngyYzgxMHp5Yw==" target="_blank" rel="noopener">Instagram</a></div>
     </div>
     <div class="f-bot">
-      <span>© 2026 GetSiteNow. All rights reserved.</span>
+      <div class="f-bot-l">
+        <span>© 2026 GetSiteNow. All rights reserved.</span>
+        <nav class="f-legal">
+          <a href="/about">About</a><a href="/privacy">Privacy</a><a href="/terms">Terms &amp; Conditions</a><a href="/refund">Refund &amp; Cancellation</a>
+        </nav>
+      </div>
       <div class="socials">
         <a class="soc" href="https://www.instagram.com/getsitenow?igsh=MWU0NngyYzgxMHp5Yw==" target="_blank" rel="noopener" aria-label="Instagram"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></a>
         <a class="soc" href="mailto:getsitenow.in@gmail.com" aria-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="M3 7l9 6 9-6"/></svg></a>
       </div>
     </div>
-    <nav class="f-legal">
-      <a href="/about">About</a><a href="/privacy">Privacy</a><a href="/terms">Terms &amp; Conditions</a><a href="/refund">Refund &amp; Cancellation</a>
-    </nav>
   </div>
 </footer>
 
@@ -1643,12 +1647,12 @@ const capsEl=$('#caps');
 if(capsEl){
   capsEl.innerHTML = CAPS.map(c=>`
     <div class="cap-group">
-      <div class="cap-h"><span class="ce">${c.e}</span><b>${c.g}</b><span>· price on request</span></div>
+      <div class="cap-h"><span class="ce">${c.e}</span><b>${c.g}</b><span class="pill-req">Price on request</span></div>
       <div class="cap-list">
-        ${c.items.map(it=>`<button type="button" class="cap-chip" data-svc="${it.replace(/"/g,'&quot;')}">${it}<span class="tag">${TAG_SVG}</span></button>`).join('')}
+        ${c.items.map(it=>`<button type="button" class="cap-chip" data-svc="${it.replace(/"/g,'&quot;')}">${it}</button>`).join('')}
       </div>
     </div>`).join('') + `
-    <div class="cap-note"><span class="tag">${TAG_SVG}</span>Tap any service above — send your details on WhatsApp and we'll reply with a custom price and timeline.</div>`;
+    <div class="cap-note">${TAG_SVG}Tap any service above — send your details on WhatsApp and we'll reply with a custom price and timeline.</div>`;
 }
 
 /* ══════════════ THE JOURNEY — footprints walked along a path ══════════════
