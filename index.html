@@ -334,10 +334,9 @@ h2{font-size:clamp(32px,5.4vw,84px);line-height:.94;letter-spacing:-.048em;font-
 .slab-x p{color:var(--mu);font-size:15px;font-weight:300;max-width:36ch;line-height:1.65}
 
 /* ═════════════ STATS ═════════════ */
-.stats{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--ln)}
-.stat{padding:34px 24px 0 0;border-right:1px solid var(--ln)}
-.stat:last-child{border-right:0}
-.stat b{display:block;font-size:clamp(40px,5.4vw,80px);font-weight:700;letter-spacing:-.05em;
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);border-block:1px solid var(--ln)}
+.stat{background:var(--bg);padding:30px 24px}
+.stat b{display:block;font-size:clamp(34px,4.4vw,60px);font-weight:700;letter-spacing:-.05em;
   line-height:1;font-variant-numeric:tabular-nums;color:rgb(var(--acc))}
 .stat span{display:block;margin-top:12px;font-size:12.5px;color:var(--mu)}
 
@@ -655,28 +654,7 @@ footer{border-top:1px solid var(--ln);padding:clamp(50px,6vw,80px) 0 32px}
   transition:opacity .4s var(--e),transform .4s var(--e),background .3s,color .3s}
 #top.on{opacity:1;transform:none;pointer-events:auto}
 #top:hover{background:rgb(var(--acc));color:#0B0C0A;border-color:transparent}
-/* ── floating WhatsApp bubble (always visible, bottom-left) ── */
-.wa-fab{position:fixed;z-index:130;bottom:24px;left:24px;width:56px;height:56px;border-radius:50%;
-  background:#25D366;color:#fff;display:grid;place-items:center;
-  box-shadow:0 12px 30px -6px rgba(37,211,102,.6);
-  transition:transform .4s var(--e-out),box-shadow .4s var(--e-out)}
-.wa-fab:hover{transform:scale(1.08) translateY(-2px);box-shadow:0 18px 42px -8px rgba(37,211,102,.8)}
-.wa-fab svg{width:30px;height:30px;position:relative;z-index:2}
-.wa-fab::before{content:'';position:absolute;inset:0;border-radius:50%;background:#25D366;z-index:1;
-  animation:waPulse 2.6s ease-out infinite}
-@keyframes waPulse{0%{transform:scale(1);opacity:.55}100%{transform:scale(1.9);opacity:0}}
-.wa-fab-tip{position:absolute;left:calc(100% + 12px);white-space:nowrap;z-index:3;
-  background:var(--iv);color:var(--ivt);font:600 12.5px var(--sans);padding:8px 12px;border-radius:9px;
-  box-shadow:0 8px 24px -8px rgba(0,0,0,.5);opacity:0;pointer-events:none;
-  transform:translateX(-6px);transition:opacity .35s var(--e-out),transform .35s var(--e-out)}
-.wa-fab:hover .wa-fab-tip{opacity:1;transform:none}
-@media(max-width:760px){
-  .wa-fab{bottom:92px;left:16px;width:52px;height:52px}
-  .wa-fab svg{width:27px;height:27px}
-  .wa-fab-tip{display:none}
-}
-@media(prefers-reduced-motion:reduce){.wa-fab::before{animation:none;opacity:0}}
-/* ── WhatsApp form drawer (slides in from the right, form embedded inside) ── */
+/* ── lead form drawer (slides in from the right, form embedded inside) ── */
 .wd{position:fixed;inset:0;z-index:1350;pointer-events:none}
 .wd-bg{position:absolute;inset:0;background:rgba(0,0,0,.6);opacity:0;transition:opacity .45s var(--e-out)}
 .wd-panel{position:absolute;top:0;right:0;height:100%;width:min(440px,100%);
@@ -689,7 +667,7 @@ footer{border-top:1px solid var(--ln);padding:clamp(50px,6vw,80px) 0 32px}
 .wd-head{display:flex;align-items:center;justify-content:space-between;gap:12px;
   padding:15px 16px;border-bottom:1px solid var(--ln);flex-shrink:0}
 .wd-head b{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;letter-spacing:-.01em}
-.wd-dot{width:8px;height:8px;border-radius:50%;background:#25D366;box-shadow:0 0 0 3px rgba(37,211,102,.22)}
+.wd-dot{width:8px;height:8px;border-radius:50%;background:rgb(var(--acc));box-shadow:0 0 0 3px rgba(var(--acc),.22)}
 .wd-actions{display:flex;gap:8px}
 .wd-ico{width:34px;height:34px;border-radius:50%;border:1px solid var(--ln);background:transparent;
   color:var(--tx);display:grid;place-items:center;cursor:pointer;transition:.3s var(--e-soft)}
@@ -710,7 +688,7 @@ footer{border-top:1px solid var(--ln);padding:clamp(50px,6vw,80px) 0 32px}
 .wd-input::placeholder,.wd-ta::placeholder{color:var(--mu)}
 .wd-ta{resize:vertical;min-height:72px;line-height:1.5}
 .wd-submit{margin-top:4px;display:inline-flex;align-items:center;justify-content:center;gap:9px;
-  width:100%;padding:14px;border:0;border-radius:100px;background:#25D366;color:#04210f;
+  width:100%;padding:14px;border:0;border-radius:100px;background:rgb(var(--acc));color:#08090A;
   font-family:inherit;font-weight:700;font-size:14.5px;cursor:pointer;
   transition:transform .2s var(--e-soft),opacity .2s}
 .wd-submit:hover{transform:translateY(-2px)}
@@ -777,7 +755,6 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
   .slab-k{padding-top:0}
   .eco,.reel,.plans{grid-template-columns:repeat(2,1fr)}
   .stats{grid-template-columns:repeat(2,1fr)}
-  .stat:nth-child(2){border-right:0}
   .f-g{grid-template-columns:1fr 1fr;gap:34px}
 }
 @media(max-width:760px){
@@ -795,11 +772,12 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
   .row p{display:none}
   .w-row{grid-template-columns:1fr auto;gap:6px 12px}
   .w-row .sec,.tags,.w-row .arrow{display:none}
-  .eco,.reel,.plans,.steps,.stats{grid-template-columns:1fr}
+  .eco,.reel,.plans,.steps{grid-template-columns:1fr}
+  .stats{grid-template-columns:repeat(2,1fr)}
   .step{border-right:0;padding:28px 0 32px!important}
   .step:nth-child(n+3){border-bottom:1px solid var(--ln)}
   .step:last-child{border-bottom:0}
-  .stat{border-right:0;border-bottom:1px solid var(--ln);padding-bottom:26px}
+  .stat{padding:24px 16px}
   .dock{left:14px;right:14px;transform:translate3d(0,150%,0);padding:8px 8px 8px 16px;
     justify-content:space-between}
   .dock.on{transform:translate3d(0,0,0)}
@@ -848,31 +826,130 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
   #top{bottom:calc(86px + env(safe-area-inset-bottom))}
 }
 
-/* ── MORE CAPABILITIES — clean, clickable service pills (price on request) ── */
-#capabilities .caps{display:grid;gap:38px}
-.cap-group .cap-h{display:flex;align-items:center;gap:11px;margin-bottom:16px}
-.cap-group .cap-h .ce{font-size:15px;line-height:1}
-.cap-group .cap-h b{font-size:13.5px;font-weight:600;letter-spacing:.01em;color:var(--tx)}
-.cap-group .cap-h .pill-req{font-size:9.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--dm);
-  font-weight:600;border:1px solid var(--ln);padding:3px 9px;border-radius:100px;white-space:nowrap}
-.cap-scroll{position:relative}
-.cap-scroll::after{content:'';position:absolute;top:0;right:0;bottom:6px;width:64px;pointer-events:none;
-  opacity:0;transition:opacity .3s;background:linear-gradient(90deg,rgba(8,9,10,0),var(--bg))}
-.cap-scroll.has-more::after{opacity:1}
-.cap-list{display:flex;flex-wrap:nowrap;gap:9px;overflow-x:auto;padding:2px 2px 6px;
-  scroll-snap-type:x proximity;scrollbar-width:none;-webkit-overflow-scrolling:touch}
-.cap-list::-webkit-scrollbar{display:none}
-.cap-chip{flex:0 0 auto;scroll-snap-align:start;display:inline-flex;align-items:center;padding:9px 16px;
-  border:1px solid var(--ln);border-radius:100px;background:transparent;color:var(--mu);font-family:inherit;
-  font-size:13px;font-weight:500;line-height:1;cursor:pointer;white-space:nowrap;
-  transition:border-color .25s var(--e-soft),background .25s,color .25s,transform .25s}
-.cap-chip:hover{border-color:rgba(var(--acc),.55);background:rgba(var(--acc),.08);
-  color:var(--tx);transform:translateY(-1px)}
-.cap-note{margin-top:30px;padding-top:24px;border-top:1px solid var(--ln);
-  font-size:12.5px;color:var(--mu);display:flex;align-items:center;gap:9px}
+/* ── MORE CAPABILITIES — mega-menu grid of clickable service pills ── */
+/* ── CAPABILITIES — searchable category menu + slide-in services drawer ── */
+#capabilities .caps{max-width:840px}
+.cap-search{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--ln);border-radius:14px;
+  padding:15px 18px;color:var(--tx);font-family:inherit;font-size:15px;outline:none;margin-bottom:22px;
+  transition:border-color .25s,background .25s,box-shadow .25s}
+.cap-search:focus{border-color:rgb(var(--acc));background:rgba(var(--acc),.05);box-shadow:0 0 0 4px rgba(var(--acc),.1)}
+.cap-search::placeholder{color:var(--mu)}
+.cap-menu{display:flex;flex-direction:column;border:1px solid var(--ln);border-radius:18px;overflow:hidden;background:var(--bg2)}
+.cap-row{display:flex;align-items:center;gap:15px;width:100%;padding:19px 22px;background:transparent;border:0;
+  border-bottom:1px solid var(--ln);color:var(--tx);font-family:inherit;font-size:15.5px;font-weight:500;
+  cursor:pointer;text-align:left;transition:background .3s var(--e-out),padding-left .3s var(--e-out)}
+.cap-row:last-child{border-bottom:0}
+.cap-row:hover{background:rgba(var(--acc),.07);padding-left:30px}
+.cap-row-ic{font-size:19px;line-height:1;width:24px;text-align:center;transition:transform .3s var(--e-out)}
+.cap-row:hover .cap-row-ic{transform:scale(1.15)}
+.cap-row-t{flex:1;letter-spacing:-.01em}
+.cap-row-n{font-size:11px;color:var(--dm);border:1px solid var(--ln);border-radius:100px;padding:2px 10px;transition:.3s}
+.cap-row:hover .cap-row-n{color:rgb(var(--acc));border-color:rgba(var(--acc),.4)}
+.cap-row-ar{color:var(--mu);font-size:18px;transition:transform .35s var(--e-out),color .35s}
+.cap-row:hover .cap-row-ar{transform:translateX(6px);color:rgb(var(--acc))}
+.cap-results{display:flex;flex-wrap:wrap;gap:8px}
+.cap-result{padding:9px 15px;border:1px solid var(--ln);border-radius:100px;background:transparent;color:var(--mu);
+  font-family:inherit;font-size:13px;cursor:pointer;transition:.25s}
+.cap-result:hover{border-color:rgb(var(--acc));background:rgba(var(--acc),.1);color:var(--tx);transform:translateY(-1px)}
+.cap-empty{color:var(--mu);font-size:14px;padding:14px 2px}
+.cap-note{margin-top:26px;padding-top:22px;border-top:1px solid var(--ln);font-size:12.5px;color:var(--mu);
+  display:flex;align-items:center;gap:9px}
 .cap-note svg{width:15px;height:15px;flex:none;color:rgb(var(--acc))}
-@media(max-width:640px){.cap-chip{font-size:12.5px;padding:8px 13px}#capabilities .caps{gap:30px}}
+
+/* services drawer (opens from a category) */
+.sd{position:fixed;inset:0;z-index:1340;pointer-events:none}
+.sd-bg{position:absolute;inset:0;background:rgba(0,0,0,.62);opacity:0;transition:opacity .45s var(--e-out)}
+.sd-panel{position:absolute;top:0;right:0;height:100%;width:min(500px,100%);background:var(--bg2);
+  border-left:1px solid var(--ln2);display:flex;flex-direction:column;transform:translateX(100%);
+  transition:transform .5s var(--e-out);box-shadow:-24px 0 70px -24px rgba(0,0,0,.75)}
+.sd.on{pointer-events:auto}
+.sd.on .sd-bg{opacity:1}
+.sd.on .sd-panel{transform:none}
+.sd-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 22px;border-bottom:1px solid var(--ln);flex-shrink:0}
+.sd-head b{display:flex;align-items:center;gap:11px;font-size:19px;font-weight:600;letter-spacing:-.025em}
+.sd-body{flex:1;overflow-y:auto;padding:18px 22px}
+.sd-list{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.sd-item{display:flex;align-items:center;gap:10px;padding:13px 15px;border:1px solid var(--ln);border-radius:12px;
+  background:transparent;color:var(--tx);font-family:inherit;font-size:13.5px;text-align:left;cursor:pointer;
+  transition:border-color .25s,background .25s,transform .2s var(--e-out)}
+.sd-item::before{content:'';width:8px;height:8px;border-radius:50%;border:1.5px solid var(--mu);flex:none;transition:.25s}
+.sd-item:hover{border-color:rgb(var(--acc));background:rgba(var(--acc),.08);transform:translateY(-2px)}
+.sd-item:hover::before{border-color:rgb(var(--acc));background:rgb(var(--acc));box-shadow:0 0 0 3px rgba(var(--acc),.2)}
+.sd-foot{padding:16px 22px;border-top:1px solid var(--ln);flex-shrink:0}
+.sd-foot .btn{width:100%;justify-content:center}
+@media(max-width:520px){.sd-panel{width:100%}.sd-list{grid-template-columns:1fr}.cap-row{padding:17px 18px}}
+
+/* ── MULTI-SELECT services picker (inside the lead form) ── */
+.ms{border:1px solid var(--ln);border-radius:12px;background:rgba(255,255,255,.03);padding:10px}
+.ms-chips{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px}
+.ms-ph{font-size:12.5px;color:var(--mu)}
+.ms-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:100px;
+  background:rgba(var(--acc),.14);border:1px solid rgba(var(--acc),.4);color:rgb(var(--acc));
+  font-size:12px;font-weight:600;cursor:pointer}
+.ms-chip b{font-weight:700;opacity:.8}
+.ms-search{margin-bottom:8px}
+.ms-list{max-height:190px;overflow-y:auto;display:flex;flex-direction:column;gap:2px}
+.ms-g{font-size:9.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--dm);font-weight:600;padding:8px 4px 4px}
+.ms-item{text-align:left;background:none;border:0;border-radius:8px;padding:8px 10px;color:var(--mu);
+  font-family:inherit;font-size:13px;cursor:pointer;transition:background .2s,color .2s}
+.ms-item:hover{background:rgba(255,255,255,.05);color:var(--tx)}
+.ms-item.on{background:rgba(var(--acc),.12);color:rgb(var(--acc));font-weight:600}
+.ms-item.dis{opacity:.35;cursor:not-allowed}
+.ms-empty{font-size:12.5px;color:var(--mu);padding:10px 4px}
+.ms-count{font-size:11px;color:var(--dm);margin-top:8px;text-align:right}
+
+/* ── direct-contact display (number + email, show-only, no WhatsApp link) ── */
+.wd-direct{margin-top:4px;font-size:12px;color:var(--mu);text-align:center;line-height:1.7}
+.copyv{background:none;border:0;color:var(--tx);font-family:inherit;font-size:12px;font-weight:600;cursor:pointer;
+  border-bottom:1px dashed var(--ln2);padding:0 1px}
+.copyv:hover{color:rgb(var(--acc));border-color:rgb(var(--acc))}
+.contact-info{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 26px;margin-top:22px;font-size:14.5px;color:var(--mu)}
+.contact-info .copyv{font-size:14.5px}
+.foot-phone{display:block;font-size:13.5px;color:var(--mu);padding:5px 0;font-weight:300}
+.foot-phone .copyv{font-size:13.5px;font-weight:300;color:var(--mu)}
+.foot-phone .copyv:hover{color:rgb(var(--acc))}
 </style>
+
+<!-- ═══════ ANALYTICS / AD TRACKING ═══════
+     Paste your IDs below and tracking switches on automatically.
+     Leave any as "" to keep it off. Nothing loads until an ID is set. -->
+<script>
+window.GSN_TRACK = {
+  GA4_ID:        "",   /* Google Analytics 4    → "G-XXXXXXXXXX" */
+  GADS_ID:       "",   /* Google Ads account    → "AW-XXXXXXXXXX" */
+  GADS_LABEL:    "",   /* Google Ads conversion label → "abcdEFGHij123" */
+  META_PIXEL_ID: ""    /* Meta (Facebook) Pixel → "1234567890123456" */
+};
+(function(){
+  var T=window.GSN_TRACK;
+  var gid = T.GA4_ID || T.GADS_ID;
+  if(gid){
+    var s=document.createElement('script'); s.async=true;
+    s.src="https://www.googletagmanager.com/gtag/js?id="+encodeURIComponent(gid);
+    document.head.appendChild(s);
+    window.dataLayer=window.dataLayer||[];
+    window.gtag=function(){dataLayer.push(arguments);};
+    gtag('js', new Date());
+    if(T.GA4_ID)  gtag('config', T.GA4_ID);
+    if(T.GADS_ID) gtag('config', T.GADS_ID);
+  }
+  if(T.META_PIXEL_ID){
+    !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script',
+      'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', T.META_PIXEL_ID); fbq('track','PageView');
+  }
+})();
+/* called when someone submits the lead form — counts as a conversion */
+window.gsnTrackLead=function(mode,service){
+  var T=window.GSN_TRACK||{};
+  try{ if(window.gtag && T.GA4_ID)  gtag('event','generate_lead',{method:mode||'form',service:service||''}); }catch(e){}
+  try{ if(window.gtag && T.GADS_ID && T.GADS_LABEL) gtag('event','conversion',{send_to:T.GADS_ID+'/'+T.GADS_LABEL}); }catch(e){}
+  try{ if(window.fbq && T.META_PIXEL_ID) fbq('track','Lead',{content_name:service||'enquiry'}); }catch(e){}
+};
+</script>
 </head>
 <body>
 
@@ -975,7 +1052,9 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
       <h2 class="rv">We don't build websites. We build the thing that fills your calendar.</h2>
     </div>
     <div class="stats rv" id="stats">
-      <div class="stat"><b data-c="60" data-s="+">0</b><span>Businesses launched</span></div>
+      <div class="stat"><b data-c="39" data-s="">0</b><span>Businesses launched</span></div>
+      <div class="stat"><b data-c="130" data-s="+">0</b><span>Websites made to date</span></div>
+      <div class="stat"><b data-c="9" data-s="">0</b><span>Apps built</span></div>
       <div class="stat"><b data-c="7" data-s=" days">0</b><span>Average time to live</span></div>
       <div class="stat"><b data-c="4.9" data-d="1" data-s="/5">0</b><span>Client rating</span></div>
       <div class="stat"><b data-c="0" data-s="₹0">0</b><span>Cost if you hate it</span></div>
@@ -1004,7 +1083,7 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
       <div class="slab-k rv"><b>＋</b><i></i> Also available</div>
       <div class="slab-x">
         <h2 class="rv">Not just sites.<br/>The whole build.</h2>
-        <p class="rv">Websites, apps, business software, AI and automation — all under one roof. Tap anything you need and we'll send you a custom price on WhatsApp.</p>
+        <p class="rv">Websites, apps, business software, AI and automation — all under one roof. Tap anything you need and we'll send you a custom price.</p>
       </div>
     </div>
     <div class="caps rv" id="caps"></div>
@@ -1152,6 +1231,7 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><rect x="9" y="9" width="12" height="12" rx="2.5"/><path d="M5 15H4a2 2 0 01-2-2V4a2 2 0 012-2h9a2 2 0 012 2v1"/></svg></button>
         <button type="button" class="btn btn-g js-book"><span>Book a 20-min call</span></button>
       </div>
+      <div class="contact-info rv" id="contactInfo"></div>
       <div class="note rv">Replies in about 4 hours · No pitch deck · No pressure · Nothing to lose</div>
     </div>
   </div>
@@ -1173,6 +1253,7 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
         <a href="#ecosystem">Ecosystem</a><a href="#reel">Reel</a><a href="#pricing">Pricing</a><a href="#faq">FAQ</a><a href="/portal">Client login</a></div>
       <div class="f-c"><h5>Get in touch</h5>
         <a href="mailto:getsitenow.in@gmail.com">getsitenow.in@gmail.com</a>
+        <span id="footPhone" class="foot-phone"></span>
         <a href="https://www.instagram.com/getsitenow?igsh=MWU0NngyYzgxMHp5Yw==" target="_blank" rel="noopener">Instagram</a></div>
     </div>
     <div class="f-bot">
@@ -1201,13 +1282,22 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
 
 <button id="top" aria-label="Back to top"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 19V5M5 12l7-7 7 7"/></svg></button>
 
-<!-- floating WhatsApp bubble → opens the form drawer -->
-<a class="wa-fab" id="waFab" href="#" aria-label="Chat with us on WhatsApp">
-  <span class="wa-fab-tip">Chat with us</span>
-  <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-2-1.2 7.5 7.5 0 01-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.4.2-.4v-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 00-.7.3A2.9 2.9 0 006 8.7a5 5 0 001.1 2.7 11.5 11.5 0 004.4 3.9c.6.3 1.1.4 1.5.5a3.5 3.5 0 001.6.1c.5-.1 1.4-.6 1.6-1.1a2 2 0 00.1-1.1c0-.1-.2-.2-.4-.3z"/></svg>
-</a>
+<!-- Services drawer — opens from a capability category -->
+<div class="sd" id="svcDrawer" aria-hidden="true">
+  <div class="sd-bg" id="sdBg"></div>
+  <aside class="sd-panel" role="dialog" aria-modal="true" aria-label="Services">
+    <div class="sd-head">
+      <b id="sdTitle">Services</b>
+      <button class="wd-ico" id="sdX" aria-label="Close">
+        <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+    </div>
+    <div class="sd-body"><div class="sd-list" id="sdList"></div></div>
+    <div class="sd-foot"><button type="button" class="btn" id="sdQuote"><span>Request a quote</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg></button></div>
+  </aside>
+</div>
 
-<!-- Lead form drawer — native form → saves to Supabase + opens WhatsApp -->
+<!-- Lead form drawer — native form → saves to Supabase + optional email -->
 <div class="wd" id="wd" aria-hidden="true">
   <div class="wd-bg" id="wdBg"></div>
   <aside class="wd-panel" role="dialog" aria-modal="true" aria-label="Contact form">
@@ -1220,14 +1310,13 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
     </div>
     <div class="wd-body">
       <form class="wd-form" id="leadForm" novalidate>
-        <p class="wd-intro">Tell us what you need and where to reach you. Send it your way — WhatsApp, email, or just submit — and we'll reply with a custom price &amp; timeline, usually within a few hours.</p>
-        <div class="wd-svc-tag" id="leadSvcTag" hidden><span class="wd-dot"></span><span id="leadSvcLabel"></span></div>
+        <p class="wd-intro">Tell us what you need and where to reach you, and we'll get back with a custom price &amp; timeline — usually within a few hours.</p>
         <div class="wd-field">
           <label for="leadName">Your name <i>*</i></label>
           <input class="wd-input" id="leadName" name="name" type="text" autocomplete="name" placeholder="e.g. Rahul Sharma" required>
         </div>
         <div class="wd-field">
-          <label for="leadPhone">Phone / WhatsApp <i>*</i></label>
+          <label for="leadPhone">Phone number <i>*</i></label>
           <input class="wd-input" id="leadPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="e.g. +91 98765 43210" required>
         </div>
         <div class="wd-field">
@@ -1235,23 +1324,27 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
           <input class="wd-input" id="leadEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com">
         </div>
         <div class="wd-field">
-          <label for="leadService">Service you're interested in</label>
-          <input class="wd-input" id="leadService" name="service" type="text" placeholder="e.g. Business website">
+          <label>Services you want <span style="color:var(--mu);font-weight:400">(pick up to 5)</span></label>
+          <div class="ms">
+            <div class="ms-chips" id="msChips"></div>
+            <input class="wd-input ms-search" id="msSearch" type="text" placeholder="Search services…" autocomplete="off">
+            <div class="ms-list" id="msList"></div>
+            <div class="ms-count" id="msCount">0 / 5 selected</div>
+          </div>
         </div>
         <div class="wd-field">
           <label for="leadMsg">Anything else? <span style="color:var(--mu);font-weight:400">(optional)</span></label>
           <textarea class="wd-ta" id="leadMsg" name="message" placeholder="Budget, timeline, or details about your project…"></textarea>
         </div>
         <button class="wd-submit" id="leadSend" type="submit">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 00-8.6 15l-1.3 4.8 4.9-1.3A10 10 0 1012 2zm0 18.2a8.2 8.2 0 01-4.2-1.1l-.3-.2-2.9.8.8-2.8-.2-.3A8.2 8.2 0 1112 20.2zm4.5-6.1c-.2-.1-1.4-.7-1.7-.8s-.4-.1-.5.1-.6.8-.8 1-.3.2-.5.1a6.7 6.7 0 01-2-1.2 7.5 7.5 0 01-1.4-1.7c-.1-.3 0-.4.1-.5l.4-.4.2-.4v-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5a1 1 0 00-.7.3A2.9 2.9 0 006 8.7a5 5 0 001.1 2.7 11.5 11.5 0 004.4 3.9c.6.3 1.1.4 1.5.5a3.5 3.5 0 001.6.1c.5-.1 1.4-.6 1.6-1.1a2 2 0 00.1-1.1c0-.1-.2-.2-.4-.3z"/></svg>
-          <span id="leadSendTx">Send on WhatsApp</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
+          <span id="leadSendTx">Send my enquiry</span>
         </button>
         <div class="wd-alt">
-          <button type="button" class="wd-alt-btn" id="leadEmailBtn">Email instead</button>
-          <span>·</span>
-          <button type="button" class="wd-alt-btn" id="leadSaveBtn">Just send my details</button>
+          <button type="button" class="wd-alt-btn" id="leadEmailBtn">Email us instead</button>
         </div>
         <div class="wd-msg" id="leadMsgOut" role="status" aria-live="polite"></div>
+        <div class="wd-direct" id="wdDirect"></div>
         <p class="wd-fine">Your details are stored securely so we can get back to you. We never share them.</p>
       </form>
     </div>
@@ -1272,10 +1365,10 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
 
 /* wrap a word in * to paint it brand-green · "|" = line break */
 /* ══════════ LEAD CAPTURE SETTINGS ══════════
-   Every enquiry now flows through your OWN on-page form (the slide-in drawer):
-   the visitor fills name + WhatsApp number + details → it saves to your
-   Supabase database AND opens WhatsApp with the message pre-written.
-   No Calendly, no Whatsform — just your form. */
+   Every enquiry flows through your OWN on-page form (the slide-in drawer):
+   the visitor fills name + phone + details → it saves to your Supabase
+   database. They can optionally send it as an email too.
+   No Calendly, no Whatsform, no WhatsApp — just your form. */
 
 /* ── SUPABASE — your own lead database (name, number, service, message) ──
    Get these 2 values from your Supabase project:  Settings ▸ API
@@ -1286,9 +1379,11 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
 const SUPABASE_URL      = "https://znevkigmdwnyeucsrlzy.supabase.co";
 const SUPABASE_ANON_KEY = "sb_publishable_a2pEEWwaC4cXeMvF_4-ivQ_XzZTRKF6";
 
-/* ── your WhatsApp business number, full international form, digits only ──
-     India  98765 43210  →  "919876543210"                                    */
-const WA_NUMBER = "918796870355";
+/* ── PUBLIC CONTACT INFO shown on the site (display only — NOT linked to WhatsApp) ──
+   ⚠ CONTACT_PHONE is your OLD number as a placeholder. Replace it with your
+   active WhatsApp number. Set it to "" to hide the number entirely.          */
+const CONTACT_PHONE = "+91 95608 90355";
+const CONTACT_EMAIL = "getsitenow.in@gmail.com";
 
 const HEADLINE = ["Business","websites","that","*pay for*","|","*themselves.*"];
 
@@ -1391,7 +1486,7 @@ const FAQS = [
   { q:"What if I don't like what you design?", a:"You see two directions in the first 48 hours, before we build anything. If neither lands, we go again — free. If it still isn't right, you pay for the strategy call only and we part as friends. You will never be stuck with something you hate." },
   { q:"Do I actually own everything?", a:"Completely. Code, source files, domain, hosting, passwords — all moved into your accounts on launch day. We don't hold your website hostage to keep you paying us. Plenty of agencies do. Ask them." },
   { q:"What do I need to have ready?", a:"Nothing. Turn up to the call knowing what your business does and who you sell to. We write the copy, source the images, handle the rest. Got a logo? Great. If not, we'll make you one." },
-  { q:"What happens after it goes live?", a:"30–90 days of free fixes depending on your plan. After that, most clients just WhatsApp us when they need something. No retainer, no lock-in, no surprise invoice." },
+  { q:"What happens after it goes live?", a:"30–90 days of free fixes depending on your plan. After that, most clients just email us when they need something. No retainer, no lock-in, no surprise invoice." },
   { q:"Can I pay in instalments?", a:"Yes. 50% to start, 50% on launch day. You see the finished site before the second half is due — so you're never paying for something you haven't seen." }
 ];
 
@@ -1575,7 +1670,7 @@ $('#svc').innerHTML=SERVICES.map((s,i)=>`
   </a>`).join('');
 
 /* ── MORE CAPABILITIES — everything else we build. Tapping a chip opens the
-      WhatsApp form pre-tagged with that service, so you know exactly what the
+      lead form pre-tagged with that service, so you know exactly what the
       customer wants and can reply with a price. Edit freely. ── */
 const CAPS = [
   { e:"🌐", g:"Websites & Portals", items:["Business websites","E-commerce stores","Landing pages","Portfolio websites","Admin dashboards","Customer portals","Booking systems","Real estate portals","Job portals","Hotel & travel booking","Food delivery sites","Healthcare portals"] },
@@ -1584,31 +1679,25 @@ const CAPS = [
   { e:"🤖", g:"AI Products", items:["AI chatbots","Customer-support bots","AI agents","AI content writer","AI voice assistant","Document summarizer","Image analysis","OCR (scan documents)","Voice AI"] },
   { e:"⚙️", g:"Automation Tools", items:["WhatsApp automation","Email automation","Workflow automation","Report generation","Invoice generator","Data scraping tools"] },
   { e:"🔌", g:"APIs & Backend", items:["REST APIs","Authentication systems","Payment integrations","Notification systems","Database management","Cloud deployment","Firebase integration","Push notifications","Login / OTP systems"] },
+  { e:"🎨", g:"Design & Growth", items:["Branding & identity","Logo design","UI/UX design","Product design","SEO","Google Ads","Meta / Instagram Ads","Motion & video","Copywriting"] },
   { e:"🎮", g:"Games", items:["2D games","3D games","Multiplayer games","Puzzle games","Educational games"] }
 ];
 const TAG_SVG='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 13.4l-7.2 7.2a2 2 0 0 1-2.8 0l-6.6-6.6A2 2 0 0 1 3.4 12V5a2 2 0 0 1 2-2h7a2 2 0 0 1 1.4.6l6.8 6.8a2 2 0 0 1 0 2.8z"/><circle cx="7.5" cy="7.5" r="1.2" fill="currentColor" stroke="none"/></svg>';
+const CAP_TOTAL=CAPS.reduce((n,c)=>n+c.items.length,0);
 const capsEl=$('#caps');
 if(capsEl){
-  capsEl.innerHTML = CAPS.map(c=>`
-    <div class="cap-group">
-      <div class="cap-h"><span class="ce">${c.e}</span><b>${c.g}</b><span class="pill-req">Price on request</span></div>
-      <div class="cap-scroll">
-        <div class="cap-list">
-          ${c.items.map(it=>`<button type="button" class="cap-chip" data-svc="${it.replace(/"/g,'&quot;')}">${it}</button>`).join('')}
-        </div>
-      </div>
-    </div>`).join('') + `
-    <div class="cap-note">${TAG_SVG}Tap any service above — send your details on WhatsApp and we'll reply with a custom price and timeline.</div>`;
-
-  /* show the right-edge fade only while a row has more to scroll (keeps rows
-     that fit looking clean, and hints "scroll for more" on the long ones) */
-  capsEl.querySelectorAll('.cap-scroll').forEach(sc=>{
-    const list=sc.querySelector('.cap-list');
-    const upd=()=>{ sc.classList.toggle('has-more', list.scrollWidth - list.clientWidth - list.scrollLeft > 4); };
-    upd(); setTimeout(upd,350);
-    list.addEventListener('scroll',upd,{passive:true});
-    addEventListener('resize',upd);
-  });
+  capsEl.innerHTML =
+    `<input class="cap-search" id="capSearch" type="text" placeholder="Search ${CAP_TOTAL}+ services…" autocomplete="off" aria-label="Search services">`+
+    `<div class="cap-menu" id="capMenu">`+
+      CAPS.map(c=>`<button type="button" class="cap-row" data-cat="${c.g.replace(/"/g,'&quot;')}">
+        <span class="cap-row-ic">${c.e}</span>
+        <span class="cap-row-t">${c.g}</span>
+        <span class="cap-row-n">${c.items.length}</span>
+        <span class="cap-row-ar" aria-hidden="true">→</span>
+      </button>`).join('')+
+    `</div>`+
+    `<div class="cap-results" id="capResults" hidden></div>`+
+    `<div class="cap-note">${TAG_SVG}Tap a category to see everything we build there, then pick what you need — we'll send a custom price.</div>`;
 }
 
 /* ══════════════ THE JOURNEY — footprints walked along a path ══════════════
@@ -1885,9 +1974,9 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
 
 /* ══════════════ BOOK / CONTACT ══════════════
    Every "Book a call" / "Contact us" / pricing / dock button opens your own
-   on-page lead form (the slide-in drawer). The visitor enters name + WhatsApp
-   number + details → it saves to Supabase AND opens WhatsApp pre-written.
-   No Calendly, no third-party form.                                           */
+   on-page lead form (the slide-in drawer). The visitor enters name + phone +
+   details → it saves to Supabase, and can optionally be sent as an email.
+   No Calendly, no WhatsApp, no third-party form.                              */
 (function(){
   /* every booking / contact trigger opens the lead-form drawer */
   document.addEventListener('click',e=>{
@@ -1897,45 +1986,102 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
     openDrawer();
   });
 
-  /* ── LEAD DRAWER — native form that (1) saves the lead to Supabase and
-     (2) hands off to WhatsApp with everything pre-written. A capability chip
-     passes its service name so the row + the WhatsApp message are tagged.     */
+  /* ── LEAD DRAWER — native form that saves the lead to Supabase (and can also
+     open the visitor's email app). A capability chip passes its service name
+     so the saved row is tagged with exactly what the customer wants.          */
   const wd=$('#wd'), wdTitle=$('#wdTitle');
-  const leadForm=$('#leadForm'), leadSvcTag=$('#leadSvcTag'), leadSvcLabel=$('#leadSvcLabel'),
-        leadService=$('#leadService'), leadName=$('#leadName'), leadPhone=$('#leadPhone'),
+  const leadForm=$('#leadForm'), leadName=$('#leadName'), leadPhone=$('#leadPhone'),
         leadEmail=$('#leadEmail'), leadMsg=$('#leadMsg'), leadSend=$('#leadSend'),
-        leadSendTx=$('#leadSendTx'), leadMsgOut=$('#leadMsgOut'),
-        leadEmailBtn=$('#leadEmailBtn'), leadSaveBtn=$('#leadSaveBtn');
+        leadSendTx=$('#leadSendTx'), leadMsgOut=$('#leadMsgOut'), leadEmailBtn=$('#leadEmailBtn');
+
+  /* ── MULTI-SELECT services picker (up to 5, sourced from CAPS) ── */
+  const MS_MAX=5, msSel=new Set();
+  const msChips=$('#msChips'), msList=$('#msList'), msCount=$('#msCount'), msSearch=$('#msSearch');
+  const ALL_SVC=(typeof CAPS!=='undefined'?CAPS:[]).reduce((a,c)=>a.concat(c.items.map(n=>({g:c.g,n}))),[]);
+  function escA(s){ return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
+  function msRenderChips(){
+    if(!msChips) return;
+    msChips.innerHTML = msSel.size
+      ? [...msSel].map(n=>`<span class="ms-chip" data-svc="${escA(n)}">${escA(n)} <b>×</b></span>`).join('')
+      : '<span class="ms-ph">None selected yet — tap below or pick from the services section.</span>';
+    if(msCount) msCount.textContent = msSel.size+' / '+MS_MAX+' selected';
+  }
+  function msRenderList(){
+    if(!msList) return;
+    const f=((msSearch&&msSearch.value)||'').toLowerCase().trim();
+    const groups={};
+    ALL_SVC.forEach(s=>{ if(f && s.n.toLowerCase().indexOf(f)<0) return; (groups[s.g]=groups[s.g]||[]).push(s.n); });
+    const keys=Object.keys(groups);
+    if(!keys.length){ msList.innerHTML='<div class="ms-empty">No matching service.</div>'; return; }
+    const full=msSel.size>=MS_MAX;
+    msList.innerHTML=keys.map(g=>`<div class="ms-g">${escA(g)}</div>`+groups[g].map(n=>{
+      const on=msSel.has(n), dis=!on&&full;
+      return `<button type="button" class="ms-item${on?' on':''}${dis?' dis':''}" data-svc="${escA(n)}"${dis?' disabled':''}>${on?'✓ ':''}${escA(n)}</button>`;
+    }).join('')).join('');
+  }
+  function msAdd(n){ if(msSel.has(n)) return; if(msSel.size>=MS_MAX){ showLead('You can pick up to '+MS_MAX+' services.','err'); return; } msSel.add(n); msRenderChips(); msRenderList(); }
+  function msRemove(n){ msSel.delete(n); msRenderChips(); msRenderList(); }
+  function msClear(){ msSel.clear(); if(msSearch) msSearch.value=''; msRenderChips(); msRenderList(); }
+  if(msList)   msList.addEventListener('click',e=>{ const b=e.target.closest('.ms-item'); if(!b||b.disabled) return; const n=b.dataset.svc; msSel.has(n)?msRemove(n):msAdd(n); });
+  if(msChips)  msChips.addEventListener('click',e=>{ const c=e.target.closest('.ms-chip'); if(!c) return; msRemove(c.dataset.svc); });
+  if(msSearch) msSearch.addEventListener('input',msRenderList);
+  msRenderChips(); msRenderList();
 
   function openDrawer(service){
     if(!wd) return;  // drawer missing (shouldn't happen) — nothing to open
-    if(service){
-      if(leadService) leadService.value=service;
-      if(leadSvcLabel) leadSvcLabel.textContent=service;
-      if(leadSvcTag) leadSvcTag.hidden=false;
-      if(wdTitle) wdTitle.textContent='Get pricing · '+service;
-    }else{
-      if(leadSvcTag) leadSvcTag.hidden=true;
-      if(wdTitle) wdTitle.textContent='Message us';
-    }
+    if(service){ msAdd(service); if(wdTitle) wdTitle.textContent='Get pricing'; }
+    else if(wdTitle) wdTitle.textContent='Message us';
     showLead('','');
     wd.classList.add('on'); wd.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
     setTimeout(()=>{ if(leadName && !leadName.value) leadName.focus(); },420);
   }
-  /* capability chips → open the form pre-tagged with that service */
-  document.addEventListener('click',e=>{
-    const c=e.target.closest('.cap-chip');
-    if(!c) return;
-    e.preventDefault();
-    openDrawer(c.dataset.svc);
-  });
   function closeDrawer(){ if(!wd) return;
     wd.classList.remove('on'); wd.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
   if(wd){
     $('#wdX').onclick=closeDrawer;
     $('#wdBg').onclick=closeDrawer;
     addEventListener('keydown',e=>{ if(e.key==='Escape' && wd.classList.contains('on')) closeDrawer(); });
+  }
+
+  /* ── SERVICES DRAWER — a category opens a slide-in panel of its services ── */
+  const sd=$('#svcDrawer'), sdList=$('#sdList'), sdTitle=$('#sdTitle');
+  function openSvcDrawer(catName){
+    if(!sd) return;
+    const cat=CAPS.find(c=>c.g===catName); if(!cat) return;
+    if(sdTitle) sdTitle.innerHTML=`<span>${cat.e}</span> ${escA(cat.g)}`;
+    if(sdList) sdList.innerHTML=cat.items.map(n=>`<button type="button" class="sd-item" data-svc="${escA(n)}">${escA(n)}</button>`).join('');
+    sd.classList.add('on'); sd.setAttribute('aria-hidden','false'); document.body.style.overflow='hidden';
+  }
+  function closeSvcDrawer(){ if(!sd) return; sd.classList.remove('on'); sd.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+  if(sd){
+    $('#sdBg').onclick=closeSvcDrawer; $('#sdX').onclick=closeSvcDrawer;
+    const q=$('#sdQuote'); if(q) q.onclick=()=>{ closeSvcDrawer(); openDrawer(); };
+    addEventListener('keydown',e=>{ if(e.key==='Escape' && sd.classList.contains('on')) closeSvcDrawer(); });
+  }
+
+  /* delegated clicks: category row → services drawer · service → lead form (pre-selected) */
+  document.addEventListener('click',e=>{
+    const row=e.target.closest('.cap-row');
+    if(row){ e.preventDefault(); openSvcDrawer(row.dataset.cat); return; }
+    const item=e.target.closest('.sd-item');
+    if(item){ e.preventDefault(); closeSvcDrawer(); openDrawer(item.dataset.svc); return; }
+    const res=e.target.closest('.cap-result');
+    if(res){ e.preventDefault(); openDrawer(res.dataset.svc); return; }
+  });
+
+  /* live search across every service */
+  const capSearch=$('#capSearch'), capMenu=$('#capMenu'), capResults=$('#capResults');
+  if(capSearch && capMenu && capResults){
+    capSearch.addEventListener('input',()=>{
+      const f=capSearch.value.toLowerCase().trim();
+      if(!f){ capMenu.hidden=false; capResults.hidden=true; capResults.innerHTML=''; return; }
+      const matches=ALL_SVC.filter(s=>s.n.toLowerCase().indexOf(f)>-1);
+      capMenu.hidden=true; capResults.hidden=false;
+      capResults.innerHTML = matches.length
+        ? matches.map(s=>`<button type="button" class="cap-result" data-svc="${escA(s.n)}">${escA(s.n)}</button>`).join('')
+        : '<div class="cap-empty">No service matches “'+escA(capSearch.value)+'”. Try another word.</div>';
+    });
   }
 
   /* helpers */
@@ -1961,19 +2107,6 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
     return post(full).then(ok=> ok ? true : (()=>{ const {email,...rest}=full; return post(rest); })());
   }
 
-  /* build the WhatsApp deep-link with the enquiry pre-written */
-  function waHandoff(d){
-    const body=[
-      "Hi GetSiteNow, I'd like a price for:",
-      "• Service: "+(d.service||"General enquiry"),
-      "• Name: "+d.name,
-      d.message ? ("• Details: "+d.message) : null
-    ].filter(Boolean).join("\n");
-    const txt=encodeURIComponent(body);
-    if(WA_NUMBER) return "https://wa.me/"+WA_NUMBER.replace(/\D/g,'')+"?text="+txt;
-    return "mailto:getsitenow.in@gmail.com?subject="+encodeURIComponent("New enquiry")+"&body="+txt;  // fallback if no WhatsApp number set
-  }
-
   /* build a mailto link addressed to you, with the enquiry pre-written */
   function mailHandoff(d){
     const subject="New enquiry"+(d.service?(" · "+d.service):"");
@@ -1981,7 +2114,7 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
       "Hi GetSiteNow,","",
       "I'd like to enquire about: "+(d.service||"your services"),"",
       "Name: "+d.name,
-      "Phone / WhatsApp: "+d.phone,
+      "Phone: "+d.phone,
       d.email?("Email: "+d.email):null,
       d.message?("Details: "+d.message):null
     ].filter(Boolean).join("\n");
@@ -1992,43 +2125,38 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
     const name=(leadName.value||'').trim();
     const phone=(leadPhone.value||'').trim();
     if(name.length<2){ showLead('Please enter your name.','err'); leadName.focus(); return null; }
-    if(phone.replace(/\D/g,'').length<7){ showLead('Please enter a valid phone / WhatsApp number.','err'); leadPhone.focus(); return null; }
+    if(phone.replace(/\D/g,'').length<7){ showLead('Please enter a valid phone number.','err'); leadPhone.focus(); return null; }
     return { name, phone, email:(leadEmail.value||'').trim(),
-             service:(leadService.value||'').trim(), message:(leadMsg.value||'').trim() };
+             service:[...msSel].join(', '), message:(leadMsg.value||'').trim() };
   }
 
-  function busy(on){ [leadSend,leadEmailBtn,leadSaveBtn].forEach(b=>{ if(b) b.disabled=on; }); }
-  function finishLead(){ leadForm.reset(); if(leadSvcTag) leadSvcTag.hidden=true; setTimeout(closeDrawer,1600); }
+  function busy(on){ [leadSend,leadEmailBtn].forEach(b=>{ if(b) b.disabled=on; }); }
+  function finishLead(){ leadForm.reset(); msClear(); setTimeout(closeDrawer,1600); }
 
-  /* one path, three ways to send:  'whatsapp' | 'email' | 'save' (query only) */
+  /* two ways to send:  'save' (straight to your database) | 'email' (also opens their mail app) */
   function submitLead(mode){
     const data=collectLead(); if(!data) return;
-    /* open the chosen channel synchronously (inside the click → no popup block) */
-    if(mode==='whatsapp') window.open(waHandoff(data),'_blank');
-    else if(mode==='email') window.open(mailHandoff(data),'_blank');
-    /* every path also saves the lead to your database */
+    /* count the conversion in GA4 / Google Ads / Meta Pixel */
+    if(window.gsnTrackLead) window.gsnTrackLead(mode, data.service);
+    /* email path opens the mail app synchronously (inside the click → no popup block) */
+    if(mode==='email') window.open(mailHandoff(data),'_blank');
+    /* every path saves the lead to your database */
     busy(true); const old=leadSendTx.textContent; leadSendTx.textContent='Sending…';
     saveLead(data).then(ok=>{
       busy(false); leadSendTx.textContent=old;
-      if(mode==='save'){
-        if(ok){ showLead("Thanks! Your enquiry has been sent.",'ok'); finishLead(); }
-        else   showLead("Couldn't send — please try WhatsApp or Email.",'err');
+      if(mode==='email'){
+        showLead(ok ? "Sent! We've saved your details." : 'Opening your email…','ok'); finishLead();
       }else{
-        showLead(ok ? "Sent! We've saved your details." : (mode==='email'?'Opening your email…':'Opening WhatsApp…'),'ok');
-        finishLead();
+        if(ok){ showLead("Thanks! Your enquiry has been sent.",'ok'); finishLead(); }
+        else   showLead("Couldn't send just now — please try Email instead.",'err');
       }
     });
   }
 
   if(leadForm){
-    leadForm.addEventListener('submit',e=>{ e.preventDefault(); submitLead('whatsapp'); });
+    leadForm.addEventListener('submit',e=>{ e.preventDefault(); submitLead('save'); });
     if(leadEmailBtn) leadEmailBtn.addEventListener('click',()=>submitLead('email'));
-    if(leadSaveBtn)  leadSaveBtn.addEventListener('click',()=>submitLead('save'));
   }
-
-  /* floating WhatsApp bubble → open the drawer */
-  const fab=$('#waFab');
-  if(fab) fab.addEventListener('click',e=>{ e.preventDefault(); openDrawer(); });
 })();
 
 /* ── copy email ── */
@@ -2038,6 +2166,27 @@ $('#copyMail').onclick=async()=>{
        setTimeout(()=>t.classList.remove('on'),2200); }
   catch(e){ location.href='mailto:getsitenow.in@gmail.com'; }
 };
+
+/* ── PUBLIC CONTACT DISPLAY — number + email shown as copyable text.
+      NOT linked to WhatsApp: no wa.me, no auto-open. Customers copy the
+      number and message from their own phone.                             */
+(function(){
+  const ph=(typeof CONTACT_PHONE!=='undefined'?CONTACT_PHONE:'').trim();
+  const em=(typeof CONTACT_EMAIL!=='undefined'?CONTACT_EMAIL:'getsitenow.in@gmail.com').trim();
+  const chip=(v)=>`<button type="button" class="copyv" data-copy="${v}" title="Tap to copy">${v}</button>`;
+  const phPart = ph ? ('WhatsApp '+chip(ph)) : '';
+  const emPart = 'Email '+chip(em);
+  const sep = ph ? ' &nbsp;·&nbsp; ' : '';
+  const ci=$('#contactInfo'); if(ci) ci.innerHTML = phPart + sep + emPart;
+  const wdD=$('#wdDirect'); if(wdD) wdD.innerHTML = (ph?('Prefer to message us directly? '+phPart+sep):'') + emPart;
+  const fp=$('#footPhone'); if(fp){ if(ph){ fp.innerHTML='WhatsApp '+chip(ph); } else { fp.style.display='none'; } }
+  document.addEventListener('click',e=>{
+    const b=e.target.closest('.copyv'); if(!b) return;
+    const v=b.getAttribute('data-copy');
+    const done=()=>{ const t=$('#toast'); if(t){ t.innerHTML=CK+' '+(v.indexOf('@')>-1?'Email copied':'Number copied'); t.classList.add('on'); setTimeout(()=>t.classList.remove('on'),2000); } };
+    if(navigator.clipboard){ navigator.clipboard.writeText(v).then(done).catch(()=>{}); }
+  });
+})();
 
 /* ── theme ── */
 const root=document.documentElement;
