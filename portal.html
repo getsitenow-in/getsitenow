@@ -4,14 +4,14 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Portal · GetSiteNow</title>
-<meta name="description" content="GetSiteNow client & admin portal — log in to manage projects and enquiries." />
+<meta name="description" content="GetSiteNow client & admin portal." />
 <meta name="robots" content="noindex, nofollow" />
 <meta name="theme-color" content="#08090A" />
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b0c0a'/%3E%3Ctext x='32' y='45' font-family='Verdana,sans-serif' font-size='38' font-weight='800' text-anchor='middle' fill='%23a4e232'%3ES%3C/text%3E%3C/svg%3E" />
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#08090A;--bg2:#0F1012;--tx:#F3F2EE;--mu:#8B8C93;--dm:#55565E;--ln:rgba(255,255,255,.11);--ln2:rgba(255,255,255,.2);--acc:164,226,50;--sans:'Inter Tight',-apple-system,sans-serif;--sf:rgba(255,255,255,.04)}
+:root{--bg:#08090A;--bg2:#0F1012;--tx:#F3F2EE;--mu:#8B8C93;--dm:#55565E;--ln:rgba(255,255,255,.11);--ln2:rgba(255,255,255,.2);--acc:164,226,50;--amber:240,180,90;--sans:'Inter Tight',-apple-system,sans-serif;--sf:rgba(255,255,255,.04)}
 *{box-sizing:border-box;margin:0;padding:0}
 body{background:var(--bg);color:var(--tx);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
 a{color:rgb(var(--acc));text-decoration:none}a:hover{text-decoration:underline}
@@ -22,66 +22,81 @@ header{border-bottom:1px solid var(--ln);position:sticky;top:0;background:rgba(8
 .who{font-size:12.5px;color:var(--mu)}
 .lnk{font-size:13px;color:var(--mu);cursor:pointer;background:none;border:0;font-family:inherit}
 .lnk:hover{color:var(--tx)}
-.wrap{max-width:1180px;margin:0 auto;padding:26px 22px 80px}
+.wrap{max-width:1180px;margin:0 auto;padding:26px 22px 90px}
 .eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgb(var(--acc));font-weight:600}
 h1{font-size:clamp(26px,4vw,40px);font-weight:700;letter-spacing:-.04em;line-height:1.05;margin:12px 0 6px}
 h2{font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--tx);margin:0}
 .sub{color:var(--mu);font-size:14px;font-weight:300}
 
-/* auth card */
-.auth{max-width:420px;margin:8vh auto 0;border:1px solid var(--ln);border-radius:20px;
-  background:var(--bg2);padding:clamp(26px,4vw,38px);box-shadow:0 40px 100px -40px rgba(0,0,0,.8)}
+.auth{max-width:420px;margin:8vh auto 0;border:1px solid var(--ln);border-radius:20px;background:var(--bg2);padding:clamp(26px,4vw,38px);box-shadow:0 40px 100px -40px rgba(0,0,0,.8)}
 .tabs{display:flex;gap:6px;background:var(--sf);border:1px solid var(--ln);border-radius:100px;padding:4px;margin:18px 0 22px}
 .tab{flex:1;text-align:center;padding:9px;border-radius:100px;font-size:13px;font-weight:600;color:var(--mu);cursor:pointer;border:0;background:none;font-family:inherit;transition:.25s}
 .tab.on{background:rgb(var(--acc));color:#08090A}
 .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
 .field label{font-size:12px;font-weight:600;color:var(--tx)}
-.field input{width:100%;background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:12px 13px;
-  color:var(--tx);font-family:inherit;font-size:14px;outline:none;transition:border-color .25s,background .25s}
-.field input:focus{border-color:rgb(var(--acc));background:rgba(var(--acc),.05)}
+.field input,.field select{width:100%;background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:12px 13px;color:var(--tx);font-family:inherit;font-size:14px;outline:none;transition:border-color .25s,background .25s}
+.field input:focus,.field select:focus{border-color:rgb(var(--acc));background:rgba(var(--acc),.05)}
 .field input::placeholder{color:var(--mu)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border:0;border-radius:100px;
-  background:rgb(var(--acc));color:#08090A;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;transition:transform .2s,opacity .2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border:0;border-radius:100px;background:rgb(var(--acc));color:#08090A;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;transition:transform .2s,opacity .2s}
 .btn:hover{transform:translateY(-2px)}
 .btn:disabled{opacity:.6;cursor:default;transform:none}
 .btn-sm{width:auto;padding:9px 15px;font-size:12.5px}
 .btn-g{background:transparent;color:var(--tx);border:1px solid var(--ln)}
 .msg{font-size:12.5px;text-align:center;min-height:16px;margin-top:12px}
 .msg.err{color:#ff6b6b}.msg.ok{color:rgb(var(--acc))}
-.msg.info{color:var(--mu)}
 
-/* dashboard */
 .hidden{display:none!important}
 .panel{border:1px solid var(--ln);border-radius:16px;background:var(--bg2);padding:20px;margin-top:22px}
 .panel-h{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
 .count{font-size:12px;color:var(--dm);border:1px solid var(--ln);border-radius:100px;padding:2px 10px}
 .tbl-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px}
-th{text-align:left;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dm);font-weight:600;padding:0 12px 10px;border-bottom:1px solid var(--ln)}
-td{padding:11px 12px;border-bottom:1px solid var(--ln);color:#cfd0d2;vertical-align:top}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:820px}
+th{text-align:left;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dm);font-weight:600;padding:0 10px 10px;border-bottom:1px solid var(--ln)}
+td{padding:10px;border-bottom:1px solid var(--ln);color:#cfd0d2;vertical-align:top}
 td.nm{color:var(--tx);font-weight:500;white-space:nowrap}
 .muted{color:var(--dm)}
 .empty{color:var(--mu);font-size:13.5px;padding:22px 4px;text-align:center}
+.tsel,.tinput{background:var(--sf);border:1px solid var(--ln);border-radius:8px;padding:6px 8px;color:var(--tx);font-family:inherit;font-size:12px;outline:none}
+.tsel:focus,.tinput:focus{border-color:rgb(var(--acc))}
+.tinput{min-width:120px}
+.conv{background:none;border:1px solid var(--ln);color:var(--mu);border-radius:8px;padding:6px 9px;font-size:11.5px;cursor:pointer;font-family:inherit;white-space:nowrap}
+.conv:hover{border-color:rgb(var(--acc));color:rgb(var(--acc))}
 
-/* projects */
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:14px}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
 .pcard{border:1px solid var(--ln);border-radius:14px;padding:16px 17px;background:var(--sf)}
-.pcard h3{font-size:15px;font-weight:600;letter-spacing:-.01em;margin-bottom:6px}
+.pcard h3{font-size:15px;font-weight:600;letter-spacing:-.01em;margin-bottom:4px}
 .pcard p{font-size:13px;color:var(--mu);font-weight:300;margin:6px 0}
-.badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.02em;
-  padding:4px 10px;border-radius:100px;background:rgba(var(--acc),.12);color:rgb(var(--acc));border:1px solid rgba(var(--acc),.3)}
-.badge .d{width:6px;height:6px;border-radius:50%;background:rgb(var(--acc))}
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.02em;padding:4px 10px;border-radius:100px;background:rgba(var(--acc),.12);color:rgb(var(--acc));border:1px solid rgba(var(--acc),.3)}
+.badge .d{width:6px;height:6px;border-radius:50%;background:currentColor}
+.badge.pending{background:rgba(var(--amber),.12);color:rgb(var(--amber));border-color:rgba(var(--amber),.3)}
 .pmeta{font-size:11.5px;color:var(--dm);margin-top:8px}
 .row-form{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
 .row-form .field{margin:0}
 .full{grid-column:1/-1}
 select{width:100%;background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:9px 11px;color:var(--tx);font-family:inherit;font-size:13px;outline:none}
 select:focus{border-color:rgb(var(--acc))}
-.pstatus{display:flex;align-items:center;gap:8px;margin-top:10px}
-.pstatus select{max-width:170px}
+.pstatus{display:flex;align-items:center;gap:8px;margin-top:10px;flex-wrap:wrap}
+.pstatus select{max-width:150px}
 @media(max-width:560px){.row-form{grid-template-columns:1fr}}
 .center{min-height:70vh;display:grid;place-items:center;color:var(--mu);font-size:14px}
 footer{border-top:1px solid var(--ln);text-align:center;padding:26px;color:var(--dm);font-size:12px}
+
+/* progress bar */
+.prog-track{height:6px;border-radius:100px;background:var(--ln);overflow:hidden;margin:12px 0 8px}
+.prog-fill{height:100%;background:rgb(var(--acc));border-radius:100px;transition:width .5s}
+.prog-labels{display:flex;justify-content:space-between;font-size:9.5px;letter-spacing:.02em;color:var(--dm);gap:3px}
+.prog-labels span.done{color:var(--mu)}
+.prog-labels span.on{color:rgb(var(--acc));font-weight:700}
+
+/* invoices */
+.inv-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--ln);flex-wrap:wrap}
+.inv-row:last-child{border-bottom:0}
+.inv-l b{color:var(--tx);font-weight:600}
+.inv-l .pmeta{margin-top:3px}
+.inv-r{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.inv-amt{font-weight:600;color:var(--tx);font-size:15px}
+.pay-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:100px;background:rgb(var(--acc));color:#08090A;font-weight:700;font-size:12.5px}
+.pay-btn:hover{text-decoration:none;transform:translateY(-1px)}
 </style>
 </head>
 <body>
@@ -94,7 +109,6 @@ footer{border-top:1px solid var(--ln);text-align:center;padding:26px;color:var(-
   </div>
 </div></header>
 
-<!-- boot / loading -->
 <div class="center" id="bootView">Loading…</div>
 
 <!-- AUTH -->
@@ -107,14 +121,10 @@ footer{border-top:1px solid var(--ln);text-align:center;padding:26px;color:var(-
       <button class="tab" id="tabSignup" type="button">Sign up</button>
     </div>
     <form id="authForm">
-      <div class="field">
-        <label for="email">Email</label>
-        <input id="email" type="email" autocomplete="email" placeholder="you@example.com" required>
-      </div>
-      <div class="field">
-        <label for="password">Password</label>
-        <input id="password" type="password" autocomplete="current-password" placeholder="••••••••" minlength="6" required>
-      </div>
+      <div class="field"><label for="email">Email</label>
+        <input id="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
+      <div class="field"><label for="password">Password</label>
+        <input id="password" type="password" autocomplete="current-password" placeholder="••••••••" minlength="6" required></div>
       <button class="btn" id="authBtn" type="submit"><span id="authBtnTx">Log in</span></button>
       <div class="msg" id="authMsg" role="status" aria-live="polite"></div>
     </form>
@@ -125,13 +135,13 @@ footer{border-top:1px solid var(--ln);text-align:center;padding:26px;color:var(-
 <main class="wrap hidden" id="adminView">
   <div class="eyebrow">Admin</div>
   <h1>Your dashboard</h1>
-  <p class="sub">Every enquiry from your site, and the projects you're running.</p>
+  <p class="sub">Your enquiries, projects and invoices — all in one place.</p>
 
   <div class="panel">
     <div class="panel-h"><h2>Leads / enquiries</h2><span class="count" id="leadsCount">—</span></div>
     <div class="tbl-wrap">
-      <table id="leadsTbl">
-        <thead><tr><th>When</th><th>Name</th><th>Phone</th><th>Email</th><th>Service</th><th>Message</th></tr></thead>
+      <table>
+        <thead><tr><th>When</th><th>Name</th><th>Contact</th><th>Service</th><th>Status</th><th>Note</th><th></th></tr></thead>
         <tbody id="leadsBody"></tbody>
       </table>
     </div>
@@ -144,10 +154,9 @@ footer{border-top:1px solid var(--ln);text-align:center;padding:26px;color:var(-
       <div class="field"><label for="pClient">Client email</label><input id="pClient" type="email" placeholder="client@example.com" required></div>
       <div class="field"><label for="pTitle">Project title</label><input id="pTitle" type="text" placeholder="e.g. Business website" required></div>
       <div class="field"><label for="pStatus">Status</label>
-        <select id="pStatus">
-          <option>Discovery</option><option>Design</option><option>Build</option><option>Review</option><option>Live</option>
-        </select>
-      </div>
+        <select id="pStatus"><option>Discovery</option><option>Design</option><option>Build</option><option>Review</option><option>Live</option></select></div>
+      <div class="field"><label for="pNext">Next step</label><input id="pNext" type="text" placeholder="e.g. Sharing first design"></div>
+      <div class="field"><label for="pDue">Expected date</label><input id="pDue" type="date"></div>
       <div class="field"><label for="pLink">Link (optional)</label><input id="pLink" type="url" placeholder="https://…"></div>
       <div class="field full"><label for="pDetails">Details / note (optional)</label><input id="pDetails" type="text" placeholder="Anything the client should see"></div>
       <div class="full"><button class="btn btn-sm" id="projAddBtn" type="submit">Add project</button>
@@ -155,84 +164,94 @@ footer{border-top:1px solid var(--ln);text-align:center;padding:26px;color:var(-
     </form>
     <div id="adminProjList"></div>
   </div>
+
+  <div class="panel">
+    <div class="panel-h"><h2>Invoices</h2><span class="count" id="invCount">—</span></div>
+    <form id="invForm" class="row-form">
+      <div class="field"><label for="iClient">Client email</label><input id="iClient" type="email" placeholder="client@example.com" required></div>
+      <div class="field"><label for="iTitle">What for</label><input id="iTitle" type="text" placeholder="e.g. 50% advance" required></div>
+      <div class="field"><label for="iAmount">Amount (₹)</label><input id="iAmount" type="number" min="0" step="1" placeholder="25000" required></div>
+      <div class="field"><label for="iStatus">Status</label><select id="iStatus"><option>Pending</option><option>Paid</option></select></div>
+      <div class="field"><label for="iDue">Due date</label><input id="iDue" type="date"></div>
+      <div class="field"><label for="iLink">Razorpay pay link (optional)</label><input id="iLink" type="url" placeholder="https://rzp.io/…"></div>
+      <div class="full"><button class="btn btn-sm" id="invAddBtn" type="submit">Add invoice</button>
+        <span class="msg" id="invMsg" style="display:inline;margin-left:10px"></span></div>
+    </form>
+    <div id="adminInvList"></div>
+  </div>
 </main>
 
 <!-- CLIENT -->
 <main class="wrap hidden" id="clientView">
-  <div class="eyebrow">Your projects</div>
+  <div class="eyebrow">Your account</div>
   <h1>Welcome<span id="clientName"></span></h1>
-  <p class="sub">Here's where your projects stand. Questions? Just reply on WhatsApp.</p>
+  <p class="sub">Here's where your projects stand and any invoices. Questions? Reply on WhatsApp anytime.</p>
+
   <div class="panel">
+    <div class="panel-h"><h2>Your projects</h2></div>
     <div class="pgrid" id="clientProjList"></div>
-    <div class="empty hidden" id="clientEmpty">No projects assigned yet. We'll add yours here as soon as we kick off.</div>
+    <div class="empty hidden" id="clientProjEmpty">No projects yet. We'll add yours here as soon as we kick off.</div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-h"><h2>Your invoices</h2></div>
+    <div id="clientInvList"></div>
+    <div class="empty hidden" id="clientInvEmpty">No invoices yet.</div>
   </div>
 </main>
 
 <footer>© 2026 GetSiteNow · <a href="/">Back to site</a></footer>
 
 <script>
-/* ══════════ CONFIG ══════════
-   Same Supabase project as the main site. The publishable key is browser-safe.
-   ADMIN_EMAIL = the email YOU sign up / log in with to get the admin dashboard.
-   Everyone else who signs up gets the client view.                            */
-const SUPABASE_URL  = "https://znevkigmdwnyeucsrlzy.supabase.co";
-const SUPABASE_KEY  = "sb_publishable_a2pEEWwaC4cXeMvF_4-ivQ_XzZTRKF6";
-const ADMIN_EMAIL   = "getsitenow.in@gmail.com";
+/* ══════════ CONFIG ══════════ */
+const SUPABASE_URL = "https://znevkigmdwnyeucsrlzy.supabase.co";
+const SUPABASE_KEY = "sb_publishable_a2pEEWwaC4cXeMvF_4-ivQ_XzZTRKF6";
+const ADMIN_EMAIL  = "getsitenow.in@gmail.com";
 const SKEY = "gsn_session";
+const STEPS = ["Discovery","Design","Build","Review","Live"];
 
 const $=s=>document.querySelector(s);
 const AUTH=SUPABASE_URL.replace(/\/+$/,'')+"/auth/v1";
 const REST=SUPABASE_URL.replace(/\/+$/,'')+"/rest/v1";
 
-/* ---------- session storage ---------- */
-function saveSession(d){
-  const s={ access_token:d.access_token, refresh_token:d.refresh_token,
-            email:(d.user&&d.user.email)||d.email,
-            expires_at: Date.now() + ((d.expires_in||3600)*1000) };
-  localStorage.setItem(SKEY, JSON.stringify(s)); return s;
-}
+/* ---------- session ---------- */
+function saveSession(d){ const s={ access_token:d.access_token, refresh_token:d.refresh_token,
+  email:(d.user&&d.user.email)||d.email, expires_at:Date.now()+((d.expires_in||3600)*1000) };
+  localStorage.setItem(SKEY, JSON.stringify(s)); return s; }
 function getSession(){ try{ return JSON.parse(localStorage.getItem(SKEY)); }catch(e){ return null; } }
 function clearSession(){ localStorage.removeItem(SKEY); }
+function authHeaders(extra){ const s=getSession();
+  return Object.assign({ 'apikey':SUPABASE_KEY, 'Authorization':'Bearer '+(s?s.access_token:SUPABASE_KEY), 'Content-Type':'application/json' }, extra||{}); }
 
-/* ---------- api helpers ---------- */
-function authHeaders(){ const s=getSession();
-  return { 'apikey':SUPABASE_KEY, 'Authorization':'Bearer '+(s?s.access_token:SUPABASE_KEY), 'Content-Type':'application/json' }; }
+/* ---------- auth api ---------- */
+async function apiSignup(email,password){ const r=await fetch(AUTH+"/signup",{method:'POST',headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify({email,password})});
+  const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.msg||j.error_description||j.error||'Sign up failed'); return j; }
+async function apiLogin(email,password){ const r=await fetch(AUTH+"/token?grant_type=password",{method:'POST',headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify({email,password})});
+  const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.msg||j.error_description||j.error||'Login failed'); return j; }
+async function apiRefresh(rt){ const r=await fetch(AUTH+"/token?grant_type=refresh_token",{method:'POST',headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify({refresh_token:rt})}); if(!r.ok) return null; return r.json().catch(()=>null); }
 
-async function apiSignup(email,password){
-  const r=await fetch(AUTH+"/signup",{method:'POST',headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json'},
-    body:JSON.stringify({email,password})});
-  const j=await r.json().catch(()=>({}));
-  if(!r.ok) throw new Error(j.msg||j.error_description||j.error||'Sign up failed');
-  return j;
-}
-async function apiLogin(email,password){
-  const r=await fetch(AUTH+"/token?grant_type=password",{method:'POST',headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json'},
-    body:JSON.stringify({email,password})});
-  const j=await r.json().catch(()=>({}));
-  if(!r.ok) throw new Error(j.msg||j.error_description||j.error||'Login failed');
-  return j;
-}
-async function apiRefresh(refresh_token){
-  const r=await fetch(AUTH+"/token?grant_type=refresh_token",{method:'POST',headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json'},
-    body:JSON.stringify({refresh_token})});
-  if(!r.ok) return null;
-  return r.json().catch(()=>null);
-}
-
-/* ---------- view switching ---------- */
+/* ---------- helpers ---------- */
 function show(id){ ['bootView','authView','adminView','clientView'].forEach(v=>{ const el=$('#'+v); if(el) el.classList.toggle('hidden', v!==id); }); }
 function esc(s){ return (s==null?'':String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
 function fmtDate(s){ try{ return new Date(s).toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}); }catch(e){ return s||''; } }
+function fmtDay(s){ if(!s) return ''; try{ return new Date(s).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}); }catch(e){ return s; } }
+function money(n){ if(n==null||n==='') return ''; return '₹'+Number(n).toLocaleString('en-IN'); }
+function progressBar(status){
+  let idx=STEPS.indexOf(status); if(idx<0) idx=0;
+  const pct=Math.round(idx/(STEPS.length-1)*100);
+  const labels=STEPS.map((s,i)=>`<span class="${i<idx?'done':(i===idx?'on':'')}">${s}</span>`).join('');
+  return `<div class="prog-track"><div class="prog-fill" style="width:${pct}%"></div></div><div class="prog-labels">${labels}</div>`;
+}
 
 function enterApp(){
   const s=getSession(); if(!s){ show('authView'); return; }
-  $('#who').textContent=s.email; $('#who').classList.remove('hidden');
-  $('#logoutBtn').classList.remove('hidden');
-  if((s.email||'').toLowerCase()===ADMIN_EMAIL.toLowerCase()){ show('adminView'); loadLeads(); loadAdminProjects(); }
-  else { const nm=(s.email||'').split('@')[0]; $('#clientName').textContent=nm?(', '+nm):''; show('clientView'); loadClientProjects(); }
+  $('#who').textContent=s.email; $('#who').classList.remove('hidden'); $('#logoutBtn').classList.remove('hidden');
+  if((s.email||'').toLowerCase()===ADMIN_EMAIL.toLowerCase()){ show('adminView'); loadLeads(); loadAdminProjects(); loadAdminInvoices(); }
+  else { const nm=(s.email||'').split('@')[0]; $('#clientName').textContent=nm?(', '+nm):''; show('clientView'); loadClientProjects(); loadClientInvoices(); }
 }
 
-/* ---------- ADMIN: leads ---------- */
+/* ==================== ADMIN: LEADS ==================== */
+const LEAD_STATUS=['New','Contacted','Won','Lost'];
 async function loadLeads(){
   const body=$('#leadsBody'); body.innerHTML='';
   try{
@@ -240,127 +259,188 @@ async function loadLeads(){
     const rows=await r.json();
     if(!Array.isArray(rows)||!rows.length){ $('#leadsEmpty').classList.remove('hidden'); $('#leadsCount').textContent='0'; return; }
     $('#leadsEmpty').classList.add('hidden'); $('#leadsCount').textContent=rows.length;
-    body.innerHTML=rows.map(l=>`<tr>
-      <td class="muted" style="white-space:nowrap">${esc(fmtDate(l.created_at))}</td>
-      <td class="nm">${esc(l.name)}</td>
-      <td style="white-space:nowrap">${esc(l.phone)}</td>
-      <td>${esc(l.email)||'<span class="muted">—</span>'}</td>
-      <td>${esc(l.service)||'<span class="muted">—</span>'}</td>
-      <td>${esc(l.message)||'<span class="muted">—</span>'}</td></tr>`).join('');
-  }catch(e){ $('#leadsEmpty').textContent='Could not load leads. Check the admin read policy in Supabase.'; $('#leadsEmpty').classList.remove('hidden'); }
+    body.innerHTML=rows.map(l=>{
+      const st=l.status||'New';
+      const contact=[l.phone,l.email].filter(Boolean).map(esc).join('<br>');
+      return `<tr>
+        <td class="muted" style="white-space:nowrap">${esc(fmtDate(l.created_at))}</td>
+        <td class="nm">${esc(l.name)}</td>
+        <td style="white-space:nowrap">${contact||'<span class="muted">—</span>'}</td>
+        <td>${esc(l.service)||'<span class="muted">—</span>'}${l.message?`<div class="pmeta">${esc(l.message)}</div>`:''}</td>
+        <td><select class="tsel lead-status" data-id="${esc(l.id)}">${LEAD_STATUS.map(o=>`<option${o===st?' selected':''}>${o}</option>`).join('')}</select></td>
+        <td><input class="tinput lead-note" data-id="${esc(l.id)}" value="${esc(l.notes||'')}" placeholder="add note…"></td>
+        <td><button class="conv" data-email="${esc(l.email||'')}" data-service="${esc(l.service||'')}">→ Project</button></td>
+      </tr>`;
+    }).join('');
+    body.querySelectorAll('.lead-status').forEach(sel=>sel.addEventListener('change',()=>updateLead(sel.dataset.id,{status:sel.value},sel)));
+    body.querySelectorAll('.lead-note').forEach(inp=>{
+      const save=()=>updateLead(inp.dataset.id,{notes:inp.value},inp);
+      inp.addEventListener('keydown',e=>{ if(e.key==='Enter'){ inp.blur(); } });
+      inp.addEventListener('blur',save);
+    });
+    body.querySelectorAll('.conv').forEach(b=>b.addEventListener('click',()=>{
+      $('#pClient').value=b.dataset.email||''; $('#pTitle').value=b.dataset.service||'New project';
+      $('#projForm').scrollIntoView({behavior:'smooth',block:'center'}); $('#pTitle').focus();
+    }));
+  }catch(e){ $('#leadsEmpty').textContent='Could not load leads. Check the admin policies in Supabase.'; $('#leadsEmpty').classList.remove('hidden'); }
+}
+async function updateLead(id,patch,el){
+  if(el) el.style.opacity='.5';
+  try{ await fetch(REST+"/leads?id=eq."+encodeURIComponent(id),{method:'PATCH',headers:authHeaders({'Prefer':'return=minimal'}),body:JSON.stringify(patch)}); }
+  catch(e){} finally{ if(el) el.style.opacity=''; }
 }
 
-/* ---------- ADMIN: projects ---------- */
+/* ==================== ADMIN: PROJECTS ==================== */
 async function loadAdminProjects(){
   const list=$('#adminProjList');
   try{
     const r=await fetch(REST+"/projects?select=*&order=created_at.desc",{headers:authHeaders()});
-    const rows=await r.json();
-    $('#projCount').textContent=Array.isArray(rows)?rows.length:'0';
+    const rows=await r.json(); $('#projCount').textContent=Array.isArray(rows)?rows.length:'0';
     if(!Array.isArray(rows)||!rows.length){ list.innerHTML='<div class="empty">No projects yet. Add one above.</div>'; return; }
-    const opts=['Discovery','Design','Build','Review','Live'];
     list.innerHTML='<div class="pgrid">'+rows.map(p=>`<div class="pcard">
       <h3>${esc(p.title)}</h3>
       <div class="pmeta">${esc(p.client_email)}</div>
-      ${p.details?`<p>${esc(p.details)}</p>`:''}
+      ${p.next_step?`<p><b style="color:var(--tx)">Next:</b> ${esc(p.next_step)}</p>`:''}
+      ${p.due_date?`<div class="pmeta">Expected ${esc(fmtDay(p.due_date))}</div>`:''}
       ${p.link?`<p><a href="${esc(p.link)}" target="_blank" rel="noopener">Open link ↗</a></p>`:''}
       <div class="pstatus">
-        <select data-id="${esc(p.id)}">${opts.map(o=>`<option${o===p.status?' selected':''}>${o}</option>`).join('')}</select>
+        <select data-id="${esc(p.id)}">${STEPS.map(o=>`<option${o===p.status?' selected':''}>${o}</option>`).join('')}</select>
         <span class="pmeta upd" data-for="${esc(p.id)}"></span>
       </div></div>`).join('')+'</div>';
-    list.querySelectorAll('select[data-id]').forEach(sel=>{
-      sel.addEventListener('change',async()=>{
-        const id=sel.getAttribute('data-id'); const note=list.querySelector('.upd[data-for="'+id+'"]');
-        sel.disabled=true; if(note) note.textContent='saving…';
-        const ok=await updateProjectStatus(id, sel.value);
-        sel.disabled=false; if(note) note.textContent=ok?'saved ✓':'failed';
-        setTimeout(()=>{ if(note) note.textContent=''; },2000);
-      });
-    });
+    list.querySelectorAll('select[data-id]').forEach(sel=>sel.addEventListener('change',async()=>{
+      const note=list.querySelector('.upd[data-for="'+sel.dataset.id+'"]'); sel.disabled=true; if(note) note.textContent='saving…';
+      const ok=await patchRow('projects',sel.dataset.id,{status:sel.value}); sel.disabled=false; if(note) note.textContent=ok?'saved ✓':'failed';
+      setTimeout(()=>{ if(note) note.textContent=''; },2000);
+    }));
   }catch(e){ list.innerHTML='<div class="empty">Could not load projects.</div>'; }
 }
-async function updateProjectStatus(id,status){
-  try{ const r=await fetch(REST+"/projects?id=eq."+encodeURIComponent(id),{method:'PATCH',headers:Object.assign(authHeaders(),{'Prefer':'return=minimal'}),body:JSON.stringify({status})}); return r.ok; }
+
+/* ==================== ADMIN: INVOICES ==================== */
+async function loadAdminInvoices(){
+  const list=$('#adminInvList');
+  try{
+    const r=await fetch(REST+"/invoices?select=*&order=created_at.desc",{headers:authHeaders()});
+    const rows=await r.json(); $('#invCount').textContent=Array.isArray(rows)?rows.length:'0';
+    if(!Array.isArray(rows)||!rows.length){ list.innerHTML='<div class="empty">No invoices yet. Add one above.</div>'; return; }
+    list.innerHTML=rows.map(v=>{
+      const paid=(v.status||'Pending')==='Paid';
+      return `<div class="inv-row">
+        <div class="inv-l"><b>${esc(v.title)}</b> <span class="inv-amt">${esc(money(v.amount))}</span>
+          <div class="pmeta">${esc(v.client_email)}${v.due_date?(' · due '+esc(fmtDay(v.due_date))):''}</div></div>
+        <div class="inv-r">
+          <span class="badge ${paid?'':'pending'}"><span class="d"></span>${esc(v.status||'Pending')}</span>
+          <select data-id="${esc(v.id)}" class="inv-status"><option${paid?'':' selected'}>Pending</option><option${paid?' selected':''}>Paid</option></select>
+          <span class="pmeta upd" data-for="${esc(v.id)}"></span>
+        </div></div>`;
+    }).join('');
+    list.querySelectorAll('.inv-status').forEach(sel=>sel.addEventListener('change',async()=>{
+      const note=list.querySelector('.upd[data-for="'+sel.dataset.id+'"]'); sel.disabled=true; if(note) note.textContent='saving…';
+      const ok=await patchRow('invoices',sel.dataset.id,{status:sel.value}); sel.disabled=false; if(note) note.textContent=ok?'saved ✓':'failed';
+      loadAdminInvoices();
+    }));
+  }catch(e){ list.innerHTML='<div class="empty">Could not load invoices.</div>'; }
+}
+
+async function patchRow(table,id,patch){
+  try{ const r=await fetch(REST+"/"+table+"?id=eq."+encodeURIComponent(id),{method:'PATCH',headers:authHeaders({'Prefer':'return=minimal'}),body:JSON.stringify(patch)}); return r.ok; }
   catch(e){ return false; }
 }
 
-/* ---------- CLIENT: own projects ---------- */
+/* ==================== CLIENT ==================== */
 async function loadClientProjects(){
   const list=$('#clientProjList');
   try{
     const r=await fetch(REST+"/projects?select=*&order=created_at.desc",{headers:authHeaders()});
     const rows=await r.json();
-    if(!Array.isArray(rows)||!rows.length){ $('#clientEmpty').classList.remove('hidden'); return; }
-    $('#clientEmpty').classList.add('hidden');
+    if(!Array.isArray(rows)||!rows.length){ $('#clientProjEmpty').classList.remove('hidden'); return; }
+    $('#clientProjEmpty').classList.add('hidden');
     list.innerHTML=rows.map(p=>`<div class="pcard">
       <span class="badge"><span class="d"></span>${esc(p.status||'Discovery')}</span>
       <h3 style="margin-top:10px">${esc(p.title)}</h3>
+      ${progressBar(p.status||'Discovery')}
+      ${p.next_step?`<p style="margin-top:10px"><b style="color:var(--tx)">Next:</b> ${esc(p.next_step)}</p>`:''}
+      ${p.due_date?`<div class="pmeta">Expected ${esc(fmtDay(p.due_date))}</div>`:''}
       ${p.details?`<p>${esc(p.details)}</p>`:''}
       ${p.link?`<p><a href="${esc(p.link)}" target="_blank" rel="noopener">View ↗</a></p>`:''}
-      <div class="pmeta">Started ${esc(fmtDate(p.created_at))}</div></div>`).join('');
-  }catch(e){ $('#clientEmpty').textContent='Could not load your projects right now.'; $('#clientEmpty').classList.remove('hidden'); }
+    </div>`).join('');
+  }catch(e){ $('#clientProjEmpty').textContent='Could not load your projects right now.'; $('#clientProjEmpty').classList.remove('hidden'); }
+}
+async function loadClientInvoices(){
+  const list=$('#clientInvList');
+  try{
+    const r=await fetch(REST+"/invoices?select=*&order=created_at.desc",{headers:authHeaders()});
+    const rows=await r.json();
+    if(!Array.isArray(rows)||!rows.length){ $('#clientInvEmpty').classList.remove('hidden'); return; }
+    $('#clientInvEmpty').classList.add('hidden');
+    list.innerHTML=rows.map(v=>{
+      const paid=(v.status||'Pending')==='Paid';
+      return `<div class="inv-row">
+        <div class="inv-l"><b>${esc(v.title)}</b> <span class="inv-amt">${esc(money(v.amount))}</span>
+          <div class="pmeta">${v.due_date?('Due '+esc(fmtDay(v.due_date))):''}</div></div>
+        <div class="inv-r">
+          <span class="badge ${paid?'':'pending'}"><span class="d"></span>${esc(v.status||'Pending')}</span>
+          ${(!paid&&v.pay_link)?`<a class="pay-btn" href="${esc(v.pay_link)}" target="_blank" rel="noopener">Pay now →</a>`:''}
+        </div></div>`;
+    }).join('');
+  }catch(e){ $('#clientInvEmpty').textContent='Could not load your invoices right now.'; $('#clientInvEmpty').classList.remove('hidden'); }
 }
 
-/* ---------- auth UI ---------- */
+/* ==================== AUTH UI ==================== */
 let mode='login';
-function setMode(m){
-  mode=m;
-  $('#tabLogin').classList.toggle('on',m==='login');
-  $('#tabSignup').classList.toggle('on',m==='signup');
-  $('#authTitle').textContent = m==='login' ? 'Welcome back' : 'Create your account';
-  $('#authBtnTx').textContent = m==='login' ? 'Log in' : 'Sign up';
-  $('#password').autocomplete = m==='login' ? 'current-password' : 'new-password';
-  amsg('','');
-}
+function setMode(m){ mode=m;
+  $('#tabLogin').classList.toggle('on',m==='login'); $('#tabSignup').classList.toggle('on',m==='signup');
+  $('#authTitle').textContent=m==='login'?'Welcome back':'Create your account';
+  $('#authBtnTx').textContent=m==='login'?'Log in':'Sign up';
+  $('#password').autocomplete=m==='login'?'current-password':'new-password'; amsg('',''); }
 function amsg(t,cls){ const el=$('#authMsg'); el.textContent=t||''; el.className='msg '+(cls||''); }
-
 $('#tabLogin').onclick=()=>setMode('login');
 $('#tabSignup').onclick=()=>setMode('signup');
-
 $('#authForm').addEventListener('submit',async e=>{
   e.preventDefault();
   const email=$('#email').value.trim(), password=$('#password').value;
   if(!email||password.length<6){ amsg('Enter a valid email and a 6+ character password.','err'); return; }
   const btn=$('#authBtn'); btn.disabled=true; const old=$('#authBtnTx').textContent; $('#authBtnTx').textContent='Please wait…';
   try{
-    if(mode==='signup'){
-      const j=await apiSignup(email,password);
-      if(j.access_token){ saveSession(j); enterApp(); }
-      else { amsg('Account created. Check your email to confirm, then log in.','ok'); setMode('login'); }
-    }else{
-      const j=await apiLogin(email,password);
-      saveSession(j); enterApp();
-    }
+    if(mode==='signup'){ const j=await apiSignup(email,password);
+      if(j.access_token){ saveSession(j); enterApp(); } else { amsg('Account created. Check your email to confirm, then log in.','ok'); setMode('login'); } }
+    else { const j=await apiLogin(email,password); saveSession(j); enterApp(); }
   }catch(err){ amsg(err.message||'Something went wrong.','err'); }
   finally{ btn.disabled=false; $('#authBtnTx').textContent=old; }
 });
-
-$('#logoutBtn').onclick=async()=>{
-  const s=getSession();
-  try{ if(s) await fetch(AUTH+"/logout",{method:'POST',headers:authHeaders()}); }catch(e){}
-  clearSession(); location.reload();
-};
+$('#logoutBtn').onclick=async()=>{ const s=getSession(); try{ if(s) await fetch(AUTH+"/logout",{method:'POST',headers:authHeaders()}); }catch(e){} clearSession(); location.reload(); };
 
 /* ---------- admin: add project ---------- */
 $('#projForm').addEventListener('submit',async e=>{
   e.preventDefault();
   const row={ client_email:$('#pClient').value.trim().toLowerCase(), title:$('#pTitle').value.trim(),
-              status:$('#pStatus').value, link:$('#pLink').value.trim(), details:$('#pDetails').value.trim() };
+    status:$('#pStatus').value, next_step:$('#pNext').value.trim(), due_date:$('#pDue').value||null,
+    link:$('#pLink').value.trim(), details:$('#pDetails').value.trim() };
   if(!row.client_email||!row.title){ pmsg('Client email and title are required.','err'); return; }
   const btn=$('#projAddBtn'); btn.disabled=true;
-  try{
-    const r=await fetch(REST+"/projects",{method:'POST',headers:Object.assign(authHeaders(),{'Prefer':'return=minimal'}),body:JSON.stringify(row)});
+  try{ const r=await fetch(REST+"/projects",{method:'POST',headers:authHeaders({'Prefer':'return=minimal'}),body:JSON.stringify(row)});
     if(!r.ok){ const j=await r.json().catch(()=>({})); throw new Error(j.message||'Could not add project'); }
     pmsg('Added ✓','ok'); $('#projForm').reset(); loadAdminProjects();
-  }catch(err){ pmsg(err.message,'err'); }
-  finally{ btn.disabled=false; }
+  }catch(err){ pmsg(err.message,'err'); } finally{ btn.disabled=false; }
 });
 function pmsg(t,cls){ const el=$('#projMsg'); el.textContent=t||''; el.className='msg '+(cls||''); }
 
+/* ---------- admin: add invoice ---------- */
+$('#invForm').addEventListener('submit',async e=>{
+  e.preventDefault();
+  const row={ client_email:$('#iClient').value.trim().toLowerCase(), title:$('#iTitle').value.trim(),
+    amount:parseFloat($('#iAmount').value||'0'), status:$('#iStatus').value, due_date:$('#iDue').value||null, pay_link:$('#iLink').value.trim() };
+  if(!row.client_email||!row.title){ imsg('Client email and description are required.','err'); return; }
+  const btn=$('#invAddBtn'); btn.disabled=true;
+  try{ const r=await fetch(REST+"/invoices",{method:'POST',headers:authHeaders({'Prefer':'return=minimal'}),body:JSON.stringify(row)});
+    if(!r.ok){ const j=await r.json().catch(()=>({})); throw new Error(j.message||'Could not add invoice'); }
+    imsg('Added ✓','ok'); $('#invForm').reset(); loadAdminInvoices();
+  }catch(err){ imsg(err.message,'err'); } finally{ btn.disabled=false; }
+});
+function imsg(t,cls){ const el=$('#invMsg'); el.textContent=t||''; el.className='msg '+(cls||''); }
+
 /* ---------- boot ---------- */
 (async function boot(){
-  const s=getSession();
-  if(!s){ show('authView'); return; }
+  const s=getSession(); if(!s){ show('authView'); return; }
   if(s.expires_at && s.expires_at < Date.now()+30000){
     const j=s.refresh_token ? await apiRefresh(s.refresh_token) : null;
     if(j && j.access_token){ saveSession(j); } else { clearSession(); show('authView'); return; }
