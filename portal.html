@@ -16,16 +16,17 @@
 body{background:var(--bg);color:var(--tx);font-family:var(--sans);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
 a{color:rgb(var(--acc));text-decoration:none}a:hover{text-decoration:underline}
 header{border-bottom:1px solid var(--ln);position:sticky;top:0;background:rgba(8,9,10,.85);backdrop-filter:blur(14px);z-index:10}
-.hd{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 22px;max-width:1180px;margin:0 auto}
+.hd{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 22px;max-width:1240px;margin:0 auto}
 .wm img{height:22px;width:auto;display:block}
 .hd-r{display:flex;align-items:center;gap:14px}
 .who{font-size:12.5px;color:var(--mu)}
 .lnk{font-size:13px;color:var(--mu);cursor:pointer;background:none;border:0;font-family:inherit}
 .lnk:hover{color:var(--tx)}
-.wrap{max-width:1180px;margin:0 auto;padding:26px 22px 90px}
+.wrap{max-width:1240px;margin:0 auto;padding:26px 22px 90px}
 .eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:rgb(var(--acc));font-weight:600}
-h1{font-size:clamp(26px,4vw,40px);font-weight:700;letter-spacing:-.04em;line-height:1.05;margin:12px 0 6px}
+h1{font-size:clamp(26px,4vw,38px);font-weight:700;letter-spacing:-.04em;line-height:1.05;margin:12px 0 6px}
 h2{font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--tx);margin:0}
+h3{font-size:15px;font-weight:600;margin:0}
 .sub{color:var(--mu);font-size:14px;font-weight:300}
 
 .auth{max-width:420px;margin:8vh auto 0;border:1px solid var(--ln);border-radius:20px;background:var(--bg2);padding:clamp(26px,4vw,38px);box-shadow:0 40px 100px -40px rgba(0,0,0,.8)}
@@ -34,69 +35,74 @@ h2{font-size:15px;font-weight:600;letter-spacing:.02em;color:var(--tx);margin:0}
 .tab.on{background:rgb(var(--acc));color:#08090A}
 .field{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
 .field label{font-size:12px;font-weight:600;color:var(--tx)}
-.field input,.field select{width:100%;background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:12px 13px;color:var(--tx);font-family:inherit;font-size:14px;outline:none;transition:border-color .25s,background .25s}
-.field input:focus,.field select:focus{border-color:rgb(var(--acc));background:rgba(var(--acc),.05)}
+.field input,.field select,.field textarea{width:100%;background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:12px 13px;color:var(--tx);font-family:inherit;font-size:14px;outline:none;transition:border-color .25s,background .25s}
+.field input:focus,.field select:focus,.field textarea:focus{border-color:rgb(var(--acc));background:rgba(var(--acc),.05)}
 .field input::placeholder{color:var(--mu)}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:13px;border:0;border-radius:100px;background:rgb(var(--acc));color:#08090A;font-family:inherit;font-weight:700;font-size:14px;cursor:pointer;transition:transform .2s,opacity .2s}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 16px;border:0;border-radius:100px;background:rgb(var(--acc));color:#08090A;font-family:inherit;font-weight:700;font-size:13.5px;cursor:pointer;transition:transform .2s,opacity .2s}
 .btn:hover{transform:translateY(-2px)}
-.btn:disabled{opacity:.6;cursor:default;transform:none}
-.btn-sm{width:auto;padding:9px 15px;font-size:12.5px}
+.btn:disabled{opacity:.55;cursor:default;transform:none}
+.btn-full{width:100%}
+.btn-sm{padding:8px 13px;font-size:12.5px}
 .btn-g{background:transparent;color:var(--tx);border:1px solid var(--ln)}
-.msg{font-size:12.5px;text-align:center;min-height:16px;margin-top:12px}
+.btn-red{background:transparent;color:#ff8080;border:1px solid rgba(255,120,120,.35)}
+.btn-red:hover{background:rgba(255,120,120,.1)}
+.msg{font-size:12.5px;min-height:16px;margin-top:10px}
 .msg.err{color:#ff6b6b}.msg.ok{color:rgb(var(--acc))}
 
 .hidden{display:none!important}
-.panel{border:1px solid var(--ln);border-radius:16px;background:var(--bg2);padding:20px;margin-top:22px}
+.panel{border:1px solid var(--ln);border-radius:16px;background:var(--bg2);padding:20px;margin-top:20px}
 .panel-h{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;flex-wrap:wrap}
 .count{font-size:12px;color:var(--dm);border:1px solid var(--ln);border-radius:100px;padding:2px 10px}
 .tbl-wrap{overflow-x:auto}
-table{width:100%;border-collapse:collapse;font-size:13px;min-width:820px}
+table{width:100%;border-collapse:collapse;font-size:13px;min-width:760px}
 th{text-align:left;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dm);font-weight:600;padding:0 10px 10px;border-bottom:1px solid var(--ln)}
-td{padding:10px;border-bottom:1px solid var(--ln);color:#cfd0d2;vertical-align:top}
+td{padding:11px 10px;border-bottom:1px solid var(--ln);color:#cfd0d2;vertical-align:top}
 td.nm{color:var(--tx);font-weight:500;white-space:nowrap}
 .muted{color:var(--dm)}
 .empty{color:var(--mu);font-size:13.5px;padding:22px 4px;text-align:center}
-.tsel,.tinput{background:var(--sf);border:1px solid var(--ln);border-radius:8px;padding:6px 8px;color:var(--tx);font-family:inherit;font-size:12px;outline:none}
-.tsel:focus,.tinput:focus{border-color:rgb(var(--acc))}
-.tinput{min-width:120px}
-.conv{background:none;border:1px solid var(--ln);color:var(--mu);border-radius:8px;padding:6px 9px;font-size:11.5px;cursor:pointer;font-family:inherit;white-space:nowrap}
-.conv:hover{border-color:rgb(var(--acc));color:rgb(var(--acc))}
+.row-actions{display:flex;gap:6px;flex-wrap:wrap}
 
-.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:14px}
-.pcard{border:1px solid var(--ln);border-radius:14px;padding:16px 17px;background:var(--sf)}
-.pcard h3{font-size:15px;font-weight:600;letter-spacing:-.01em;margin-bottom:4px}
-.pcard p{font-size:13px;color:var(--mu);font-weight:300;margin:6px 0}
-.badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.02em;padding:4px 10px;border-radius:100px;background:rgba(var(--acc),.12);color:rgb(var(--acc));border:1px solid rgba(var(--acc),.3)}
+.tabbar{display:flex;gap:6px;margin:18px 0 4px;border-bottom:1px solid var(--ln)}
+.tabb{background:none;border:0;border-bottom:2px solid transparent;color:var(--mu);font-family:inherit;font-size:14px;font-weight:600;padding:10px 14px;cursor:pointer;margin-bottom:-1px;transition:.2s}
+.tabb:hover{color:var(--tx)}
+.tabb.on{color:rgb(var(--acc));border-color:rgb(var(--acc))}
+
+.badge{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.02em;padding:4px 10px;border-radius:100px;background:rgba(var(--acc),.12);color:rgb(var(--acc));border:1px solid rgba(var(--acc),.3);white-space:nowrap}
 .badge .d{width:6px;height:6px;border-radius:50%;background:currentColor}
 .badge.pending{background:rgba(var(--amber),.12);color:rgb(var(--amber));border-color:rgba(var(--amber),.3)}
-.pmeta{font-size:11.5px;color:var(--dm);margin-top:8px}
+.badge.grey{background:rgba(255,255,255,.06);color:var(--mu);border-color:var(--ln)}
+.cid{font-family:ui-monospace,monospace;font-weight:600;color:rgb(var(--acc));letter-spacing:.02em}
+
+.clist{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:10px;margin-top:14px}
+.cli{border:1px solid var(--ln);border-radius:12px;padding:14px;background:var(--sf);cursor:pointer;transition:border-color .2s,transform .2s}
+.cli:hover{border-color:rgb(var(--acc));transform:translateY(-2px)}
+.cli b{display:block;color:var(--tx);font-size:14px}
+.cli span{font-size:12px;color:var(--mu)}
+
+.prof-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.kv{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px 22px;margin-top:14px}
+.kv div span{display:block;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dm);font-weight:600}
+.kv div b{font-weight:500;color:var(--tx);font-size:14px;font-weight:400}
+.sub-panel{border:1px solid var(--ln);border-radius:14px;padding:16px;margin-top:14px;background:var(--sf)}
+.sub-panel h3{margin-bottom:10px;font-size:13px;letter-spacing:.02em}
 .row-form{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:12px}
 .row-form .field{margin:0}
 .full{grid-column:1/-1}
 select{width:100%;background:var(--sf);border:1px solid var(--ln);border-radius:10px;padding:9px 11px;color:var(--tx);font-family:inherit;font-size:13px;outline:none}
 select:focus{border-color:rgb(var(--acc))}
-.pstatus{display:flex;align-items:center;gap:8px;margin-top:10px;flex-wrap:wrap}
-.pstatus select{max-width:150px}
-@media(max-width:560px){.row-form{grid-template-columns:1fr}}
+.pcard{border:1px solid var(--ln);border-radius:12px;padding:14px;background:var(--bg2);margin-bottom:10px}
+.pcard h4{font-size:14px;font-weight:600;margin-bottom:6px}
+.pmeta{font-size:11.5px;color:var(--dm);margin-top:6px}
+.line{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 0;border-bottom:1px solid var(--ln);flex-wrap:wrap}
+.line:last-child{border-bottom:0}
+.prog-track{height:6px;border-radius:100px;background:var(--ln);overflow:hidden;margin:10px 0 6px}
+.prog-fill{height:100%;background:rgb(var(--acc));border-radius:100px;transition:width .5s}
 .center{min-height:70vh;display:grid;place-items:center;color:var(--mu);font-size:14px}
 footer{border-top:1px solid var(--ln);text-align:center;padding:26px;color:var(--dm);font-size:12px}
-
-/* progress bar */
-.prog-track{height:6px;border-radius:100px;background:var(--ln);overflow:hidden;margin:12px 0 8px}
-.prog-fill{height:100%;background:rgb(var(--acc));border-radius:100px;transition:width .5s}
-.prog-labels{display:flex;justify-content:space-between;font-size:9.5px;letter-spacing:.02em;color:var(--dm);gap:3px}
-.prog-labels span.done{color:var(--mu)}
-.prog-labels span.on{color:rgb(var(--acc));font-weight:700}
-
-/* invoices */
-.inv-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0;border-bottom:1px solid var(--ln);flex-wrap:wrap}
-.inv-row:last-child{border-bottom:0}
-.inv-l b{color:var(--tx);font-weight:600}
-.inv-l .pmeta{margin-top:3px}
-.inv-r{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
-.inv-amt{font-weight:600;color:var(--tx);font-size:15px}
+#toast{position:fixed;left:50%;bottom:26px;transform:translate(-50%,20px);background:var(--tx);color:#08090A;font-weight:600;font-size:13px;padding:11px 18px;border-radius:100px;opacity:0;pointer-events:none;transition:.3s;z-index:50}
+#toast.on{opacity:1;transform:translate(-50%,0)}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
 .pay-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:100px;background:rgb(var(--acc));color:#08090A;font-weight:700;font-size:12.5px}
-.pay-btn:hover{text-decoration:none;transform:translateY(-1px)}
 </style>
 </head>
 <body>
@@ -125,8 +131,8 @@ footer{border-top:1px solid var(--ln);text-align:center;padding:26px;color:var(-
         <input id="email" type="email" autocomplete="email" placeholder="you@example.com" required></div>
       <div class="field"><label for="password">Password</label>
         <input id="password" type="password" autocomplete="current-password" placeholder="••••••••" minlength="6" required></div>
-      <button class="btn" id="authBtn" type="submit"><span id="authBtnTx">Log in</span></button>
-      <div class="msg" id="authMsg" role="status" aria-live="polite"></div>
+      <button class="btn btn-full" id="authBtn" type="submit"><span id="authBtnTx">Log in</span></button>
+      <div class="msg" id="authMsg" role="status" aria-live="polite" style="text-align:center"></div>
     </form>
   </div>
 </main>
@@ -134,65 +140,49 @@ footer{border-top:1px solid var(--ln);text-align:center;padding:26px;color:var(-
 <!-- ADMIN -->
 <main class="wrap hidden" id="adminView">
   <div class="eyebrow">Admin</div>
-  <h1>Your dashboard</h1>
-  <p class="sub">Your enquiries, projects and invoices — all in one place.</p>
+  <h1>Dashboard</h1>
+  <div class="tabbar">
+    <button class="tabb on" data-tab="leads" type="button">Leads</button>
+    <button class="tabb" data-tab="clients" type="button">Clients</button>
+    <button class="tabb" data-tab="activity" type="button">Activity</button>
+  </div>
 
-  <div class="panel">
-    <div class="panel-h"><h2>Leads / enquiries</h2><span class="count" id="leadsCount">—</span></div>
-    <div class="tbl-wrap">
-      <table>
-        <thead><tr><th>When</th><th>Name</th><th>Contact</th><th>Service</th><th>Status</th><th>Note</th><th></th></tr></thead>
+  <section class="tabpane" id="tab-leads">
+    <div class="panel">
+      <div class="panel-h"><h2>Leads / enquiries</h2><span class="count" id="leadsCount">—</span></div>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>When</th><th>Name</th><th>Contact</th><th>Services</th><th>Status</th><th>Action</th></tr></thead>
         <tbody id="leadsBody"></tbody>
-      </table>
+      </table></div>
+      <div class="empty hidden" id="leadsEmpty">No leads yet.</div>
     </div>
-    <div class="empty hidden" id="leadsEmpty">No leads yet.</div>
-  </div>
+  </section>
 
-  <div class="panel">
-    <div class="panel-h"><h2>Projects</h2><span class="count" id="projCount">—</span></div>
-    <form id="projForm" class="row-form">
-      <div class="field"><label for="pClient">Client email</label><input id="pClient" type="email" placeholder="client@example.com" required></div>
-      <div class="field"><label for="pTitle">Project title</label><input id="pTitle" type="text" placeholder="e.g. Business website" required></div>
-      <div class="field"><label for="pStatus">Status</label>
-        <select id="pStatus"><option>Discovery</option><option>Design</option><option>Build</option><option>Review</option><option>Live</option></select></div>
-      <div class="field"><label for="pNext">Next step</label><input id="pNext" type="text" placeholder="e.g. Sharing first design"></div>
-      <div class="field"><label for="pDue">Expected date</label><input id="pDue" type="date"></div>
-      <div class="field"><label for="pLink">Link (optional)</label><input id="pLink" type="url" placeholder="https://…"></div>
-      <div class="field full"><label for="pDetails">Details / note (optional)</label><input id="pDetails" type="text" placeholder="Anything the client should see"></div>
-      <div class="full"><button class="btn btn-sm" id="projAddBtn" type="submit">Add project</button>
-        <span class="msg" id="projMsg" style="display:inline;margin-left:10px"></span></div>
-    </form>
-    <div id="adminProjList"></div>
-  </div>
+  <section class="tabpane hidden" id="tab-clients">
+    <div class="panel">
+      <div class="panel-h"><h2>Find a client</h2><span class="count" id="clientsCount">—</span></div>
+      <input id="clientSearch" class="wd-input" style="width:100%;background:var(--sf);border:1px solid var(--ln);border-radius:12px;padding:12px 14px;color:var(--tx);font-family:inherit;font-size:14px;outline:none" placeholder="Search by Client ID, name, email or phone…" autocomplete="off">
+      <div class="clist" id="clientList"></div>
+      <div class="empty hidden" id="clientsEmpty">No clients yet. Approve a lead to create one.</div>
+    </div>
+    <div id="clientProfile"></div>
+  </section>
 
-  <div class="panel">
-    <div class="panel-h"><h2>Invoices</h2><span class="count" id="invCount">—</span></div>
-    <form id="invForm" class="row-form">
-      <div class="field"><label for="iClient">Client email</label><input id="iClient" type="email" placeholder="client@example.com" required></div>
-      <div class="field"><label for="iTitle">What for</label><input id="iTitle" type="text" placeholder="e.g. 50% advance" required></div>
-      <div class="field"><label for="iAmount">Amount (₹)</label><input id="iAmount" type="number" min="0" step="1" placeholder="25000" required></div>
-      <div class="field"><label for="iStatus">Status</label><select id="iStatus"><option>Pending</option><option>Paid</option></select></div>
-      <div class="field"><label for="iDue">Due date</label><input id="iDue" type="date"></div>
-      <div class="field"><label for="iLink">Razorpay pay link (optional)</label><input id="iLink" type="url" placeholder="https://rzp.io/…"></div>
-      <div class="full"><button class="btn btn-sm" id="invAddBtn" type="submit">Add invoice</button>
-        <span class="msg" id="invMsg" style="display:inline;margin-left:10px"></span></div>
-    </form>
-    <div id="adminInvList"></div>
-  </div>
+  <section class="tabpane hidden" id="tab-activity">
+    <div class="panel"><div class="panel-h"><h2>Notification history</h2><span class="count" id="notifCount">—</span></div><div id="notifList"></div></div>
+  </section>
 </main>
 
 <!-- CLIENT -->
 <main class="wrap hidden" id="clientView">
   <div class="eyebrow">Your account</div>
   <h1>Welcome<span id="clientName"></span></h1>
-  <p class="sub">Here's where your projects stand and any invoices. Questions? Reply on WhatsApp anytime.</p>
-
+  <p class="sub" id="clientCid"></p>
   <div class="panel">
     <div class="panel-h"><h2>Your projects</h2></div>
     <div class="pgrid" id="clientProjList"></div>
     <div class="empty hidden" id="clientProjEmpty">No projects yet. We'll add yours here as soon as we kick off.</div>
   </div>
-
   <div class="panel">
     <div class="panel-h"><h2>Your invoices</h2></div>
     <div id="clientInvList"></div>
@@ -200,6 +190,7 @@ footer{border-top:1px solid var(--ln);text-align:center;padding:26px;color:var(-
   </div>
 </main>
 
+<div id="toast"></div>
 <footer>© 2026 GetSiteNow · <a href="/">Back to site</a></footer>
 
 <script>
@@ -208,26 +199,25 @@ const SUPABASE_URL = "https://znevkigmdwnyeucsrlzy.supabase.co";
 const SUPABASE_KEY = "sb_publishable_a2pEEWwaC4cXeMvF_4-ivQ_XzZTRKF6";
 const ADMIN_EMAIL  = "getsitenow.in@gmail.com";
 const SKEY = "gsn_session";
-const STEPS = ["Discovery","Design","Build","Review","Live"];
+/* project stages (also used for the client progress bar) */
+const STAGES = ["Requirement Analysis","UI/UX Design","Development","Backend Integration","Domain Connected","Testing","Deployment","Live","Delivered"];
+/* email sender — deploy the 'notify' edge function (see notify-email.ts) */
+const NOTIFY_FN = SUPABASE_URL.replace(/\/+$/,'') + "/functions/v1/notify";
 
 const $=s=>document.querySelector(s);
 const AUTH=SUPABASE_URL.replace(/\/+$/,'')+"/auth/v1";
 const REST=SUPABASE_URL.replace(/\/+$/,'')+"/rest/v1";
 
 /* ---------- session ---------- */
-function saveSession(d){ const s={ access_token:d.access_token, refresh_token:d.refresh_token,
-  email:(d.user&&d.user.email)||d.email, expires_at:Date.now()+((d.expires_in||3600)*1000) };
-  localStorage.setItem(SKEY, JSON.stringify(s)); return s; }
+function saveSession(d){ const s={ access_token:d.access_token, refresh_token:d.refresh_token, email:(d.user&&d.user.email)||d.email, expires_at:Date.now()+((d.expires_in||3600)*1000) }; localStorage.setItem(SKEY, JSON.stringify(s)); return s; }
 function getSession(){ try{ return JSON.parse(localStorage.getItem(SKEY)); }catch(e){ return null; } }
 function clearSession(){ localStorage.removeItem(SKEY); }
-function authHeaders(extra){ const s=getSession();
-  return Object.assign({ 'apikey':SUPABASE_KEY, 'Authorization':'Bearer '+(s?s.access_token:SUPABASE_KEY), 'Content-Type':'application/json' }, extra||{}); }
+function authHeaders(extra){ const s=getSession(); return Object.assign({ 'apikey':SUPABASE_KEY, 'Authorization':'Bearer '+(s?s.access_token:SUPABASE_KEY), 'Content-Type':'application/json' }, extra||{}); }
+function api(method,path,body,prefer){ const h=authHeaders(prefer?{'Prefer':prefer}:null); return fetch(REST+path,{method,headers:h,body:body?JSON.stringify(body):undefined}); }
 
 /* ---------- auth api ---------- */
-async function apiSignup(email,password){ const r=await fetch(AUTH+"/signup",{method:'POST',headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify({email,password})});
-  const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.msg||j.error_description||j.error||'Sign up failed'); return j; }
-async function apiLogin(email,password){ const r=await fetch(AUTH+"/token?grant_type=password",{method:'POST',headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify({email,password})});
-  const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.msg||j.error_description||j.error||'Login failed'); return j; }
+async function apiSignup(email,password){ const r=await fetch(AUTH+"/signup",{method:'POST',headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify({email,password})}); const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.msg||j.error_description||j.error||'Sign up failed'); return j; }
+async function apiLogin(email,password){ const r=await fetch(AUTH+"/token?grant_type=password",{method:'POST',headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify({email,password})}); const j=await r.json().catch(()=>({})); if(!r.ok) throw new Error(j.msg||j.error_description||j.error||'Login failed'); return j; }
 async function apiRefresh(rt){ const r=await fetch(AUTH+"/token?grant_type=refresh_token",{method:'POST',headers:{'apikey':SUPABASE_KEY,'Content-Type':'application/json'},body:JSON.stringify({refresh_token:rt})}); if(!r.ok) return null; return r.json().catch(()=>null); }
 
 /* ---------- helpers ---------- */
@@ -236,215 +226,344 @@ function esc(s){ return (s==null?'':String(s)).replace(/[&<>"]/g,c=>({'&':'&amp;
 function fmtDate(s){ try{ return new Date(s).toLocaleString('en-IN',{day:'2-digit',month:'short',hour:'2-digit',minute:'2-digit'}); }catch(e){ return s||''; } }
 function fmtDay(s){ if(!s) return ''; try{ return new Date(s).toLocaleDateString('en-IN',{day:'2-digit',month:'short',year:'numeric'}); }catch(e){ return s; } }
 function money(n){ if(n==null||n==='') return ''; return '₹'+Number(n).toLocaleString('en-IN'); }
-function progressBar(status){
-  let idx=STEPS.indexOf(status); if(idx<0) idx=0;
-  const pct=Math.round(idx/(STEPS.length-1)*100);
-  const labels=STEPS.map((s,i)=>`<span class="${i<idx?'done':(i===idx?'on':'')}">${s}</span>`).join('');
-  return `<div class="prog-track"><div class="prog-fill" style="width:${pct}%"></div></div><div class="prog-labels">${labels}</div>`;
-}
+function toast(m){ const t=$('#toast'); if(!t) return; t.textContent=m; t.classList.add('on'); setTimeout(()=>t.classList.remove('on'),2600); }
+function progressBar(status){ let i=STAGES.indexOf(status); if(i<0) i=0; const pct=Math.round(i/(STAGES.length-1)*100); return `<div class="prog-track"><div class="prog-fill" style="width:${pct}%"></div></div>`; }
 
 function enterApp(){
   const s=getSession(); if(!s){ show('authView'); return; }
   $('#who').textContent=s.email; $('#who').classList.remove('hidden'); $('#logoutBtn').classList.remove('hidden');
-  if((s.email||'').toLowerCase()===ADMIN_EMAIL.toLowerCase()){ show('adminView'); loadLeads(); loadAdminProjects(); loadAdminInvoices(); }
-  else { const nm=(s.email||'').split('@')[0]; $('#clientName').textContent=nm?(', '+nm):''; show('clientView'); loadClientProjects(); loadClientInvoices(); }
+  if((s.email||'').toLowerCase()===ADMIN_EMAIL.toLowerCase()){ show('adminView'); loadLeads(); loadClients(); loadNotifications(); }
+  else { const nm=(s.email||'').split('@')[0]; $('#clientName').textContent=nm?(', '+nm):''; show('clientView'); loadClientSelf(); }
+}
+
+/* ==================== EMAIL ==================== */
+async function sendEmail(p){ /* p: {to, subject, html, client_id, type} */
+  let ok=false;
+  if(p.to){ try{ const r=await fetch(NOTIFY_FN,{method:'POST',headers:authHeaders(),body:JSON.stringify(p)}); ok=r.ok; }catch(e){ ok=false; } }
+  /* log the attempt so history always reflects reality */
+  api('POST','/notifications',{ client_id:p.client_id, to_email:p.to, channel:'email', type:p.type, subject:p.subject, body:p.html, status: ok?'sent':'failed' },'return=minimal').catch(()=>{});
+  return ok;
+}
+function welcomeHtml(c){
+  return `<div style="font-family:sans-serif;font-size:14px;color:#111">
+    <h2>Welcome to GetSiteNow 🎉</h2>
+    <p>Hi ${esc(c.name||'there')}, your project has been initiated.</p>
+    <p><b>Your Client ID:</b> ${esc(c.client_id)}<br>Keep this handy — it's how we track your project.</p>
+    <p>You can log in anytime at <a href="https://getsitenow.in/portal">getsitenow.in/portal</a> to see live progress.</p>
+    <p>We'll be in touch with the next steps shortly.</p>
+    <p>— Team GetSiteNow</p></div>`;
+}
+function statusHtml(c, proj){
+  const next = proj.next_step ? `<p><b>Next milestone:</b> ${esc(proj.next_step)}</p>`:'';
+  const due  = proj.due_date ? `<p><b>Expected date:</b> ${esc(fmtDay(proj.due_date))}</p>`:'';
+  return `<div style="font-family:sans-serif;font-size:14px;color:#111">
+    <h2>Project update — ${esc(proj.title||'your project')}</h2>
+    <p>Hi ${esc(c.name||'there')}, here's the latest on your project (${esc(c.client_id||'')}).</p>
+    <p><b>Current stage:</b> ${esc(proj.status)}</p>
+    ${proj.details?`<p><b>Work so far:</b> ${esc(proj.details)}</p>`:''}
+    ${next}${due}
+    <p>Track it live at <a href="https://getsitenow.in/portal">getsitenow.in/portal</a>.</p>
+    <p>— Team GetSiteNow</p></div>`;
 }
 
 /* ==================== ADMIN: LEADS ==================== */
-const LEAD_STATUS=['New','Contacted','Won','Lost'];
 async function loadLeads(){
   const body=$('#leadsBody'); body.innerHTML='';
   try{
-    const r=await fetch(REST+"/leads?select=*&order=created_at.desc",{headers:authHeaders()});
-    const rows=await r.json();
+    const r=await api('GET',"/leads?select=*&order=created_at.desc"); const rows=await r.json();
     if(!Array.isArray(rows)||!rows.length){ $('#leadsEmpty').classList.remove('hidden'); $('#leadsCount').textContent='0'; return; }
     $('#leadsEmpty').classList.add('hidden'); $('#leadsCount').textContent=rows.length;
     body.innerHTML=rows.map(l=>{
       const st=l.status||'New';
+      const done = st==='Approved' || st==='Rejected';
       const contact=[l.phone,l.email].filter(Boolean).map(esc).join('<br>');
+      const action = st==='Approved'
+        ? `<span class="badge"><span class="d"></span>Approved · <span class="cid">${esc(l.client_id||'')}</span></span>`
+        : st==='Rejected' ? `<span class="badge grey">Rejected</span>`
+        : `<div class="row-actions"><button class="btn btn-sm js-approve" data-id="${esc(l.id)}">Approve</button><button class="btn btn-sm btn-red js-reject" data-id="${esc(l.id)}">Reject</button></div>`;
       return `<tr>
         <td class="muted" style="white-space:nowrap">${esc(fmtDate(l.created_at))}</td>
         <td class="nm">${esc(l.name)}</td>
         <td style="white-space:nowrap">${contact||'<span class="muted">—</span>'}</td>
         <td>${esc(l.service)||'<span class="muted">—</span>'}${l.message?`<div class="pmeta">${esc(l.message)}</div>`:''}</td>
-        <td><select class="tsel lead-status" data-id="${esc(l.id)}">${LEAD_STATUS.map(o=>`<option${o===st?' selected':''}>${o}</option>`).join('')}</select></td>
-        <td><input class="tinput lead-note" data-id="${esc(l.id)}" value="${esc(l.notes||'')}" placeholder="add note…"></td>
-        <td><button class="conv" data-email="${esc(l.email||'')}" data-service="${esc(l.service||'')}">→ Project</button></td>
-      </tr>`;
+        <td><span class="badge grey">${esc(st)}</span></td>
+        <td>${action}</td></tr>`;
     }).join('');
-    body.querySelectorAll('.lead-status').forEach(sel=>sel.addEventListener('change',()=>updateLead(sel.dataset.id,{status:sel.value},sel)));
-    body.querySelectorAll('.lead-note').forEach(inp=>{
-      const save=()=>updateLead(inp.dataset.id,{notes:inp.value},inp);
-      inp.addEventListener('keydown',e=>{ if(e.key==='Enter'){ inp.blur(); } });
-      inp.addEventListener('blur',save);
-    });
-    body.querySelectorAll('.conv').forEach(b=>b.addEventListener('click',()=>{
-      $('#pClient').value=b.dataset.email||''; $('#pTitle').value=b.dataset.service||'New project';
-      $('#projForm').scrollIntoView({behavior:'smooth',block:'center'}); $('#pTitle').focus();
-    }));
+    body.querySelectorAll('.js-approve').forEach(b=>b.addEventListener('click',()=>approveLead(rows.find(x=>x.id===b.dataset.id), b)));
+    body.querySelectorAll('.js-reject').forEach(b=>b.addEventListener('click',()=>rejectLead(b.dataset.id)));
   }catch(e){ $('#leadsEmpty').textContent='Could not load leads. Check the admin policies in Supabase.'; $('#leadsEmpty').classList.remove('hidden'); }
 }
-async function updateLead(id,patch,el){
-  if(el) el.style.opacity='.5';
-  try{ await fetch(REST+"/leads?id=eq."+encodeURIComponent(id),{method:'PATCH',headers:authHeaders({'Prefer':'return=minimal'}),body:JSON.stringify(patch)}); }
-  catch(e){} finally{ if(el) el.style.opacity=''; }
-}
 
-/* ==================== ADMIN: PROJECTS ==================== */
-async function loadAdminProjects(){
-  const list=$('#adminProjList');
+async function approveLead(lead, btn){
+  if(!lead) return; if(btn){ btn.disabled=true; btn.textContent='Approving…'; }
   try{
-    const r=await fetch(REST+"/projects?select=*&order=created_at.desc",{headers:authHeaders()});
-    const rows=await r.json(); $('#projCount').textContent=Array.isArray(rows)?rows.length:'0';
-    if(!Array.isArray(rows)||!rows.length){ list.innerHTML='<div class="empty">No projects yet. Add one above.</div>'; return; }
-    list.innerHTML='<div class="pgrid">'+rows.map(p=>`<div class="pcard">
-      <h3>${esc(p.title)}</h3>
-      <div class="pmeta">${esc(p.client_email)}</div>
-      ${p.next_step?`<p><b style="color:var(--tx)">Next:</b> ${esc(p.next_step)}</p>`:''}
-      ${p.due_date?`<div class="pmeta">Expected ${esc(fmtDay(p.due_date))}</div>`:''}
-      ${p.link?`<p><a href="${esc(p.link)}" target="_blank" rel="noopener">Open link ↗</a></p>`:''}
-      <div class="pstatus">
-        <select data-id="${esc(p.id)}">${STEPS.map(o=>`<option${o===p.status?' selected':''}>${o}</option>`).join('')}</select>
-        <span class="pmeta upd" data-for="${esc(p.id)}"></span>
-      </div></div>`).join('')+'</div>';
-    list.querySelectorAll('select[data-id]').forEach(sel=>sel.addEventListener('change',async()=>{
-      const note=list.querySelector('.upd[data-for="'+sel.dataset.id+'"]'); sel.disabled=true; if(note) note.textContent='saving…';
-      const ok=await patchRow('projects',sel.dataset.id,{status:sel.value}); sel.disabled=false; if(note) note.textContent=ok?'saved ✓':'failed';
-      setTimeout(()=>{ if(note) note.textContent=''; },2000);
-    }));
-  }catch(e){ list.innerHTML='<div class="empty">Could not load projects.</div>'; }
+    const r=await api('POST','/clients',{ name:lead.name, phone:lead.phone, email:lead.email, company:lead.company||null, source_lead:lead.id },'return=representation');
+    if(!r.ok){ const j=await r.json().catch(()=>({})); throw new Error(j.message||'Could not create client'); }
+    const client=(await r.json())[0];
+    await api('PATCH','/leads?id=eq.'+encodeURIComponent(lead.id),{ status:'Approved', client_id:client.client_id },'return=minimal');
+    const emailed = await sendEmail({ to:client.email, subject:'Welcome to GetSiteNow · Your Client ID '+client.client_id, html:welcomeHtml(client), client_id:client.client_id, type:'welcome' });
+    toast('Client created — '+client.client_id+(client.email?(emailed?' · welcome email sent':' · email not sent (set up Resend)'):''));
+    loadLeads(); loadClients(); loadNotifications();
+  }catch(err){ toast(err.message||'Approve failed'); if(btn){ btn.disabled=false; btn.textContent='Approve'; } }
+}
+async function rejectLead(id){
+  try{ await api('PATCH','/leads?id=eq.'+encodeURIComponent(id),{ status:'Rejected' },'return=minimal'); toast('Lead rejected'); loadLeads(); }
+  catch(e){ toast('Could not reject'); }
 }
 
-/* ==================== ADMIN: INVOICES ==================== */
-async function loadAdminInvoices(){
-  const list=$('#adminInvList');
+/* ==================== ADMIN: CLIENTS ==================== */
+let CLIENTS=[];
+async function loadClients(){
   try{
-    const r=await fetch(REST+"/invoices?select=*&order=created_at.desc",{headers:authHeaders()});
-    const rows=await r.json(); $('#invCount').textContent=Array.isArray(rows)?rows.length:'0';
-    if(!Array.isArray(rows)||!rows.length){ list.innerHTML='<div class="empty">No invoices yet. Add one above.</div>'; return; }
-    list.innerHTML=rows.map(v=>{
-      const paid=(v.status||'Pending')==='Paid';
-      return `<div class="inv-row">
-        <div class="inv-l"><b>${esc(v.title)}</b> <span class="inv-amt">${esc(money(v.amount))}</span>
-          <div class="pmeta">${esc(v.client_email)}${v.due_date?(' · due '+esc(fmtDay(v.due_date))):''}</div></div>
-        <div class="inv-r">
-          <span class="badge ${paid?'':'pending'}"><span class="d"></span>${esc(v.status||'Pending')}</span>
-          <select data-id="${esc(v.id)}" class="inv-status"><option${paid?'':' selected'}>Pending</option><option${paid?' selected':''}>Paid</option></select>
-          <span class="pmeta upd" data-for="${esc(v.id)}"></span>
-        </div></div>`;
-    }).join('');
-    list.querySelectorAll('.inv-status').forEach(sel=>sel.addEventListener('change',async()=>{
-      const note=list.querySelector('.upd[data-for="'+sel.dataset.id+'"]'); sel.disabled=true; if(note) note.textContent='saving…';
-      const ok=await patchRow('invoices',sel.dataset.id,{status:sel.value}); sel.disabled=false; if(note) note.textContent=ok?'saved ✓':'failed';
-      loadAdminInvoices();
-    }));
-  }catch(e){ list.innerHTML='<div class="empty">Could not load invoices.</div>'; }
+    const r=await api('GET','/clients?select=*&order=created_at.desc'); CLIENTS=await r.json();
+    if(!Array.isArray(CLIENTS)) CLIENTS=[];
+    $('#clientsCount').textContent=CLIENTS.length;
+    renderClientList(CLIENTS);
+  }catch(e){ $('#clientsEmpty').classList.remove('hidden'); }
+}
+function renderClientList(list){
+  const el=$('#clientList'), empty=$('#clientsEmpty');
+  if(!list.length){ el.innerHTML=''; empty.classList.remove('hidden'); return; }
+  empty.classList.add('hidden');
+  el.innerHTML=list.map(c=>`<div class="cli" data-cid="${esc(c.client_id)}">
+    <span class="cid">${esc(c.client_id)}</span>
+    <b>${esc(c.name||'—')}</b>
+    <span>${esc(c.email||c.phone||'')}</span>
+  </div>`).join('');
+  el.querySelectorAll('.cli').forEach(x=>x.addEventListener('click',()=>openClient(x.dataset.cid)));
+}
+$('#clientSearch').addEventListener('input',e=>{
+  const f=e.target.value.toLowerCase().trim();
+  if(!f){ renderClientList(CLIENTS); return; }
+  renderClientList(CLIENTS.filter(c=>[c.client_id,c.name,c.email,c.phone,c.company].some(v=>(v||'').toLowerCase().indexOf(f)>-1)));
+});
+
+async function openClient(cid){
+  const c=CLIENTS.find(x=>x.client_id===cid); if(!c) return;
+  const box=$('#clientProfile');
+  box.innerHTML='<div class="panel"><div class="empty">Loading client…</div></div>';
+  box.scrollIntoView({behavior:'smooth',block:'start'});
+  const [projects,invoices,docs,notifs] = await Promise.all([
+    api('GET','/projects?select=*&client_id=eq.'+encodeURIComponent(cid)+'&order=created_at.desc').then(r=>r.json()).catch(()=>[]),
+    api('GET','/invoices?select=*&client_email=eq.'+encodeURIComponent((c.email||'').toLowerCase())+'&order=created_at.desc').then(r=>r.json()).catch(()=>[]),
+    api('GET','/documents?select=*&client_id=eq.'+encodeURIComponent(cid)+'&order=created_at.desc').then(r=>r.json()).catch(()=>[]),
+    api('GET','/notifications?select=*&client_id=eq.'+encodeURIComponent(cid)+'&order=created_at.desc').then(r=>r.json()).catch(()=>[])
+  ]);
+  box.innerHTML = clientProfileHtml(c, projects||[], invoices||[], docs||[], notifs||[]);
+  wireProfile(c);
 }
 
-async function patchRow(table,id,patch){
-  try{ const r=await fetch(REST+"/"+table+"?id=eq."+encodeURIComponent(id),{method:'PATCH',headers:authHeaders({'Prefer':'return=minimal'}),body:JSON.stringify(patch)}); return r.ok; }
-  catch(e){ return false; }
+function clientProfileHtml(c, projects, invoices, docs, notifs){
+  const proj = projects.map(p=>`<div class="pcard">
+    <div class="prof-top"><h4>${esc(p.title)}</h4><span class="badge"><span class="d"></span>${esc(p.status||STAGES[0])}</span></div>
+    ${progressBar(p.status||STAGES[0])}
+    ${p.next_step?`<div class="pmeta"><b style="color:var(--tx)">Next:</b> ${esc(p.next_step)}</div>`:''}
+    ${p.due_date?`<div class="pmeta">Expected ${esc(fmtDay(p.due_date))}</div>`:''}
+    ${p.link?`<div class="pmeta"><a href="${esc(p.link)}" target="_blank" rel="noopener">Project link ↗</a></div>`:''}
+    <div class="line" style="margin-top:8px;border:0;padding:0">
+      <select data-proj="${esc(p.id)}" class="js-stage">${STAGES.map(s=>`<option${s===p.status?' selected':''}>${s}</option>`).join('')}</select>
+      <button class="btn btn-sm js-notify" data-proj="${esc(p.id)}">Save + notify client</button>
+    </div>
+    <div class="row-form" style="margin-top:10px">
+      <div class="field"><input class="js-next" data-proj="${esc(p.id)}" placeholder="Next milestone" value="${esc(p.next_step||'')}"></div>
+      <div class="field"><input class="js-due" data-proj="${esc(p.id)}" type="date" value="${esc(p.due_date||'')}"></div>
+    </div>
+  </div>`).join('') || '<div class="empty">No project yet.</div>';
+
+  const inv = invoices.map(v=>{ const paid=(v.status||'Pending')==='Paid'; return `<div class="line">
+    <div><b>${esc(v.title)}</b> ${esc(money(v.amount))}<div class="pmeta">${v.due_date?('due '+esc(fmtDay(v.due_date))):''}</div></div>
+    <span class="badge ${paid?'':'pending'}"><span class="d"></span>${esc(v.status||'Pending')}</span></div>`; }).join('') || '<div class="empty">No invoices.</div>';
+
+  const doc = docs.map(d=>`<div class="line"><a href="${esc(d.url)}" target="_blank" rel="noopener">${esc(d.title||d.url)} ↗</a><span class="pmeta">${esc(fmtDay(d.created_at))}</span></div>`).join('') || '<div class="empty">No documents.</div>';
+
+  const nt = notifs.map(n=>`<div class="line"><div><b>${esc(n.subject||n.type)}</b><div class="pmeta">${esc(n.to_email||'')} · ${esc(fmtDate(n.created_at))}</div></div><span class="badge ${n.status==='sent'?'':'pending'}">${esc(n.status)}</span></div>`).join('') || '<div class="empty">No notifications yet.</div>';
+
+  return `<div class="panel">
+    <div class="prof-top">
+      <div><span class="cid" style="font-size:15px">${esc(c.client_id)}</span><h2 style="font-size:22px;margin-top:4px">${esc(c.name||'—')}</h2></div>
+      <span class="badge grey">${esc(c.status||'Active')}</span>
+    </div>
+    <div class="kv">
+      <div><span>Phone</span><b>${esc(c.phone||'—')}</b></div>
+      <div><span>Email</span><b>${esc(c.email||'—')}</b></div>
+      <div><span>Company</span><b>${esc(c.company||'—')}</b></div>
+      <div><span>Client since</span><b>${esc(fmtDay(c.created_at))}</b></div>
+    </div>
+
+    <div class="sub-panel">
+      <h3>Projects &amp; progress</h3>
+      ${proj}
+      <details style="margin-top:8px"><summary style="cursor:pointer;color:var(--mu);font-size:13px">+ Add a project</summary>
+        <div class="row-form" style="margin-top:10px">
+          <div class="field"><input id="npTitle" placeholder="Project title"></div>
+          <div class="field"><select id="npStage">${STAGES.map(s=>`<option>${s}</option>`).join('')}</select></div>
+          <div class="field"><input id="npNext" placeholder="Next milestone"></div>
+          <div class="field"><input id="npDue" type="date"></div>
+          <div class="field full"><input id="npLink" placeholder="Project link (optional)"></div>
+          <div class="full"><button class="btn btn-sm" id="npAdd">Add project</button></div>
+        </div>
+      </details>
+    </div>
+
+    <div class="sub-panel">
+      <h3>Invoices</h3>
+      ${inv}
+      <details style="margin-top:8px"><summary style="cursor:pointer;color:var(--mu);font-size:13px">+ Add an invoice</summary>
+        <div class="row-form" style="margin-top:10px">
+          <div class="field"><input id="niTitle" placeholder="What for (e.g. 50% advance)"></div>
+          <div class="field"><input id="niAmount" type="number" placeholder="Amount ₹"></div>
+          <div class="field"><select id="niStatus"><option>Pending</option><option>Paid</option></select></div>
+          <div class="field"><input id="niDue" type="date"></div>
+          <div class="field full"><input id="niLink" placeholder="Razorpay pay link (optional)"></div>
+          <div class="full"><button class="btn btn-sm" id="niAdd">Add invoice</button></div>
+        </div>
+      </details>
+    </div>
+
+    <div class="sub-panel">
+      <h3>Documents &amp; files</h3>
+      ${doc}
+      <div class="row-form" style="margin-top:10px">
+        <div class="field"><input id="ndTitle" placeholder="Title (e.g. Final design)"></div>
+        <div class="field"><input id="ndUrl" placeholder="https://link-to-file"></div>
+        <div class="full"><button class="btn btn-sm" id="ndAdd">Add link</button></div>
+      </div>
+    </div>
+
+    <div class="sub-panel">
+      <h3>Notifications sent</h3>
+      ${nt}
+    </div>
+
+    <div class="sub-panel">
+      <h3>Send a custom update</h3>
+      <div class="field"><input id="cmSubject" placeholder="Subject"></div>
+      <div class="field"><textarea id="cmBody" rows="3" placeholder="Message to the client…"></textarea></div>
+      <button class="btn btn-sm" id="cmSend">Email client</button>
+    </div>
+  </div>`;
 }
 
-/* ==================== CLIENT ==================== */
+function wireProfile(c){
+  const box=$('#clientProfile');
+  /* stage save + notify */
+  box.querySelectorAll('.js-notify').forEach(b=>b.addEventListener('click',async()=>{
+    const id=b.dataset.proj;
+    const stage=box.querySelector('.js-stage[data-proj="'+id+'"]').value;
+    const next=box.querySelector('.js-next[data-proj="'+id+'"]').value.trim();
+    const due=box.querySelector('.js-due[data-proj="'+id+'"]').value||null;
+    b.disabled=true; b.textContent='Saving…';
+    await api('PATCH','/projects?id=eq.'+encodeURIComponent(id),{status:stage,next_step:next,due_date:due},'return=minimal');
+    const proj={ id, status:stage, next_step:next, due_date:due, title:(box.querySelector('.js-notify[data-proj="'+id+'"]').closest('.pcard').querySelector('h4').textContent) };
+    const emailed = await sendEmail({ to:c.email, subject:'Project update · '+stage, html:statusHtml(c,proj), client_id:c.client_id, type:'status-update' });
+    b.disabled=false; b.textContent='Save + notify client';
+    toast('Updated'+(c.email?(emailed?' · client emailed':' · email not sent (set up Resend)'):''));
+    loadNotifications();
+  }));
+  /* add project */
+  const npAdd=box.querySelector('#npAdd'); if(npAdd) npAdd.addEventListener('click',async()=>{
+    const row={ client_id:c.client_id, client_email:(c.email||'').toLowerCase(), title:box.querySelector('#npTitle').value.trim(), status:box.querySelector('#npStage').value, next_step:box.querySelector('#npNext').value.trim(), due_date:box.querySelector('#npDue').value||null, link:box.querySelector('#npLink').value.trim() };
+    if(!row.title){ toast('Project title required'); return; }
+    const r=await api('POST','/projects',row,'return=minimal'); if(r.ok){ toast('Project added'); openClient(c.client_id); } else toast('Could not add project');
+  });
+  /* add invoice */
+  const niAdd=box.querySelector('#niAdd'); if(niAdd) niAdd.addEventListener('click',async()=>{
+    const row={ client_id:c.client_id, client_email:(c.email||'').toLowerCase(), title:box.querySelector('#niTitle').value.trim(), amount:parseFloat(box.querySelector('#niAmount').value||'0'), status:box.querySelector('#niStatus').value, due_date:box.querySelector('#niDue').value||null, pay_link:box.querySelector('#niLink').value.trim() };
+    if(!row.title){ toast('Invoice description required'); return; }
+    const r=await api('POST','/invoices',row,'return=minimal'); if(r.ok){ toast('Invoice added'); openClient(c.client_id); } else toast('Could not add invoice');
+  });
+  /* add document */
+  const ndAdd=box.querySelector('#ndAdd'); if(ndAdd) ndAdd.addEventListener('click',async()=>{
+    const row={ client_id:c.client_id, title:box.querySelector('#ndTitle').value.trim(), url:box.querySelector('#ndUrl').value.trim() };
+    if(!row.url){ toast('Add a link'); return; }
+    const r=await api('POST','/documents',row,'return=minimal'); if(r.ok){ toast('Document added'); openClient(c.client_id); } else toast('Could not add');
+  });
+  /* custom email */
+  const cmSend=box.querySelector('#cmSend'); if(cmSend) cmSend.addEventListener('click',async()=>{
+    const subject=box.querySelector('#cmSubject').value.trim(), bodyTxt=box.querySelector('#cmBody').value.trim();
+    if(!subject||!bodyTxt){ toast('Subject and message required'); return; }
+    if(!c.email){ toast('This client has no email'); return; }
+    cmSend.disabled=true;
+    const html=`<div style="font-family:sans-serif;font-size:14px;color:#111"><p>${esc(bodyTxt).replace(/\n/g,'<br>')}</p><p>— Team GetSiteNow</p></div>`;
+    const ok=await sendEmail({ to:c.email, subject, html, client_id:c.client_id, type:'custom' });
+    cmSend.disabled=false; toast(ok?'Email sent':'Email not sent (set up Resend)');
+    openClient(c.client_id);
+  });
+}
+
+/* ==================== ADMIN: NOTIFICATIONS ==================== */
+async function loadNotifications(){
+  const el=$('#notifList');
+  try{
+    const r=await api('GET','/notifications?select=*&order=created_at.desc&limit=100'); const rows=await r.json();
+    $('#notifCount').textContent=Array.isArray(rows)?rows.length:'0';
+    if(!Array.isArray(rows)||!rows.length){ el.innerHTML='<div class="empty">No notifications yet.</div>'; return; }
+    el.innerHTML=rows.map(n=>`<div class="line">
+      <div><b>${esc(n.subject||n.type)}</b><div class="pmeta">${esc(n.client_id||'')} · ${esc(n.to_email||'')} · ${esc(fmtDate(n.created_at))}</div></div>
+      <span class="badge ${n.status==='sent'?'':'pending'}">${esc(n.status)}</span></div>`).join('');
+  }catch(e){ el.innerHTML='<div class="empty">Could not load notifications.</div>'; }
+}
+
+/* ==================== CLIENT (self) ==================== */
+async function loadClientSelf(){
+  const email=(getSession().email||'').toLowerCase();
+  try{ const r=await api('GET','/clients?select=client_id&email=eq.'+encodeURIComponent(email)+'&limit=1'); const rows=await r.json();
+    if(Array.isArray(rows)&&rows[0]) $('#clientCid').textContent='Client ID: '+rows[0].client_id; }catch(e){}
+  loadClientProjects(); loadClientInvoices();
+}
 async function loadClientProjects(){
   const list=$('#clientProjList');
-  try{
-    const r=await fetch(REST+"/projects?select=*&order=created_at.desc",{headers:authHeaders()});
-    const rows=await r.json();
+  try{ const r=await api('GET','/projects?select=*&order=created_at.desc'); const rows=await r.json();
     if(!Array.isArray(rows)||!rows.length){ $('#clientProjEmpty').classList.remove('hidden'); return; }
     $('#clientProjEmpty').classList.add('hidden');
     list.innerHTML=rows.map(p=>`<div class="pcard">
-      <span class="badge"><span class="d"></span>${esc(p.status||'Discovery')}</span>
-      <h3 style="margin-top:10px">${esc(p.title)}</h3>
-      ${progressBar(p.status||'Discovery')}
-      ${p.next_step?`<p style="margin-top:10px"><b style="color:var(--tx)">Next:</b> ${esc(p.next_step)}</p>`:''}
+      <div class="prof-top"><h4>${esc(p.title)}</h4><span class="badge"><span class="d"></span>${esc(p.status||STAGES[0])}</span></div>
+      ${progressBar(p.status||STAGES[0])}
+      ${p.next_step?`<div class="pmeta"><b style="color:var(--tx)">Next:</b> ${esc(p.next_step)}</div>`:''}
       ${p.due_date?`<div class="pmeta">Expected ${esc(fmtDay(p.due_date))}</div>`:''}
-      ${p.details?`<p>${esc(p.details)}</p>`:''}
-      ${p.link?`<p><a href="${esc(p.link)}" target="_blank" rel="noopener">View ↗</a></p>`:''}
+      ${p.link?`<div class="pmeta"><a href="${esc(p.link)}" target="_blank" rel="noopener">View ↗</a></div>`:''}
     </div>`).join('');
-  }catch(e){ $('#clientProjEmpty').textContent='Could not load your projects right now.'; $('#clientProjEmpty').classList.remove('hidden'); }
+  }catch(e){ $('#clientProjEmpty').classList.remove('hidden'); }
 }
 async function loadClientInvoices(){
   const list=$('#clientInvList');
-  try{
-    const r=await fetch(REST+"/invoices?select=*&order=created_at.desc",{headers:authHeaders()});
-    const rows=await r.json();
+  try{ const r=await api('GET','/invoices?select=*&order=created_at.desc'); const rows=await r.json();
     if(!Array.isArray(rows)||!rows.length){ $('#clientInvEmpty').classList.remove('hidden'); return; }
     $('#clientInvEmpty').classList.add('hidden');
-    list.innerHTML=rows.map(v=>{
-      const paid=(v.status||'Pending')==='Paid';
-      return `<div class="inv-row">
-        <div class="inv-l"><b>${esc(v.title)}</b> <span class="inv-amt">${esc(money(v.amount))}</span>
-          <div class="pmeta">${v.due_date?('Due '+esc(fmtDay(v.due_date))):''}</div></div>
-        <div class="inv-r">
-          <span class="badge ${paid?'':'pending'}"><span class="d"></span>${esc(v.status||'Pending')}</span>
-          ${(!paid&&v.pay_link)?`<a class="pay-btn" href="${esc(v.pay_link)}" target="_blank" rel="noopener">Pay now →</a>`:''}
-        </div></div>`;
-    }).join('');
-  }catch(e){ $('#clientInvEmpty').textContent='Could not load your invoices right now.'; $('#clientInvEmpty').classList.remove('hidden'); }
+    list.innerHTML=rows.map(v=>{ const paid=(v.status||'Pending')==='Paid'; return `<div class="line">
+      <div><b>${esc(v.title)}</b> ${esc(money(v.amount))}<div class="pmeta">${v.due_date?('Due '+esc(fmtDay(v.due_date))):''}</div></div>
+      <div style="display:flex;gap:10px;align-items:center"><span class="badge ${paid?'':'pending'}"><span class="d"></span>${esc(v.status||'Pending')}</span>${(!paid&&v.pay_link)?`<a class="pay-btn" href="${esc(v.pay_link)}" target="_blank" rel="noopener">Pay now →</a>`:''}</div></div>`; }).join('');
+  }catch(e){ $('#clientInvEmpty').classList.remove('hidden'); }
 }
 
-/* ==================== AUTH UI ==================== */
+/* ==================== TABS + AUTH UI ==================== */
+document.querySelectorAll('.tabb').forEach(t=>t.addEventListener('click',()=>{
+  document.querySelectorAll('.tabb').forEach(x=>x.classList.remove('on')); t.classList.add('on');
+  document.querySelectorAll('.tabpane').forEach(p=>p.classList.add('hidden'));
+  $('#tab-'+t.dataset.tab).classList.remove('hidden');
+}));
+
 let mode='login';
-function setMode(m){ mode=m;
-  $('#tabLogin').classList.toggle('on',m==='login'); $('#tabSignup').classList.toggle('on',m==='signup');
-  $('#authTitle').textContent=m==='login'?'Welcome back':'Create your account';
-  $('#authBtnTx').textContent=m==='login'?'Log in':'Sign up';
-  $('#password').autocomplete=m==='login'?'current-password':'new-password'; amsg('',''); }
+function setMode(m){ mode=m; $('#tabLogin').classList.toggle('on',m==='login'); $('#tabSignup').classList.toggle('on',m==='signup'); $('#authTitle').textContent=m==='login'?'Welcome back':'Create your account'; $('#authBtnTx').textContent=m==='login'?'Log in':'Sign up'; $('#password').autocomplete=m==='login'?'current-password':'new-password'; amsg('',''); }
 function amsg(t,cls){ const el=$('#authMsg'); el.textContent=t||''; el.className='msg '+(cls||''); }
-$('#tabLogin').onclick=()=>setMode('login');
-$('#tabSignup').onclick=()=>setMode('signup');
+$('#tabLogin').onclick=()=>setMode('login'); $('#tabSignup').onclick=()=>setMode('signup');
 $('#authForm').addEventListener('submit',async e=>{
   e.preventDefault();
   const email=$('#email').value.trim(), password=$('#password').value;
   if(!email||password.length<6){ amsg('Enter a valid email and a 6+ character password.','err'); return; }
   const btn=$('#authBtn'); btn.disabled=true; const old=$('#authBtnTx').textContent; $('#authBtnTx').textContent='Please wait…';
   try{
-    if(mode==='signup'){ const j=await apiSignup(email,password);
-      if(j.access_token){ saveSession(j); enterApp(); } else { amsg('Account created. Check your email to confirm, then log in.','ok'); setMode('login'); } }
+    if(mode==='signup'){ const j=await apiSignup(email,password); if(j.access_token){ saveSession(j); enterApp(); } else { amsg('Account created. Check your email to confirm, then log in.','ok'); setMode('login'); } }
     else { const j=await apiLogin(email,password); saveSession(j); enterApp(); }
   }catch(err){ amsg(err.message||'Something went wrong.','err'); }
   finally{ btn.disabled=false; $('#authBtnTx').textContent=old; }
 });
 $('#logoutBtn').onclick=async()=>{ const s=getSession(); try{ if(s) await fetch(AUTH+"/logout",{method:'POST',headers:authHeaders()}); }catch(e){} clearSession(); location.reload(); };
 
-/* ---------- admin: add project ---------- */
-$('#projForm').addEventListener('submit',async e=>{
-  e.preventDefault();
-  const row={ client_email:$('#pClient').value.trim().toLowerCase(), title:$('#pTitle').value.trim(),
-    status:$('#pStatus').value, next_step:$('#pNext').value.trim(), due_date:$('#pDue').value||null,
-    link:$('#pLink').value.trim(), details:$('#pDetails').value.trim() };
-  if(!row.client_email||!row.title){ pmsg('Client email and title are required.','err'); return; }
-  const btn=$('#projAddBtn'); btn.disabled=true;
-  try{ const r=await fetch(REST+"/projects",{method:'POST',headers:authHeaders({'Prefer':'return=minimal'}),body:JSON.stringify(row)});
-    if(!r.ok){ const j=await r.json().catch(()=>({})); throw new Error(j.message||'Could not add project'); }
-    pmsg('Added ✓','ok'); $('#projForm').reset(); loadAdminProjects();
-  }catch(err){ pmsg(err.message,'err'); } finally{ btn.disabled=false; }
-});
-function pmsg(t,cls){ const el=$('#projMsg'); el.textContent=t||''; el.className='msg '+(cls||''); }
-
-/* ---------- admin: add invoice ---------- */
-$('#invForm').addEventListener('submit',async e=>{
-  e.preventDefault();
-  const row={ client_email:$('#iClient').value.trim().toLowerCase(), title:$('#iTitle').value.trim(),
-    amount:parseFloat($('#iAmount').value||'0'), status:$('#iStatus').value, due_date:$('#iDue').value||null, pay_link:$('#iLink').value.trim() };
-  if(!row.client_email||!row.title){ imsg('Client email and description are required.','err'); return; }
-  const btn=$('#invAddBtn'); btn.disabled=true;
-  try{ const r=await fetch(REST+"/invoices",{method:'POST',headers:authHeaders({'Prefer':'return=minimal'}),body:JSON.stringify(row)});
-    if(!r.ok){ const j=await r.json().catch(()=>({})); throw new Error(j.message||'Could not add invoice'); }
-    imsg('Added ✓','ok'); $('#invForm').reset(); loadAdminInvoices();
-  }catch(err){ imsg(err.message,'err'); } finally{ btn.disabled=false; }
-});
-function imsg(t,cls){ const el=$('#invMsg'); el.textContent=t||''; el.className='msg '+(cls||''); }
-
 /* ---------- boot ---------- */
 (async function boot(){
   const s=getSession(); if(!s){ show('authView'); return; }
-  if(s.expires_at && s.expires_at < Date.now()+30000){
-    const j=s.refresh_token ? await apiRefresh(s.refresh_token) : null;
-    if(j && j.access_token){ saveSession(j); } else { clearSession(); show('authView'); return; }
-  }
+  if(s.expires_at && s.expires_at < Date.now()+30000){ const j=s.refresh_token ? await apiRefresh(s.refresh_token) : null; if(j && j.access_token){ saveSession(j); } else { clearSession(); show('authView'); return; } }
   enterApp();
 })();
 </script>
