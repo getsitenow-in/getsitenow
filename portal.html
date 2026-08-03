@@ -284,11 +284,12 @@ async function loadLeads(){
       const isDemo = (l.purpose==='demo')||(l.source==='demo');
       const demoTag = isDemo ? `<span class="badge" style="margin-bottom:6px">DEMO${l.demo_fee?(' · ₹'+Number(l.demo_fee).toLocaleString('en-IN')):''}</span><br>` : '';
       const extra = [l.company?('Company: '+l.company):'', l.preferred_time?('Preferred: '+String(l.preferred_time).replace('T',' ')):''].filter(Boolean).join(' · ');
+      const files = l.attachments ? `<div class="pmeta">📎 ${l.attachments.split(',').map(u=>u.trim()).filter(Boolean).map((u,i)=>`<a href="${esc(u)}" target="_blank" rel="noopener">file ${i+1}</a>`).join(' · ')}</div>` : '';
       return `<tr>
         <td class="muted" style="white-space:nowrap">${esc(fmtDate(l.created_at))}</td>
         <td class="nm">${esc(l.name)}</td>
         <td style="white-space:nowrap">${contact||'<span class="muted">—</span>'}</td>
-        <td>${demoTag}${esc(l.service)||'<span class="muted">—</span>'}${l.message?`<div class="pmeta">${esc(l.message)}</div>`:''}${extra?`<div class="pmeta">${esc(extra)}</div>`:''}</td>
+        <td>${demoTag}${esc(l.service)||'<span class="muted">—</span>'}${l.message?`<div class="pmeta">${esc(l.message)}</div>`:''}${extra?`<div class="pmeta">${esc(extra)}</div>`:''}${files}</td>
         <td><span class="badge grey">${esc(st)}</span></td>
         <td>${action}</td></tr>`;
     }).join('');

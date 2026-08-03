@@ -661,54 +661,64 @@ footer{border-top:1px solid var(--ln);padding:clamp(50px,6vw,80px) 0 32px}
   transition:opacity .4s var(--e),transform .4s var(--e),background .3s,color .3s}
 #top.on{opacity:1;transform:none;pointer-events:auto}
 #top:hover{background:rgb(var(--acc));color:#0B0C0A;border-color:transparent}
-/* ── lead form drawer (slides in from the right, form embedded inside) ── */
-.wd{position:fixed;inset:0;z-index:1350;pointer-events:none}
-.wd-bg{position:absolute;inset:0;background:rgba(0,0,0,.6);opacity:0;transition:opacity .45s var(--e-out)}
-.wd-panel{position:absolute;top:0;right:0;height:100%;width:min(440px,100%);
-  background:var(--bg2);border-left:1px solid var(--ln2);display:flex;flex-direction:column;
-  transform:translateX(100%);transition:transform .55s var(--e-out);
-  box-shadow:-24px 0 70px -24px rgba(0,0,0,.75)}
+/* ── lead form — full-screen professional modal (two-column on desktop) ── */
+.wd{position:fixed;inset:0;z-index:1350;pointer-events:none;display:grid;place-items:center;padding:clamp(10px,3vw,32px)}
+.wd-bg{position:absolute;inset:0;background:rgba(0,0,0,.72);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);opacity:0;transition:opacity .4s var(--e-out)}
+.wd-panel{position:relative;width:min(920px,100%);max-height:94vh;background:var(--bg2);
+  border:1px solid var(--ln2);border-radius:22px;display:flex;flex-direction:column;overflow:hidden;
+  box-shadow:0 50px 120px -30px rgba(0,0,0,.85);opacity:0;transform:translateY(24px) scale(.985);
+  transition:transform .5s var(--e-out),opacity .4s var(--e-out)}
 .wd.on{pointer-events:auto}
 .wd.on .wd-bg{opacity:1}
-.wd.on .wd-panel{transform:none}
+.wd.on .wd-panel{opacity:1;transform:none}
 .wd-head{display:flex;align-items:center;justify-content:space-between;gap:12px;
-  padding:15px 16px;border-bottom:1px solid var(--ln);flex-shrink:0}
-.wd-head b{display:flex;align-items:center;gap:9px;font-size:15px;font-weight:600;letter-spacing:-.01em}
+  padding:18px 24px;border-bottom:1px solid var(--ln);flex-shrink:0}
+.wd-head b{display:flex;align-items:center;gap:10px;font-size:17px;font-weight:600;letter-spacing:-.02em}
 .wd-dot{width:8px;height:8px;border-radius:50%;background:rgb(var(--acc));box-shadow:0 0 0 3px rgba(var(--acc),.22)}
 .wd-actions{display:flex;gap:8px}
-.wd-ico{width:34px;height:34px;border-radius:50%;border:1px solid var(--ln);background:transparent;
+.wd-ico{width:36px;height:36px;border-radius:50%;border:1px solid var(--ln);background:transparent;
   color:var(--tx);display:grid;place-items:center;cursor:pointer;transition:.3s var(--e-soft)}
 .wd-ico:hover{background:var(--sf2);border-color:var(--ln2)}
 .wd-body{flex:1;position:relative;background:var(--bg2);overflow-y:auto}
-.wd-form{padding:18px 18px 24px;display:flex;flex-direction:column;gap:14px}
-.wd-intro{font-size:12.5px;color:var(--mu);line-height:1.55;margin:-2px 0 2px}
-.wd-tabs{display:flex;gap:6px;background:var(--sf);border:1px solid var(--ln);border-radius:100px;padding:4px}
-.wd-tab{flex:1;text-align:center;padding:11px;border-radius:100px;font-size:13.5px;font-weight:600;color:var(--mu);cursor:pointer;border:0;background:none;font-family:inherit;transition:.25s}
+.wd-form{padding:clamp(20px,3vw,30px);display:grid;grid-template-columns:1fr 1fr;gap:16px;align-content:start}
+.wd-form .wd-full{grid-column:1/-1}
+.wd-intro{font-size:13.5px;color:var(--mu);line-height:1.6;margin:0}
+.wd-tabs{display:flex;gap:6px;background:var(--sf);border:1px solid var(--ln);border-radius:100px;padding:5px;max-width:440px}
+.wd-tab{flex:1;text-align:center;padding:12px;border-radius:100px;font-size:14px;font-weight:600;color:var(--mu);cursor:pointer;border:0;background:none;font-family:inherit;transition:.25s}
 .wd-tab.on{background:rgb(var(--acc));color:#08090A}
-.wd-fee{border:1px solid rgba(var(--acc),.35);background:rgba(var(--acc),.07);border-radius:12px;padding:12px 14px}
-.wd-fee-row{display:flex;align-items:center;justify-content:space-between;font-size:14px;color:var(--tx)}
-.wd-fee-row b{font-size:21px;font-weight:700;color:rgb(var(--acc));letter-spacing:-.02em}
-.wd-fee-note{font-size:11.5px;color:var(--mu);margin-top:6px;line-height:1.5}
+.wd-fee{border:1px solid rgba(var(--acc),.35);background:rgba(var(--acc),.07);border-radius:14px;padding:16px 18px}
+.wd-fee-row{display:flex;align-items:center;justify-content:space-between;font-size:15px;color:var(--tx)}
+.wd-fee-row b{font-size:24px;font-weight:700;color:rgb(var(--acc));letter-spacing:-.02em}
+.wd-fee-note{font-size:12px;color:var(--mu);margin-top:7px;line-height:1.5}
+.wd-fee-what{margin-top:12px;padding-top:12px;border-top:1px solid rgba(var(--acc),.25);font-size:12.5px;color:var(--tx);line-height:1.6}
+.wd-fee-what b{color:rgb(var(--acc));font-weight:600}
 .opt{color:var(--mu);font-weight:400}
-.wd-svc-tag{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
-  padding:6px 13px;border-radius:100px;background:rgba(var(--acc),.12);
-  border:1px solid rgba(var(--acc),.35);color:rgb(var(--acc));font-size:12px;font-weight:600}
-.wd-field{display:flex;flex-direction:column;gap:6px}
-.wd-field label{font-size:12px;font-weight:600;color:var(--tx);letter-spacing:.01em}
+.wd-field{display:flex;flex-direction:column;gap:7px}
+.wd-field label{font-size:12.5px;font-weight:600;color:var(--tx);letter-spacing:.01em}
 .wd-field label i{color:rgb(var(--acc));font-style:normal}
 .wd-input,.wd-ta{width:100%;background:rgba(255,255,255,.04);border:1px solid var(--ln);
-  border-radius:12px;padding:12px 13px;color:var(--tx);font-family:inherit;font-size:14px;
+  border-radius:12px;padding:13px 14px;color:var(--tx);font-family:inherit;font-size:14px;
   transition:border-color .25s,background .25s;outline:none;-webkit-appearance:none}
 .wd-input:focus,.wd-ta:focus{border-color:rgb(var(--acc));background:rgba(var(--acc),.05)}
 .wd-input::placeholder,.wd-ta::placeholder{color:var(--mu)}
-.wd-ta{resize:vertical;min-height:72px;line-height:1.5}
+.wd-ta{resize:vertical;min-height:96px;line-height:1.5}
+.wd-file{display:inline-flex;align-items:center;gap:8px;padding:12px 16px;border:1px dashed var(--ln2);border-radius:12px;color:var(--mu);font-size:13px;font-weight:500;cursor:pointer;transition:.25s;background:rgba(255,255,255,.02);align-self:flex-start}
+.wd-file:hover{border-color:rgb(var(--acc));color:var(--tx);background:rgba(var(--acc),.05)}
+.wd-files{display:flex;flex-direction:column;gap:6px;margin-top:8px}
+.wd-filerow{display:flex;align-items:center;justify-content:space-between;gap:10px;font-size:12.5px;color:var(--mu);background:rgba(255,255,255,.04);border:1px solid var(--ln);border-radius:9px;padding:9px 12px}
+.wd-filerow b{color:var(--tx);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:62%}
+.wd-filerow .x{cursor:pointer;color:var(--dm);font-weight:700;padding:0 4px}
+.wd-filerow .x:hover{color:#ff6b6b}
+.wd-filerow.ok span{color:rgb(var(--acc))}
+.wd-filerow.err span{color:#ff6b6b}
 .wd-submit{margin-top:4px;display:inline-flex;align-items:center;justify-content:center;gap:9px;
-  width:100%;padding:14px;border:0;border-radius:100px;background:rgb(var(--acc));color:#08090A;
-  font-family:inherit;font-weight:700;font-size:14.5px;cursor:pointer;
+  width:100%;padding:15px;border:0;border-radius:100px;background:rgb(var(--acc));color:#08090A;
+  font-family:inherit;font-weight:700;font-size:15px;cursor:pointer;
   transition:transform .2s var(--e-soft),opacity .2s}
 .wd-submit:hover{transform:translateY(-2px)}
 .wd-submit:disabled{opacity:.6;cursor:default;transform:none}
 .wd-submit svg{width:18px;height:18px;fill:currentColor}
+@media(max-width:640px){.wd-form{grid-template-columns:1fr}.wd-panel{max-height:100vh;border-radius:16px}}
 .wd-alt{display:flex;align-items:center;justify-content:center;gap:12px;margin-top:2px}
 .wd-alt>span{color:var(--dm);font-size:12px}
 .wd-alt-btn{background:none;border:0;color:var(--mu);font-family:inherit;font-size:12.5px;font-weight:500;
@@ -1329,12 +1339,12 @@ window.gsnTrackLead=function(mode,service){
     </div>
     <div class="wd-body">
       <form class="wd-form" id="leadForm" novalidate>
-        <div class="wd-tabs" id="wdTabs">
+        <div class="wd-tabs wd-full" id="wdTabs">
           <button type="button" class="wd-tab on" data-mode="demo">Book a demo</button>
           <button type="button" class="wd-tab" data-mode="query">Send my query</button>
         </div>
-        <p class="wd-intro" id="wdIntro"></p>
-        <div class="wd-field">
+        <p class="wd-intro wd-full" id="wdIntro"></p>
+        <div class="wd-field wd-full">
           <label>Services <span class="opt">(select one or more)</span></label>
           <div class="ms">
             <div class="ms-chips" id="msChips"></div>
@@ -1343,9 +1353,10 @@ window.gsnTrackLead=function(mode,service){
             <div class="ms-count" id="msCount">0 selected</div>
           </div>
         </div>
-        <div class="wd-fee" id="wdFee" hidden>
+        <div class="wd-fee wd-full" id="wdFee" hidden>
           <div class="wd-fee-row"><span>Demo fee</span><b id="wdFeeTotal">₹2,999</b></div>
           <p class="wd-fee-note" id="wdFeeNote">₹2,999 per service. If you select multiple services, the demo fee increases automatically.</p>
+          <div class="wd-fee-what">What you get for this fee: a real <b>working prototype</b> of your project — the design, UI &amp; branding — shown to you live in the demo, so you see exactly what you're getting before committing to the full build.</div>
         </div>
         <div class="wd-field">
           <label for="leadName">Full name <i>*</i></label>
@@ -1363,24 +1374,29 @@ window.gsnTrackLead=function(mode,service){
           <label for="leadCompany">Company / business <span class="opt">(optional)</span></label>
           <input class="wd-input" id="leadCompany" type="text" autocomplete="organization" placeholder="Your company name">
         </div>
-        <div class="wd-field" id="wdWhenField" hidden>
+        <div class="wd-field wd-full" id="wdWhenField" hidden>
           <label for="leadWhen">Preferred date &amp; time</label>
           <input class="wd-input" id="leadWhen" type="datetime-local">
         </div>
-        <div class="wd-field">
+        <div class="wd-field wd-full">
           <label for="leadMsg" id="leadMsgLabel">Additional requirements <span class="opt">(optional)</span></label>
           <textarea class="wd-ta" id="leadMsg" placeholder="Budget, timeline, or details about your project…"></textarea>
         </div>
-        <button class="wd-submit" id="leadSend" type="submit">
+        <div class="wd-field wd-full">
+          <label>Attach files <span class="opt">(PDF, images, CSV, docs — helps us prepare your demo)</span></label>
+          <label class="wd-file"><input type="file" id="leadFiles" multiple accept=".pdf,.doc,.docx,.csv,.xls,.xlsx,.txt,.ppt,.pptx,image/*" hidden><span>＋ Add files</span></label>
+          <div class="wd-files" id="wdFiles"></div>
+        </div>
+        <button class="wd-submit wd-full" id="leadSend" type="submit">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
           <span id="leadSendTx">Book a demo</span>
         </button>
-        <div class="wd-alt" id="wdAlt" hidden>
+        <div class="wd-alt wd-full" id="wdAlt" hidden>
           <button type="button" class="wd-alt-btn" id="leadEmailBtn">Email us instead</button>
         </div>
-        <div class="wd-msg" id="leadMsgOut" role="status" aria-live="polite"></div>
-        <div class="wd-direct" id="wdDirect"></div>
-        <p class="wd-fine">Your details are stored securely so we can get back to you. We never share them.</p>
+        <div class="wd-msg wd-full" id="leadMsgOut" role="status" aria-live="polite"></div>
+        <div class="wd-direct wd-full" id="wdDirect"></div>
+        <p class="wd-fine wd-full">Your details are stored securely so we can get back to you. We never share them.</p>
       </form>
     </div>
   </aside>
@@ -2102,6 +2118,43 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
   document.querySelectorAll('#wdTabs .wd-tab').forEach(t=>t.addEventListener('click',()=>setLeadMode(t.dataset.mode)));
   msRenderChips(); msRenderList(); setLeadMode('demo');
 
+  /* ── FILE UPLOADS — client attaches PDFs/images/CSV/docs, stored in Supabase
+     Storage; the public URLs get saved with the lead so you have everything.  */
+  const BUCKET='lead-uploads';
+  const leadFiles=$('#leadFiles'), wdFiles=$('#wdFiles');
+  let attach=[];   /* { name, status:'up'|'ok'|'err', url } */
+  function renderAttach(){
+    if(!wdFiles) return;
+    wdFiles.innerHTML=attach.map((a,i)=>{
+      const st = a.status==='up' ? 'uploading…'
+               : a.status==='ok' ? ('✓ <span class="x" data-i="'+i+'">remove</span>')
+               : 'failed';
+      return '<div class="wd-filerow '+a.status+'"><b>'+escA(a.name)+'</b><span>'+st+'</span></div>';
+    }).join('');
+    wdFiles.querySelectorAll('.x').forEach(x=>x.onclick=()=>{ attach.splice(+x.dataset.i,1); renderAttach(); });
+  }
+  function uploadFile(file){
+    const clean=file.name.replace(/[^\w.\-]+/g,'_');
+    const path=Date.now()+'_'+Math.random().toString(36).slice(2,7)+'_'+clean;
+    return fetch(SUPABASE_URL.replace(/\/+$/,'')+'/storage/v1/object/'+BUCKET+'/'+path,{
+      method:'POST',
+      headers:{ 'apikey':SUPABASE_ANON_KEY, 'Authorization':'Bearer '+SUPABASE_ANON_KEY, 'Content-Type':file.type||'application/octet-stream' },
+      body:file
+    }).then(r=>{ if(!r.ok) throw new Error('upload failed');
+      return SUPABASE_URL.replace(/\/+$/,'')+'/storage/v1/object/public/'+BUCKET+'/'+path; });
+  }
+  if(leadFiles) leadFiles.addEventListener('change',()=>{
+    [...leadFiles.files].forEach(file=>{
+      if(file.size>15*1024*1024){ attach.push({name:file.name+' (too big — max 15MB)',status:'err'}); renderAttach(); return; }
+      const item={name:file.name,status:'up'}; attach.push(item); renderAttach();
+      uploadFile(file).then(url=>{ item.url=url; item.status='ok'; renderAttach(); })
+                      .catch(()=>{ item.status='err'; renderAttach(); });
+    });
+    leadFiles.value='';
+  });
+  function attachUrls(){ return attach.filter(a=>a.status==='ok'&&a.url).map(a=>a.url); }
+  function clearAttach(){ attach=[]; renderAttach(); }
+
   function openDrawer(service, opts){
     if(!wd) return;  // drawer missing (shouldn't happen) — nothing to open
     if(service) msAdd(service);
@@ -2174,7 +2227,7 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
       body:JSON.stringify(row)
     }).then(r=>r.ok).catch(()=>false);
     const full={ name:d.name, phone:d.phone, email:d.email, company:d.company, service:d.service,
-      message:d.message, purpose:d.purpose, preferred_time:d.when, demo_fee:d.fee,
+      message:d.message, purpose:d.purpose, preferred_time:d.when, demo_fee:d.fee, attachments:d.attachments,
       paid: d.paid||false, razorpay_payment_id: d.payment_id||null, razorpay_order_id: d.order_id||null,
       source: d.purpose==='demo'?'demo':'website' };
     /* if any newer column isn't there yet, retry with just the core fields so the
@@ -2194,7 +2247,8 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
       d.company?("Company: "+d.company):null,
       (d.purpose==='demo'&&d.when)?("Preferred: "+String(d.when).replace('T',' ')):null,
       (d.purpose==='demo'&&d.fee)?("Demo fee: ₹"+d.fee.toLocaleString('en-IN')):null,
-      d.message?("Details: "+d.message):null
+      d.message?("Details: "+d.message):null,
+      d.attachments?("Files: "+d.attachments):null
     ].filter(Boolean).join("\n");
     return "mailto:getsitenow.in@gmail.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
   }
@@ -2206,13 +2260,17 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
     if(phone.replace(/\D/g,'').length<7){ showLead('Please enter a valid phone number.','err'); leadPhone.focus(); return null; }
     const services=[...msSel];
     if(leadMode==='demo' && !services.length){ showLead('Select at least one service to book a demo.','err'); return null; }
+    if(attach.some(a=>a.status==='up')){ showLead('Please wait — your files are still uploading…','err'); return null; }
+    const urls=attachUrls();
+    let msg=(leadMsg.value||'').trim();
+    if(urls.length) msg += (msg?'\n\n':'')+'Attached files:\n'+urls.join('\n');
     return { name, phone, email:(leadEmail.value||'').trim(), company:(leadCompany.value||'').trim(),
-             service:services.join(', '), message:(leadMsg.value||'').trim(),
+             service:services.join(', '), message:msg, attachments:urls.join(', '),
              when:(leadWhen&&leadWhen.value)||'', fee: leadMode==='demo'?feeTotal():0, purpose:leadMode };
   }
 
   function busy(on){ [leadSend,leadEmailBtn].forEach(b=>{ if(b) b.disabled=on; }); }
-  function finishLead(){ leadForm.reset(); msClear(); setTimeout(closeDrawer,1900); }
+  function finishLead(){ leadForm.reset(); msClear(); clearAttach(); setTimeout(closeDrawer,1900); }
 
   /* save the lead as an unpaid demo request and tell them a link will follow
      (used when the payment gateway isn't set up yet, or as a fallback). */
