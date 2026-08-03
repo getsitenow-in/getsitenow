@@ -49,6 +49,7 @@
 <link rel="stylesheet" media="print" onload="this.media='all'"
       href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Nunito:wght@700;800;900&display=swap">
 <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@300;400;500;600;700&family=Instrument+Serif:ital@0;1&family=Nunito:wght@700;800;900&display=swap"></noscript>
+<script src="https://checkout.razorpay.com/v1/checkout.js" defer></script>
 <style>
 /* ═════════════ TOKENS ═════════════ */
 @property --angle{syntax:'<angle>';initial-value:0deg;inherits:false}
@@ -1419,6 +1420,14 @@ const SUPABASE_ANON_KEY = "sb_publishable_a2pEEWwaC4cXeMvF_4-ivQ_XzZTRKF6";
 const CONTACT_PHONE = "+91 95608 90355";
 const CONTACT_EMAIL = "getsitenow.in@gmail.com";
 
+/* ── RAZORPAY (demo payments) — no secret here; the KEY_ID is returned by the
+      razorpay-order edge function. Deploy the two functions + set the secrets
+      in Supabase and this turns on automatically. Set RAZORPAY_LIVE=false to
+      fall back to the manual "we'll email a payment link" flow.               */
+const RAZORPAY_LIVE      = true;
+const RAZORPAY_ORDER_FN  = SUPABASE_URL.replace(/\/+$/,'') + "/functions/v1/razorpay-order";
+const RAZORPAY_VERIFY_FN = SUPABASE_URL.replace(/\/+$/,'') + "/functions/v1/razorpay-verify";
+
 const HEADLINE = ["Business","websites","that","*pay for*","|","*themselves.*"];
 
 /* ---------- YOUR LOGO ----------
@@ -2164,9 +2173,10 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
     }).then(r=>r.ok).catch(()=>false);
     const full={ name:d.name, phone:d.phone, email:d.email, company:d.company, service:d.service,
       message:d.message, purpose:d.purpose, preferred_time:d.when, demo_fee:d.fee,
+      paid: d.paid||false, razorpay_payment_id: d.payment_id||null, razorpay_order_id: d.order_id||null,
       source: d.purpose==='demo'?'demo':'website' };
     /* if any newer column isn't there yet, retry with just the core fields so the
-       lead still saves (run SUPABASE-RUN-ALL.sql to add company/purpose/etc). */
+       lead still saves (run SUPABASE-RUN-ALL.sql to add company/purpose/paid/etc). */
     return post(full).then(ok=> ok ? true : post({ name:d.name, phone:d.phone, email:d.email, service:d.service, message:d.message, source: d.purpose==='demo'?'demo':'website' }));
   }
 
@@ -2202,23 +2212,67 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
   function busy(on){ [leadSend,leadEmailBtn].forEach(b=>{ if(b) b.disabled=on; }); }
   function finishLead(){ leadForm.reset(); msClear(); setTimeout(closeDrawer,1900); }
 
+  /* save the lead as an unpaid demo request and tell them a link will follow
+     (used when the payment gateway isn't set up yet, or as a fallback). */
+  function demoFallback(data){
+    busy(true); leadSendTx.textContent='Sending…';
+    saveLead(data).then(ok=>{ busy(false); updateFee();
+      if(ok){ showLead("Demo request received! We'll email you a secure payment link for ₹"+data.fee.toLocaleString('en-IN')+" to confirm your slot.",'ok'); finishLead(); }
+      else showLead("Couldn't send just now — please try Email or call us.",'err');
+    });
+  }
+
+  /* ── RAZORPAY: create order → open modal → verify → save as paid ── */
+  function payAndBook(data){
+    busy(true); leadSendTx.textContent='Starting payment…';
+    fetch(RAZORPAY_ORDER_FN,{ method:'POST',
+      headers:{ 'Content-Type':'application/json','apikey':SUPABASE_ANON_KEY },
+      body:JSON.stringify({ amount: Math.round(data.fee*100), currency:'INR', receipt:'demo_'+Date.now() })
+    }).then(r=>r.json()).then(o=>{
+      if(!o.order_id || !window.Razorpay) throw new Error('order/checkout unavailable');
+      busy(false); updateFee();
+      const rzp=new Razorpay({
+        key:o.key_id, order_id:o.order_id, amount:o.amount, currency:o.currency,
+        name:'GetSiteNow', description:'Demo · '+(data.service||'services'),
+        prefill:{ name:data.name, email:data.email, contact:data.phone },
+        notes:{ services:data.service, company:data.company },
+        theme:{ color:'#A4E232' },
+        handler:function(resp){
+          showLead('Verifying payment…','ok');
+          fetch(RAZORPAY_VERIFY_FN,{ method:'POST',
+            headers:{ 'Content-Type':'application/json','apikey':SUPABASE_ANON_KEY },
+            body:JSON.stringify(resp)
+          }).then(r=>r.json().then(j=>({ok:r.ok,j}))).then(({ok,j})=>{
+            if(ok && j.verified){
+              saveLead(Object.assign({},data,{ paid:true, payment_id:resp.razorpay_payment_id, order_id:resp.razorpay_order_id }));
+              showLead("Payment successful ✓ Your demo is booked — we'll be in touch shortly.",'ok'); finishLead();
+            } else {
+              showLead("We couldn't verify the payment. If money was deducted it auto-refunds in a few days — please contact us.",'err');
+            }
+          }).catch(()=>showLead("Verification error. If you were charged, please contact us and we'll sort it.",'err'));
+        },
+        modal:{ ondismiss:function(){ /* capture the interested lead even if unpaid */ saveLead(Object.assign({},data,{paid:false})); showLead('Payment window closed — your details are saved, you can pay anytime.','err'); } }
+      });
+      rzp.on('payment.failed',function(r){ showLead('Payment failed: '+((r.error&&r.error.description)||'please try again')+'.','err'); });
+      rzp.open();
+    }).catch(()=>{ /* gateway not deployed yet → capture + promise a link */ demoFallback(data); });
+  }
+
   /* channel: 'save' (primary submit) | 'email' (query-only alternative) */
   function submitLead(channel){
     const data=collectLead(); if(!data) return;
     if(window.gsnTrackLead) window.gsnTrackLead(data.purpose, data.service);
+    if(data.purpose==='demo' && channel==='save'){
+      if(RAZORPAY_LIVE) payAndBook(data); else demoFallback(data);
+      return;
+    }
     if(channel==='email') window.open(mailHandoff(data),'_blank');
     busy(true); leadSendTx.textContent='Sending…';
     saveLead(data).then(ok=>{
       busy(false); updateFee();
-      if(data.purpose==='demo'){
-        if(ok){ showLead("Demo request received! We'll email you a secure payment link for ₹"+data.fee.toLocaleString('en-IN')+" to confirm your slot.",'ok'); finishLead(); }
-        else showLead("Couldn't send just now — please try Email or call us.",'err');
-      } else if(channel==='email'){
-        showLead(ok?"Sent! We've saved your details.":'Opening your email…','ok'); finishLead();
-      } else {
-        if(ok){ showLead("Thanks! Your query has been sent — we'll get back to you soon.",'ok'); finishLead(); }
-        else showLead("Couldn't send just now — please try Email instead.",'err');
-      }
+      if(channel==='email'){ showLead(ok?"Sent! We've saved your details.":'Opening your email…','ok'); finishLead(); }
+      else if(ok){ showLead("Thanks! Your query has been sent — we'll get back to you soon.",'ok'); finishLead(); }
+      else showLead("Couldn't send just now — please try Email instead.",'err');
     });
   }
 
