@@ -655,7 +655,7 @@ footer{border-top:1px solid var(--ln);padding:clamp(50px,6vw,80px) 0 32px}
 .dock.on{transform:translate3d(-50%,0,0);opacity:1;pointer-events:auto}
 .dock-l{display:flex;align-items:center;gap:9px;font-size:13.5px;white-space:nowrap;font-weight:500}
 .dock-s{width:1px;height:22px;background:rgba(255,255,255,.16)}
-#top{position:fixed;bottom:24px;right:24px;z-index:110;width:44px;height:44px;border-radius:50%;
+#top{position:fixed;bottom:92px;right:27px;z-index:1199;width:44px;height:44px;border-radius:50%;
   border:1px solid var(--ln);background:var(--bg2);color:var(--tx);display:grid;place-items:center;
   cursor:pointer;opacity:0;transform:translateY(12px);pointer-events:none;
   transition:opacity .4s var(--e),transform .4s var(--e),background .3s,color .3s}
@@ -934,6 +934,53 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
 .foot-phone{display:block;font-size:13.5px;color:var(--mu);padding:5px 0;font-weight:300}
 .foot-phone .copyv{font-size:13.5px;font-weight:300;color:var(--mu)}
 .foot-phone .copyv:hover{color:rgb(var(--acc))}
+/* ── success celebration screen (inside the form modal) ── */
+.wd-success{position:absolute;inset:0;background:var(--bg2);display:flex;align-items:center;justify-content:center;text-align:center;padding:32px;z-index:5}
+.wd-success-in{max-width:420px}
+.ok-ring{width:78px;height:78px;margin:0 auto 20px;border-radius:50%;background:rgba(var(--acc),.14);display:grid;place-items:center;animation:okPop .5s var(--e-out) both}
+.ok-ring svg{width:40px;height:40px;stroke:rgb(var(--acc));stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:32;stroke-dashoffset:32;animation:okDraw .5s .25s var(--e-out) forwards}
+@keyframes okPop{0%{transform:scale(.5);opacity:0}100%{transform:scale(1);opacity:1}}
+@keyframes okDraw{to{stroke-dashoffset:0}}
+.wd-success h3{font-size:26px;font-weight:700;letter-spacing:-.03em;margin-bottom:10px}
+.wd-success p{font-size:14.5px;color:var(--mu);line-height:1.6;margin-bottom:22px}
+/* ── trust line under the form submit ── */
+.wd-trust{text-align:center;font-size:11.5px;color:var(--dm);display:flex;align-items:center;justify-content:center;gap:6px;flex-wrap:wrap}
+.wd-trust svg{width:12px;height:12px;color:rgb(var(--acc))}
+
+/* ── AI assistant chatbot ── */
+.cbot-fab{position:fixed;bottom:24px;right:24px;z-index:1200;width:58px;height:58px;border-radius:50%;
+  background:rgb(var(--acc));color:#08090A;border:0;cursor:pointer;display:grid;place-items:center;
+  box-shadow:0 14px 40px -10px rgba(var(--acc),.7);transition:transform .35s var(--e-out)}
+.cbot-fab:hover{transform:scale(1.07) translateY(-2px)}
+.cbot-fab svg{width:26px;height:26px}
+.cbot-fab .cbot-dot{position:absolute;top:2px;right:2px;width:13px;height:13px;border-radius:50%;background:#ff5b5b;border:2px solid var(--bg)}
+.cbot-panel{position:fixed;bottom:92px;right:24px;z-index:1201;width:min(370px,calc(100vw - 32px));height:min(540px,70vh);
+  background:var(--bg2);border:1px solid var(--ln2);border-radius:20px;display:flex;flex-direction:column;overflow:hidden;
+  box-shadow:0 30px 80px -20px rgba(0,0,0,.8);opacity:0;transform:translateY(16px) scale(.97);pointer-events:none;
+  transition:opacity .3s var(--e-out),transform .35s var(--e-out)}
+.cbot.on .cbot-panel{opacity:1;transform:none;pointer-events:auto}
+.cbot.on .cbot-fab .cbot-dot{display:none}
+.cbot-head{display:flex;align-items:center;justify-content:space-between;padding:15px 17px;border-bottom:1px solid var(--ln);background:rgba(var(--acc),.06)}
+.cbot-head b{font-size:14.5px;font-weight:600;display:block}
+.cbot-head span{font-size:11.5px;color:var(--mu);display:flex;align-items:center;gap:5px}
+.cbot-head span::before{content:'';width:6px;height:6px;border-radius:50%;background:rgb(var(--acc))}
+.cbot-x{background:none;border:0;color:var(--mu);cursor:pointer;font-size:16px;padding:4px}
+.cbot-x:hover{color:var(--tx)}
+.cbot-body{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:10px}
+.cmsg{max-width:82%;padding:11px 14px;border-radius:15px;font-size:13.5px;line-height:1.5}
+.cmsg.bot{align-self:flex-start;background:var(--sf);border:1px solid var(--ln);color:var(--tx);border-bottom-left-radius:5px}
+.cmsg.user{align-self:flex-end;background:rgb(var(--acc));color:#08090A;font-weight:500;border-bottom-right-radius:5px}
+.cmsg a{color:rgb(var(--acc));font-weight:600}
+.cmsg.user a{color:#08090A;text-decoration:underline}
+.cbot-quick{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 10px}
+.cbot-chip{background:transparent;border:1px solid var(--ln);color:var(--mu);border-radius:100px;padding:7px 12px;font-size:12px;font-family:inherit;cursor:pointer;transition:.2s}
+.cbot-chip:hover{border-color:rgb(var(--acc));color:var(--tx);background:rgba(var(--acc),.08)}
+.cbot-input{display:flex;gap:8px;padding:12px 14px;border-top:1px solid var(--ln)}
+.cbot-input input{flex:1;background:var(--sf);border:1px solid var(--ln);border-radius:100px;padding:11px 14px;color:var(--tx);font-family:inherit;font-size:13.5px;outline:none}
+.cbot-input input:focus{border-color:rgb(var(--acc))}
+.cbot-input button{width:40px;height:40px;flex:none;border:0;border-radius:50%;background:rgb(var(--acc));color:#08090A;cursor:pointer;display:grid;place-items:center}
+.cbot-input button svg{width:17px;height:17px;fill:currentColor}
+@media(max-width:520px){.cbot-panel{right:12px;left:12px;width:auto;bottom:84px}.cbot-fab{bottom:16px;right:16px}}
 </style>
 
 <!-- ═══════ ANALYTICS / AD TRACKING ═══════
@@ -1339,6 +1386,7 @@ window.gsnTrackLead=function(mode,service){
     </div>
     <div class="wd-body">
       <form class="wd-form" id="leadForm" novalidate>
+        <input type="text" id="leadHp" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" style="position:absolute;left:-9999px;top:-9999px;width:1px;height:1px;opacity:0">
         <div class="wd-tabs wd-full" id="wdTabs">
           <button type="button" class="wd-tab on" data-mode="demo">Book a demo</button>
           <button type="button" class="wd-tab" data-mode="query">Send my query</button>
@@ -1394,15 +1442,44 @@ window.gsnTrackLead=function(mode,service){
         <div class="wd-alt wd-full" id="wdAlt" hidden>
           <button type="button" class="wd-alt-btn" id="leadEmailBtn">Email us instead</button>
         </div>
+        <div class="wd-trust wd-full" id="wdTrust"></div>
         <div class="wd-msg wd-full" id="leadMsgOut" role="status" aria-live="polite"></div>
         <div class="wd-direct wd-full" id="wdDirect"></div>
         <p class="wd-fine wd-full">Your details are stored securely so we can get back to you. We never share them.</p>
       </form>
+      <div class="wd-success" id="wdSuccess" hidden>
+        <div class="wd-success-in">
+          <div class="ok-ring"><svg viewBox="0 0 24 24"><path d="M4 12l6 6L20 6"/></svg></div>
+          <h3 id="wdSuccessTitle">Done! 🎉</h3>
+          <p id="wdSuccessSub"></p>
+          <button type="button" class="btn" id="wdSuccessClose"><span>Done</span></button>
+        </div>
+      </div>
     </div>
   </aside>
 </div>
 
 <div id="toast"></div>
+
+<!-- AI assistant chatbot -->
+<div class="cbot" id="cbot">
+  <button class="cbot-fab" id="cbotFab" aria-label="Chat with the GetSiteNow assistant">
+    <span class="cbot-dot"></span>
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
+  </button>
+  <div class="cbot-panel" id="cbotPanel" role="dialog" aria-label="Chat assistant">
+    <div class="cbot-head">
+      <div><b>GetSiteNow Assistant</b><span>Typically replies instantly</span></div>
+      <button class="cbot-x" id="cbotX" aria-label="Close chat">✕</button>
+    </div>
+    <div class="cbot-body" id="cbotBody"></div>
+    <div class="cbot-quick" id="cbotQuick"></div>
+    <form class="cbot-input" id="cbotForm">
+      <input id="cbotText" placeholder="Ask about pricing, services…" autocomplete="off" aria-label="Message">
+      <button type="submit" aria-label="Send"><svg viewBox="0 0 24 24"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg></button>
+    </form>
+  </div>
+</div>
 
 <div class="lb" id="lb">
   <button class="lb-x" id="lbX" aria-label="Close"><svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
@@ -2057,7 +2134,9 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
         leadMsg=$('#leadMsg'), leadSend=$('#leadSend'), leadSendTx=$('#leadSendTx'),
         leadMsgOut=$('#leadMsgOut'), leadEmailBtn=$('#leadEmailBtn'),
         wdFee=$('#wdFee'), wdFeeTotal=$('#wdFeeTotal'), wdWhenField=$('#wdWhenField'),
-        wdIntro=$('#wdIntro'), wdAlt=$('#wdAlt'), leadMsgLabel=$('#leadMsgLabel');
+        wdIntro=$('#wdIntro'), wdAlt=$('#wdAlt'), leadMsgLabel=$('#leadMsgLabel'),
+        leadHp=$('#leadHp'), wdTrust=$('#wdTrust'),
+        wdSuccess=$('#wdSuccess'), wdSuccessTitle=$('#wdSuccessTitle'), wdSuccessSub=$('#wdSuccessSub');
   const DEMO_FEE=2999;   /* ₹2,999 per service (live pricing) */
   let leadMode='demo';
 
@@ -2113,10 +2192,36 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
       ? 'Book a live demo / prototype — '+feeStr+' per service. Pick the services you want and the fee updates automatically.'
       : 'Send us your query — no payment. Pick any services and tell us what you need.';
     if(wdTitle) wdTitle.textContent = demo ? 'Book a demo' : 'Send your query';
+    if(wdTrust) wdTrust.innerHTML = demo
+      ? '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> 100% secure payment · Powered by Razorpay · 256-bit SSL'
+      : '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="10" width="16" height="10" rx="2"/><path d="M8 10V7a4 4 0 0 1 8 0v3"/></svg> Encrypted &amp; private — we never share your details';
     updateFee();
   }
   document.querySelectorAll('#wdTabs .wd-tab').forEach(t=>t.addEventListener('click',()=>setLeadMode(t.dataset.mode)));
   msRenderChips(); msRenderList(); setLeadMode('demo');
+
+  /* ── success celebration (confetti + confirmation screen) ── */
+  function confetti(){
+    const cv=document.createElement('canvas');
+    cv.style.cssText='position:fixed;inset:0;pointer-events:none;z-index:3000';
+    cv.width=innerWidth; cv.height=innerHeight; document.body.appendChild(cv);
+    const ctx=cv.getContext('2d'), cols=['#A4E232','#ffffff','#7ad3b0','#c2e07a','#ffd166'], P=[];
+    for(let i=0;i<150;i++) P.push({x:innerWidth/2+(Math.random()-.5)*160,y:innerHeight*0.34,vx:(Math.random()-.5)*11,vy:Math.random()*-13-4,g:.32+Math.random()*.2,s:5+Math.random()*6,c:cols[i%cols.length],r:Math.random()*6,vr:(Math.random()-.5)*.4,l:1});
+    let t=0;(function f(){t++;ctx.clearRect(0,0,cv.width,cv.height);
+      P.forEach(p=>{p.vy+=p.g;p.x+=p.vx;p.y+=p.vy;p.r+=p.vr;p.l-=.006;
+        ctx.save();ctx.translate(p.x,p.y);ctx.rotate(p.r);ctx.globalAlpha=Math.max(0,p.l);ctx.fillStyle=p.c;ctx.fillRect(-p.s/2,-p.s/2,p.s,p.s*.62);ctx.restore();});
+      if(t<170) requestAnimationFrame(f); else cv.remove();})();
+  }
+  function resetView(){ if(leadForm) leadForm.style.display=''; if(wdSuccess) wdSuccess.hidden=true; }
+  function celebrate(title, sub){
+    leadForm.reset(); msClear(); clearAttach();
+    if(wdSuccessTitle) wdSuccessTitle.textContent=title;
+    if(wdSuccessSub) wdSuccessSub.textContent=sub;
+    if(leadForm) leadForm.style.display='none';
+    if(wdSuccess) wdSuccess.hidden=false;
+    try{ confetti(); }catch(e){}
+  }
+  const wdSuccessClose=$('#wdSuccessClose'); if(wdSuccessClose) wdSuccessClose.onclick=()=>closeDrawer();
 
   /* ── FILE UPLOADS — client attaches PDFs/images/CSV/docs, stored in Supabase
      Storage; the public URLs get saved with the lead so you have everything.  */
@@ -2157,6 +2262,7 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
 
   function openDrawer(service, opts){
     if(!wd) return;  // drawer missing (shouldn't happen) — nothing to open
+    resetView();
     if(service) msAdd(service);
     setLeadMode((opts&&opts.mode) || 'demo');
     showLead('','');
@@ -2164,8 +2270,10 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
     document.body.style.overflow='hidden';
     setTimeout(()=>{ if(leadName && !leadName.value) leadName.focus(); },420);
   }
+  /* let the chatbot (and any future button) open the form */
+  window.gsnOpenDrawer=function(mode){ openDrawer(null, mode?{mode}:undefined); };
   function closeDrawer(){ if(!wd) return;
-    wd.classList.remove('on'); wd.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
+    wd.classList.remove('on'); wd.setAttribute('aria-hidden','true'); document.body.style.overflow=''; setTimeout(resetView,400); }
   if(wd){
     $('#wdX').onclick=closeDrawer;
     $('#wdBg').onclick=closeDrawer;
@@ -2254,6 +2362,7 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
   }
 
   function collectLead(){
+    if(leadHp && leadHp.value){ return null; }   /* honeypot — a bot filled the hidden field */
     const name=(leadName.value||'').trim();
     const phone=(leadPhone.value||'').trim();
     if(name.length<2){ showLead('Please enter your name.','err'); leadName.focus(); return null; }
@@ -2277,7 +2386,7 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
   function demoFallback(data){
     busy(true); leadSendTx.textContent='Sending…';
     saveLead(data).then(ok=>{ busy(false); updateFee();
-      if(ok){ showLead("Demo request received! We'll email you a secure payment link for ₹"+data.fee.toLocaleString('en-IN')+" to confirm your slot.",'ok'); finishLead(); }
+      if(ok){ celebrate("Demo request received! 🎉","We'll email you a secure payment link for ₹"+data.fee.toLocaleString('en-IN')+" to confirm your slot."); }
       else showLead("Couldn't send just now — please try Email or call us.",'err');
     });
   }
@@ -2305,7 +2414,7 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
           }).then(r=>r.json().then(j=>({ok:r.ok,j}))).then(({ok,j})=>{
             if(ok && j.verified){
               saveLead(Object.assign({},data,{ paid:true, payment_id:resp.razorpay_payment_id, order_id:resp.razorpay_order_id }));
-              showLead("Payment successful ✓ Your demo is booked — we'll be in touch shortly.",'ok'); finishLead();
+              celebrate("Payment successful — demo booked! 🎉","We've got your payment and details. We'll be in touch shortly to schedule your prototype demo.");
             } else {
               showLead("We couldn't verify the payment. If money was deducted it auto-refunds in a few days — please contact us.",'err');
             }
@@ -2321,6 +2430,11 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
   /* channel: 'save' (primary submit) | 'email' (query-only alternative) */
   function submitLead(channel){
     const data=collectLead(); if(!data) return;
+    /* simple rate-limit — block rapid repeat submissions (anti-spam) */
+    try{ const last=+localStorage.getItem('gsn_last_submit')||0;
+      if(Date.now()-last < 15000){ showLead('Please wait a few seconds before submitting again.','err'); return; }
+      localStorage.setItem('gsn_last_submit', Date.now());
+    }catch(e){}
     if(window.gsnTrackLead) window.gsnTrackLead(data.purpose, data.service);
     if(data.purpose==='demo' && channel==='save'){
       if(RAZORPAY_LIVE) payAndBook(data); else demoFallback(data);
@@ -2330,8 +2444,8 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
     busy(true); leadSendTx.textContent='Sending…';
     saveLead(data).then(ok=>{
       busy(false); updateFee();
-      if(channel==='email'){ showLead(ok?"Sent! We've saved your details.":'Opening your email…','ok'); finishLead(); }
-      else if(ok){ showLead("Thanks! Your query has been sent — we'll get back to you soon.",'ok'); finishLead(); }
+      if(channel==='email'){ if(ok){ celebrate("Sent! 🎉","We've saved your details and opened your email — we'll reply shortly."); } else showLead('Opening your email…','ok'); }
+      else if(ok){ celebrate("Thanks! 🎉","Your query has been sent — we'll get back to you soon."); }
       else showLead("Couldn't send just now — please try Email instead.",'err');
     });
   }
@@ -2340,6 +2454,57 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
     leadForm.addEventListener('submit',e=>{ e.preventDefault(); submitLead('save'); });
     if(leadEmailBtn) leadEmailBtn.addEventListener('click',()=>submitLead('email'));
   }
+})();
+
+/* ══════════ AI ASSISTANT (on-site FAQ chatbot) ══════════ */
+(function(){
+  const cbot=$('#cbot'), fab=$('#cbotFab'), x=$('#cbotX'), body=$('#cbotBody'),
+        quick=$('#cbotQuick'), form=$('#cbotForm'), text=$('#cbotText');
+  if(!cbot||!fab) return;
+  const PHONE=(typeof CONTACT_PHONE!=='undefined'?CONTACT_PHONE:''), EMAIL=(typeof CONTACT_EMAIL!=='undefined'?CONTACT_EMAIL:'getsitenow.in@gmail.com');
+  const KB=[
+    { k:['price','pricing','cost','charge','how much','rate','budget','fee'], act:'demo',
+      a:"Websites start at <b>₹25,000</b>, and a live demo / prototype is <b>₹2,999 per service</b>. Your final quote depends on what you need — book a demo and we'll show you exactly what you're getting." },
+    { k:['demo','prototype','preview','sample','trial'], act:'demo',
+      a:"For <b>₹2,999 per service</b> we build a real working <b>prototype</b> of your project — the design, UI &amp; branding — shown to you live. Want to book one?" },
+    { k:['service','services','what do you do','make','build','offer','provide','can you'], act:'services',
+      a:"We build websites, e-commerce, mobile &amp; web apps, business software (CRM/ERP/POS), AI products, automation, APIs — even games. Tap <b>Services</b> to see everything, or tell me what you need." },
+    { k:['time','timeline','how long','deliver','fast','days','week'], act:null,
+      a:"A landing page in about <b>7 days</b>, a full website in roughly <b>2 weeks</b>. Live in days, not months." },
+    { k:['pay','payment','secure','safe','razorpay','upi','card'], act:null,
+      a:"Payments are handled securely by <b>Razorpay</b> (UPI, cards, netbanking) with 256-bit SSL. Your details are encrypted and never shared." },
+    { k:['contact','talk','human','call','email','reach','support','phone'], act:'contact',
+      a:"Reach us at <b>"+EMAIL+"</b>"+(PHONE?(" or <b>"+PHONE+"</b>"):"")+". Or book a demo and we'll take it from there." },
+    { k:['refund','cancel','policy','guarantee'], act:null,
+      a:"We have a fair refund &amp; cancellation policy — see <b>Refund &amp; Cancellation</b> in the site footer." },
+    { k:['work','portfolio','example','client','result','proof'], act:'demo',
+      a:"See the <b>Work</b> and <b>Ecosystem</b> sections for what we've built. Want a prototype of your own idea? Book a demo." },
+    { k:['hi','hello','hey','yo','namaste','hii'], act:null,
+      a:"Hi! 👋 Ask me about pricing, services, or how the demo works." }
+  ];
+  function reply(q){ const s=q.toLowerCase(); let best=null,score=0;
+    KB.forEach(it=>{ let sc=0; it.k.forEach(k=>{ if(s.indexOf(k)>-1) sc++; }); if(sc>score){score=sc;best=it;} });
+    return (best&&score>0) ? best : { a:"I can help with <b>pricing</b>, <b>services</b>, <b>the demo</b>, <b>timelines</b> and <b>contact</b>. For anything specific, book a demo or email <b>"+EMAIL+"</b>.", act:'demo' };
+  }
+  function add(who,html){ const d=document.createElement('div'); d.className='cmsg '+who; d.innerHTML=html; body.appendChild(d); body.scrollTop=body.scrollHeight; }
+  function renderQuick(act){ quick.innerHTML='';
+    const mk=(t,fn)=>{ const b=document.createElement('button'); b.className='cbot-chip'; b.textContent=t; b.onclick=fn; quick.appendChild(b); };
+    if(act==='services') mk('🧩 See all services',()=>{ location.hash='#services'; });
+    if(act==='contact') mk('✉️ Email us',()=>{ location.href='mailto:'+EMAIL; });
+    mk('Pricing',()=>handle('pricing')); mk('Services',()=>handle('services'));
+    mk('How the demo works',()=>handle('how the demo works'));
+    mk('📅 Book a demo',()=>{ if(window.gsnOpenDrawer) window.gsnOpenDrawer('demo'); });
+  }
+  function botSay(html,act){ setTimeout(()=>{ add('bot',html); renderQuick(act); },340); }
+  function handle(q){ add('user',q); const r=reply(q); botSay(r.a,r.act); }
+  let greeted=false;
+  function openBot(){ cbot.classList.add('on');
+    if(!greeted){ greeted=true; add('bot',"Hi! 👋 I'm the GetSiteNow assistant. How can I help — pricing, services, or booking a demo?"); renderQuick(); }
+    setTimeout(()=>text.focus(),300); }
+  function closeBot(){ cbot.classList.remove('on'); }
+  fab.onclick=()=>{ cbot.classList.contains('on')?closeBot():openBot(); };
+  x.onclick=closeBot;
+  form.addEventListener('submit',e=>{ e.preventDefault(); const q=text.value.trim(); if(!q) return; text.value=''; handle(q); });
 })();
 
 /* ── copy email ── */
