@@ -1345,7 +1345,7 @@ window.gsnTrackLead=function(mode,service){
         </div>
         <div class="wd-fee" id="wdFee" hidden>
           <div class="wd-fee-row"><span>Demo fee</span><b id="wdFeeTotal">₹2,999</b></div>
-          <p class="wd-fee-note">₹2,999 per service. If you select multiple services, the demo fee increases automatically.</p>
+          <p class="wd-fee-note" id="wdFeeNote">₹2,999 per service. If you select multiple services, the demo fee increases automatically.</p>
         </div>
         <div class="wd-field">
           <label for="leadName">Full name <i>*</i></label>
@@ -2042,7 +2042,7 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
         leadMsgOut=$('#leadMsgOut'), leadEmailBtn=$('#leadEmailBtn'),
         wdFee=$('#wdFee'), wdFeeTotal=$('#wdFeeTotal'), wdWhenField=$('#wdWhenField'),
         wdIntro=$('#wdIntro'), wdAlt=$('#wdAlt'), leadMsgLabel=$('#leadMsgLabel');
-  const DEMO_FEE=2999;
+  const DEMO_FEE=1;   /* ⚠ TESTING at ₹1/service. Change back to 2999 before going live. */
   let leadMode='demo';
 
   /* ── MULTI-SELECT services picker (sourced from CAPS, no limit) ── */
@@ -2091,8 +2091,10 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
     if(wdWhenField) wdWhenField.hidden=!demo;
     if(wdAlt) wdAlt.hidden=demo;
     if(leadMsgLabel) leadMsgLabel.innerHTML = demo ? 'Additional requirements <span class="opt">(optional)</span>' : 'Your query / requirement <span class="opt">(optional)</span>';
+    const feeStr='₹'+DEMO_FEE.toLocaleString('en-IN');
+    const note=$('#wdFeeNote'); if(note) note.textContent = feeStr+' per service. If you select multiple services, the demo fee increases automatically.';
     if(wdIntro) wdIntro.textContent = demo
-      ? 'Book a live demo / prototype — ₹2,999 per service. Pick the services you want and the fee updates automatically.'
+      ? 'Book a live demo / prototype — '+feeStr+' per service. Pick the services you want and the fee updates automatically.'
       : 'Send us your query — no payment. Pick any services and tell us what you need.';
     if(wdTitle) wdTitle.textContent = demo ? 'Book a demo' : 'Send your query';
     updateFee();
