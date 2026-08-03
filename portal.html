@@ -281,11 +281,14 @@ async function loadLeads(){
         ? `<span class="badge"><span class="d"></span>Approved · <span class="cid">${esc(l.client_id||'')}</span></span>`
         : st==='Rejected' ? `<span class="badge grey">Rejected</span>`
         : `<div class="row-actions"><button class="btn btn-sm js-approve" data-id="${esc(l.id)}">Approve</button><button class="btn btn-sm btn-red js-reject" data-id="${esc(l.id)}">Reject</button></div>`;
+      const isDemo = (l.purpose==='demo')||(l.source==='demo');
+      const demoTag = isDemo ? `<span class="badge" style="margin-bottom:6px">DEMO${l.demo_fee?(' · ₹'+Number(l.demo_fee).toLocaleString('en-IN')):''}</span><br>` : '';
+      const extra = [l.company?('Company: '+l.company):'', l.preferred_time?('Preferred: '+String(l.preferred_time).replace('T',' ')):''].filter(Boolean).join(' · ');
       return `<tr>
         <td class="muted" style="white-space:nowrap">${esc(fmtDate(l.created_at))}</td>
         <td class="nm">${esc(l.name)}</td>
         <td style="white-space:nowrap">${contact||'<span class="muted">—</span>'}</td>
-        <td>${esc(l.service)||'<span class="muted">—</span>'}${l.message?`<div class="pmeta">${esc(l.message)}</div>`:''}</td>
+        <td>${demoTag}${esc(l.service)||'<span class="muted">—</span>'}${l.message?`<div class="pmeta">${esc(l.message)}</div>`:''}${extra?`<div class="pmeta">${esc(extra)}</div>`:''}</td>
         <td><span class="badge grey">${esc(st)}</span></td>
         <td>${action}</td></tr>`;
     }).join('');

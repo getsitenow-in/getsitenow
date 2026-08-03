@@ -194,6 +194,12 @@ html[data-theme="light"] .i-sun{display:none} html[data-theme="light"] .i-moon{d
 .btn-g:hover{background:var(--sf2);box-shadow:none}
 .btn-d{background:var(--iv);color:var(--ivt)}
 .btn-d:hover{box-shadow:var(--glow)}
+/* highlighted "Book a demo" CTA */
+.btn-demo{background:rgb(var(--acc));color:#0B0C0A;border-color:transparent;
+  box-shadow:0 0 0 1px rgba(var(--acc),.5),0 10px 30px -8px rgba(var(--acc),.65);animation:demoPulse 2.6s ease-in-out infinite}
+.btn-demo:hover{transform:translateY(-2px);box-shadow:0 14px 40px -8px rgba(var(--acc),.9)}
+@keyframes demoPulse{0%,100%{box-shadow:0 0 0 1px rgba(var(--acc),.5),0 10px 30px -8px rgba(var(--acc),.5)}50%{box-shadow:0 0 0 3px rgba(var(--acc),.28),0 12px 36px -8px rgba(var(--acc),.8)}}
+@media(prefers-reduced-motion:reduce){.btn-demo{animation:none}}
 .nav-in .btn-g{color:#F3F2EE;border-color:rgba(255,255,255,.22)}
 html[data-theme="light"] .nav-in .btn-g{color:#0A0B0C;border-color:rgba(10,10,12,.22)}
 .burger{display:none;width:32px;height:32px;border:1px solid rgba(255,255,255,.14);border-radius:9px;
@@ -673,8 +679,16 @@ footer{border-top:1px solid var(--ln);padding:clamp(50px,6vw,80px) 0 32px}
   color:var(--tx);display:grid;place-items:center;cursor:pointer;transition:.3s var(--e-soft)}
 .wd-ico:hover{background:var(--sf2);border-color:var(--ln2)}
 .wd-body{flex:1;position:relative;background:var(--bg2);overflow-y:auto}
-.wd-form{padding:20px 18px 24px;display:flex;flex-direction:column;gap:14px}
+.wd-form{padding:18px 18px 24px;display:flex;flex-direction:column;gap:14px}
 .wd-intro{font-size:12.5px;color:var(--mu);line-height:1.55;margin:-2px 0 2px}
+.wd-tabs{display:flex;gap:6px;background:var(--sf);border:1px solid var(--ln);border-radius:100px;padding:4px}
+.wd-tab{flex:1;text-align:center;padding:11px;border-radius:100px;font-size:13.5px;font-weight:600;color:var(--mu);cursor:pointer;border:0;background:none;font-family:inherit;transition:.25s}
+.wd-tab.on{background:rgb(var(--acc));color:#08090A}
+.wd-fee{border:1px solid rgba(var(--acc),.35);background:rgba(var(--acc),.07);border-radius:12px;padding:12px 14px}
+.wd-fee-row{display:flex;align-items:center;justify-content:space-between;font-size:14px;color:var(--tx)}
+.wd-fee-row b{font-size:21px;font-weight:700;color:rgb(var(--acc));letter-spacing:-.02em}
+.wd-fee-note{font-size:11.5px;color:var(--mu);margin-top:6px;line-height:1.5}
+.opt{color:var(--mu);font-weight:400}
 .wd-svc-tag{display:inline-flex;align-items:center;gap:8px;align-self:flex-start;
   padding:6px 13px;border-radius:100px;background:rgba(var(--acc),.12);
   border:1px solid rgba(var(--acc),.35);color:rgb(var(--acc));font-size:12px;font-weight:600}
@@ -759,8 +773,9 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
 }
 @media(max-width:760px){
   .nav-links,.nav-right .btn{display:none}
-  /* keep the Contact button in the mobile header, just compact */
-  .nav-right .nav-contact{display:inline-flex;padding:8px 13px;font-size:12.5px}
+  /* keep Contact + the highlighted demo button in the mobile header, compact */
+  .nav-right .nav-contact,.nav-right .nav-demo{display:inline-flex;padding:8px 13px;font-size:12.5px}
+  .nav-right .nav-demo svg{display:none}
   .burger{display:flex}
   nav.open .nav-links{display:flex;position:absolute;top:calc(100% + 8px);left:0;right:0;
     flex-direction:column;gap:0;background:rgba(8,9,10,.96);backdrop-filter:blur(16px);
@@ -992,8 +1007,9 @@ window.gsnTrackLead=function(mode,service){
         <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><path d="M21 12.8A9 9 0 1111.2 3a7 7 0 009.8 9.8z"/></svg>
       </button>
       <button class="btn btn-g nav-contact js-book" type="button"><span>Contact us</span></button>
-      <a href="#contact" class="btn js-book"><span>Book a call</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg></a>
+      <a href="#contact" class="btn btn-g js-book"><span>Book a call</span></a>
+      <button class="btn btn-demo nav-demo js-demo" type="button"><span>Book a demo</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M8 5v14l11-7z"/></svg></button>
       <button class="burger" id="burger" aria-label="Menu"><span></span><span></span></button>
     </div>
   </div>
@@ -1292,8 +1308,10 @@ window.gsnTrackLead=function(mode,service){
         <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
     </div>
     <div class="sd-body"><div class="sd-list" id="sdList"></div></div>
-    <div class="sd-foot"><button type="button" class="btn" id="sdQuote"><span>Request a quote</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M7 17L17 7M7 7h10v10"/></svg></button></div>
+    <div class="sd-foot" style="display:flex;gap:8px">
+      <button type="button" class="btn btn-g" id="sdQuote" style="flex:1;justify-content:center"><span>Send a query</span></button>
+      <button type="button" class="btn btn-demo" id="sdDemo" style="flex:1;justify-content:center"><span>Book a demo</span></button>
+    </div>
   </aside>
 </div>
 
@@ -1310,37 +1328,53 @@ window.gsnTrackLead=function(mode,service){
     </div>
     <div class="wd-body">
       <form class="wd-form" id="leadForm" novalidate>
-        <p class="wd-intro">Tell us what you need and where to reach you, and we'll get back with a custom price &amp; timeline — usually within a few hours.</p>
-        <div class="wd-field">
-          <label for="leadName">Your name <i>*</i></label>
-          <input class="wd-input" id="leadName" name="name" type="text" autocomplete="name" placeholder="e.g. Rahul Sharma" required>
+        <div class="wd-tabs" id="wdTabs">
+          <button type="button" class="wd-tab on" data-mode="demo">Book a demo</button>
+          <button type="button" class="wd-tab" data-mode="query">Send my query</button>
         </div>
+        <p class="wd-intro" id="wdIntro"></p>
         <div class="wd-field">
-          <label for="leadPhone">Phone number <i>*</i></label>
-          <input class="wd-input" id="leadPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel" placeholder="e.g. +91 98765 43210" required>
-        </div>
-        <div class="wd-field">
-          <label for="leadEmail">Email <span style="color:var(--mu);font-weight:400">(optional)</span></label>
-          <input class="wd-input" id="leadEmail" name="email" type="email" autocomplete="email" placeholder="you@example.com">
-        </div>
-        <div class="wd-field">
-          <label>Services you want <span style="color:var(--mu);font-weight:400">(pick up to 5)</span></label>
+          <label>Services <span class="opt">(select one or more)</span></label>
           <div class="ms">
             <div class="ms-chips" id="msChips"></div>
             <input class="wd-input ms-search" id="msSearch" type="text" placeholder="Search services…" autocomplete="off">
             <div class="ms-list" id="msList"></div>
-            <div class="ms-count" id="msCount">0 / 5 selected</div>
+            <div class="ms-count" id="msCount">0 selected</div>
           </div>
         </div>
+        <div class="wd-fee" id="wdFee" hidden>
+          <div class="wd-fee-row"><span>Demo fee</span><b id="wdFeeTotal">₹2,999</b></div>
+          <p class="wd-fee-note">₹2,999 per service. If you select multiple services, the demo fee increases automatically.</p>
+        </div>
         <div class="wd-field">
-          <label for="leadMsg">Anything else? <span style="color:var(--mu);font-weight:400">(optional)</span></label>
-          <textarea class="wd-ta" id="leadMsg" name="message" placeholder="Budget, timeline, or details about your project…"></textarea>
+          <label for="leadName">Full name <i>*</i></label>
+          <input class="wd-input" id="leadName" type="text" autocomplete="name" placeholder="e.g. Rahul Sharma" required>
+        </div>
+        <div class="wd-field">
+          <label for="leadPhone">Phone number <i>*</i></label>
+          <input class="wd-input" id="leadPhone" type="tel" inputmode="tel" autocomplete="tel" placeholder="e.g. +91 98765 43210" required>
+        </div>
+        <div class="wd-field">
+          <label for="leadEmail">Email <span class="opt">(optional)</span></label>
+          <input class="wd-input" id="leadEmail" type="email" autocomplete="email" placeholder="you@example.com">
+        </div>
+        <div class="wd-field">
+          <label for="leadCompany">Company / business <span class="opt">(optional)</span></label>
+          <input class="wd-input" id="leadCompany" type="text" autocomplete="organization" placeholder="Your company name">
+        </div>
+        <div class="wd-field" id="wdWhenField" hidden>
+          <label for="leadWhen">Preferred date &amp; time</label>
+          <input class="wd-input" id="leadWhen" type="datetime-local">
+        </div>
+        <div class="wd-field">
+          <label for="leadMsg" id="leadMsgLabel">Additional requirements <span class="opt">(optional)</span></label>
+          <textarea class="wd-ta" id="leadMsg" placeholder="Budget, timeline, or details about your project…"></textarea>
         </div>
         <button class="wd-submit" id="leadSend" type="submit">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 21l21-9L2 3v7l15 2-15 2z"/></svg>
-          <span id="leadSendTx">Send my enquiry</span>
+          <span id="leadSendTx">Book a demo</span>
         </button>
-        <div class="wd-alt">
+        <div class="wd-alt" id="wdAlt" hidden>
           <button type="button" class="wd-alt-btn" id="leadEmailBtn">Email us instead</button>
         </div>
         <div class="wd-msg" id="leadMsgOut" role="status" aria-live="polite"></div>
@@ -1978,12 +2012,15 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
    details → it saves to Supabase, and can optionally be sent as an email.
    No Calendly, no WhatsApp, no third-party form.                              */
 (function(){
-  /* every booking / contact trigger opens the lead-form drawer */
+  /* every booking / contact trigger opens the lead-form drawer.
+     .js-demo → Book-a-demo mode · everything else → Send-my-query mode */
   document.addEventListener('click',e=>{
+    const demo=e.target.closest('.js-demo');
+    if(demo){ e.preventDefault(); openDrawer(null,{mode:'demo'}); return; }
     const t=e.target.closest('.js-book, a.btn[href="#contact"], .dock a.btn, .plan .btn');
     if(!t) return;
     e.preventDefault();
-    openDrawer();
+    openDrawer(null,{mode:'query'});
   });
 
   /* ── LEAD DRAWER — native form that saves the lead to Supabase (and can also
@@ -1991,20 +2028,25 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
      so the saved row is tagged with exactly what the customer wants.          */
   const wd=$('#wd'), wdTitle=$('#wdTitle');
   const leadForm=$('#leadForm'), leadName=$('#leadName'), leadPhone=$('#leadPhone'),
-        leadEmail=$('#leadEmail'), leadMsg=$('#leadMsg'), leadSend=$('#leadSend'),
-        leadSendTx=$('#leadSendTx'), leadMsgOut=$('#leadMsgOut'), leadEmailBtn=$('#leadEmailBtn');
+        leadEmail=$('#leadEmail'), leadCompany=$('#leadCompany'), leadWhen=$('#leadWhen'),
+        leadMsg=$('#leadMsg'), leadSend=$('#leadSend'), leadSendTx=$('#leadSendTx'),
+        leadMsgOut=$('#leadMsgOut'), leadEmailBtn=$('#leadEmailBtn'),
+        wdFee=$('#wdFee'), wdFeeTotal=$('#wdFeeTotal'), wdWhenField=$('#wdWhenField'),
+        wdIntro=$('#wdIntro'), wdAlt=$('#wdAlt'), leadMsgLabel=$('#leadMsgLabel');
+  const DEMO_FEE=2999;
+  let leadMode='demo';
 
-  /* ── MULTI-SELECT services picker (up to 5, sourced from CAPS) ── */
-  const MS_MAX=5, msSel=new Set();
+  /* ── MULTI-SELECT services picker (sourced from CAPS, no limit) ── */
+  const msSel=new Set();
   const msChips=$('#msChips'), msList=$('#msList'), msCount=$('#msCount'), msSearch=$('#msSearch');
   const ALL_SVC=(typeof CAPS!=='undefined'?CAPS:[]).reduce((a,c)=>a.concat(c.items.map(n=>({g:c.g,n}))),[]);
   function escA(s){ return String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c])); }
   function msRenderChips(){
-    if(!msChips) return;
-    msChips.innerHTML = msSel.size
+    if(msChips) msChips.innerHTML = msSel.size
       ? [...msSel].map(n=>`<span class="ms-chip" data-svc="${escA(n)}">${escA(n)} <b>×</b></span>`).join('')
-      : '<span class="ms-ph">None selected yet — tap below or pick from the services section.</span>';
-    if(msCount) msCount.textContent = msSel.size+' / '+MS_MAX+' selected';
+      : '<span class="ms-ph">None selected yet — search below or pick from the services section.</span>';
+    if(msCount) msCount.textContent = msSel.size+' selected';
+    updateFee();
   }
   function msRenderList(){
     if(!msList) return;
@@ -2013,24 +2055,46 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
     ALL_SVC.forEach(s=>{ if(f && s.n.toLowerCase().indexOf(f)<0) return; (groups[s.g]=groups[s.g]||[]).push(s.n); });
     const keys=Object.keys(groups);
     if(!keys.length){ msList.innerHTML='<div class="ms-empty">No matching service.</div>'; return; }
-    const full=msSel.size>=MS_MAX;
     msList.innerHTML=keys.map(g=>`<div class="ms-g">${escA(g)}</div>`+groups[g].map(n=>{
-      const on=msSel.has(n), dis=!on&&full;
-      return `<button type="button" class="ms-item${on?' on':''}${dis?' dis':''}" data-svc="${escA(n)}"${dis?' disabled':''}>${on?'✓ ':''}${escA(n)}</button>`;
+      const on=msSel.has(n);
+      return `<button type="button" class="ms-item${on?' on':''}" data-svc="${escA(n)}">${on?'✓ ':''}${escA(n)}</button>`;
     }).join('')).join('');
   }
-  function msAdd(n){ if(msSel.has(n)) return; if(msSel.size>=MS_MAX){ showLead('You can pick up to '+MS_MAX+' services.','err'); return; } msSel.add(n); msRenderChips(); msRenderList(); }
+  function msAdd(n){ if(msSel.has(n)) return; msSel.add(n); msRenderChips(); msRenderList(); }
   function msRemove(n){ msSel.delete(n); msRenderChips(); msRenderList(); }
   function msClear(){ msSel.clear(); if(msSearch) msSearch.value=''; msRenderChips(); msRenderList(); }
-  if(msList)   msList.addEventListener('click',e=>{ const b=e.target.closest('.ms-item'); if(!b||b.disabled) return; const n=b.dataset.svc; msSel.has(n)?msRemove(n):msAdd(n); });
+  if(msList)   msList.addEventListener('click',e=>{ const b=e.target.closest('.ms-item'); if(!b) return; const n=b.dataset.svc; msSel.has(n)?msRemove(n):msAdd(n); });
   if(msChips)  msChips.addEventListener('click',e=>{ const c=e.target.closest('.ms-chip'); if(!c) return; msRemove(c.dataset.svc); });
   if(msSearch) msSearch.addEventListener('input',msRenderList);
-  msRenderChips(); msRenderList();
 
-  function openDrawer(service){
+  /* ── demo fee + Book-a-demo / Send-my-query mode switching ── */
+  function feeTotal(){ return msSel.size*DEMO_FEE; }
+  function updateFee(){
+    const total=feeTotal();
+    if(wdFeeTotal) wdFeeTotal.textContent='₹'+total.toLocaleString('en-IN');
+    if(leadSendTx) leadSendTx.textContent = leadMode==='demo' ? (msSel.size>0 ? ('Book demo · ₹'+total.toLocaleString('en-IN')) : 'Book a demo') : 'Send my query';
+  }
+  function setLeadMode(m){
+    leadMode = (m==='query')?'query':'demo';
+    document.querySelectorAll('#wdTabs .wd-tab').forEach(t=>t.classList.toggle('on',t.dataset.mode===leadMode));
+    const demo=leadMode==='demo';
+    if(wdFee) wdFee.hidden=!demo;
+    if(wdWhenField) wdWhenField.hidden=!demo;
+    if(wdAlt) wdAlt.hidden=demo;
+    if(leadMsgLabel) leadMsgLabel.innerHTML = demo ? 'Additional requirements <span class="opt">(optional)</span>' : 'Your query / requirement <span class="opt">(optional)</span>';
+    if(wdIntro) wdIntro.textContent = demo
+      ? 'Book a live demo / prototype — ₹2,999 per service. Pick the services you want and the fee updates automatically.'
+      : 'Send us your query — no payment. Pick any services and tell us what you need.';
+    if(wdTitle) wdTitle.textContent = demo ? 'Book a demo' : 'Send your query';
+    updateFee();
+  }
+  document.querySelectorAll('#wdTabs .wd-tab').forEach(t=>t.addEventListener('click',()=>setLeadMode(t.dataset.mode)));
+  msRenderChips(); msRenderList(); setLeadMode('demo');
+
+  function openDrawer(service, opts){
     if(!wd) return;  // drawer missing (shouldn't happen) — nothing to open
-    if(service){ msAdd(service); if(wdTitle) wdTitle.textContent='Get pricing'; }
-    else if(wdTitle) wdTitle.textContent='Message us';
+    if(service) msAdd(service);
+    setLeadMode((opts&&opts.mode) || 'demo');
     showLead('','');
     wd.classList.add('on'); wd.setAttribute('aria-hidden','false');
     document.body.style.overflow='hidden';
@@ -2056,7 +2120,8 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
   function closeSvcDrawer(){ if(!sd) return; sd.classList.remove('on'); sd.setAttribute('aria-hidden','true'); document.body.style.overflow=''; }
   if(sd){
     $('#sdBg').onclick=closeSvcDrawer; $('#sdX').onclick=closeSvcDrawer;
-    const q=$('#sdQuote'); if(q) q.onclick=()=>{ closeSvcDrawer(); openDrawer(); };
+    const q=$('#sdQuote'); if(q) q.onclick=()=>{ closeSvcDrawer(); openDrawer(null,{mode:'query'}); };
+    const dm=$('#sdDemo'); if(dm) dm.onclick=()=>{ closeSvcDrawer(); openDrawer(null,{mode:'demo'}); };
     addEventListener('keydown',e=>{ if(e.key==='Escape' && sd.classList.contains('on')) closeSvcDrawer(); });
   }
 
@@ -2094,28 +2159,29 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
     if(!SUPABASE_URL || !SUPABASE_ANON_KEY) return Promise.resolve(false);
     const post=(row)=>fetch(SUPABASE_URL.replace(/\/+$/,'') + '/rest/v1/leads', {
       method:'POST',
-      headers:{
-        'Content-Type':'application/json',
-        'apikey':SUPABASE_ANON_KEY,
-        'Prefer':'return=minimal'
-      },
+      headers:{ 'Content-Type':'application/json','apikey':SUPABASE_ANON_KEY,'Prefer':'return=minimal' },
       body:JSON.stringify(row)
     }).then(r=>r.ok).catch(()=>false);
-    const full={ name:d.name, phone:d.phone, email:d.email, service:d.service, message:d.message, source:'website' };
-    /* if the "email" column hasn't been added yet, retry without it so the
-       lead still saves (add it with:  alter table leads add column email text;) */
-    return post(full).then(ok=> ok ? true : (()=>{ const {email,...rest}=full; return post(rest); })());
+    const full={ name:d.name, phone:d.phone, email:d.email, company:d.company, service:d.service,
+      message:d.message, purpose:d.purpose, preferred_time:d.when, demo_fee:d.fee,
+      source: d.purpose==='demo'?'demo':'website' };
+    /* if any newer column isn't there yet, retry with just the core fields so the
+       lead still saves (run SUPABASE-RUN-ALL.sql to add company/purpose/etc). */
+    return post(full).then(ok=> ok ? true : post({ name:d.name, phone:d.phone, email:d.email, service:d.service, message:d.message, source: d.purpose==='demo'?'demo':'website' }));
   }
 
   /* build a mailto link addressed to you, with the enquiry pre-written */
   function mailHandoff(d){
-    const subject="New enquiry"+(d.service?(" · "+d.service):"");
+    const subject=(d.purpose==='demo'?'Demo booking':'New query')+(d.service?(" · "+d.service):"");
     const body=[
       "Hi GetSiteNow,","",
-      "I'd like to enquire about: "+(d.service||"your services"),"",
+      (d.purpose==='demo'?"I'd like to book a demo for: ":"I'd like to enquire about: ")+(d.service||"your services"),"",
       "Name: "+d.name,
       "Phone: "+d.phone,
       d.email?("Email: "+d.email):null,
+      d.company?("Company: "+d.company):null,
+      (d.purpose==='demo'&&d.when)?("Preferred: "+String(d.when).replace('T',' ')):null,
+      (d.purpose==='demo'&&d.fee)?("Demo fee: ₹"+d.fee.toLocaleString('en-IN')):null,
       d.message?("Details: "+d.message):null
     ].filter(Boolean).join("\n");
     return "mailto:getsitenow.in@gmail.com?subject="+encodeURIComponent(subject)+"&body="+encodeURIComponent(body);
@@ -2126,29 +2192,32 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
     const phone=(leadPhone.value||'').trim();
     if(name.length<2){ showLead('Please enter your name.','err'); leadName.focus(); return null; }
     if(phone.replace(/\D/g,'').length<7){ showLead('Please enter a valid phone number.','err'); leadPhone.focus(); return null; }
-    return { name, phone, email:(leadEmail.value||'').trim(),
-             service:[...msSel].join(', '), message:(leadMsg.value||'').trim() };
+    const services=[...msSel];
+    if(leadMode==='demo' && !services.length){ showLead('Select at least one service to book a demo.','err'); return null; }
+    return { name, phone, email:(leadEmail.value||'').trim(), company:(leadCompany.value||'').trim(),
+             service:services.join(', '), message:(leadMsg.value||'').trim(),
+             when:(leadWhen&&leadWhen.value)||'', fee: leadMode==='demo'?feeTotal():0, purpose:leadMode };
   }
 
   function busy(on){ [leadSend,leadEmailBtn].forEach(b=>{ if(b) b.disabled=on; }); }
-  function finishLead(){ leadForm.reset(); msClear(); setTimeout(closeDrawer,1600); }
+  function finishLead(){ leadForm.reset(); msClear(); setTimeout(closeDrawer,1900); }
 
-  /* two ways to send:  'save' (straight to your database) | 'email' (also opens their mail app) */
-  function submitLead(mode){
+  /* channel: 'save' (primary submit) | 'email' (query-only alternative) */
+  function submitLead(channel){
     const data=collectLead(); if(!data) return;
-    /* count the conversion in GA4 / Google Ads / Meta Pixel */
-    if(window.gsnTrackLead) window.gsnTrackLead(mode, data.service);
-    /* email path opens the mail app synchronously (inside the click → no popup block) */
-    if(mode==='email') window.open(mailHandoff(data),'_blank');
-    /* every path saves the lead to your database */
-    busy(true); const old=leadSendTx.textContent; leadSendTx.textContent='Sending…';
+    if(window.gsnTrackLead) window.gsnTrackLead(data.purpose, data.service);
+    if(channel==='email') window.open(mailHandoff(data),'_blank');
+    busy(true); leadSendTx.textContent='Sending…';
     saveLead(data).then(ok=>{
-      busy(false); leadSendTx.textContent=old;
-      if(mode==='email'){
-        showLead(ok ? "Sent! We've saved your details." : 'Opening your email…','ok'); finishLead();
-      }else{
-        if(ok){ showLead("Thanks! Your enquiry has been sent.",'ok'); finishLead(); }
-        else   showLead("Couldn't send just now — please try Email instead.",'err');
+      busy(false); updateFee();
+      if(data.purpose==='demo'){
+        if(ok){ showLead("Demo request received! We'll email you a secure payment link for ₹"+data.fee.toLocaleString('en-IN')+" to confirm your slot.",'ok'); finishLead(); }
+        else showLead("Couldn't send just now — please try Email or call us.",'err');
+      } else if(channel==='email'){
+        showLead(ok?"Sent! We've saved your details.":'Opening your email…','ok'); finishLead();
+      } else {
+        if(ok){ showLead("Thanks! Your query has been sent — we'll get back to you soon.",'ok'); finishLead(); }
+        else showLead("Couldn't send just now — please try Email instead.",'err');
       }
     });
   }
