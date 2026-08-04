@@ -973,6 +973,10 @@ nav,.nav-in{transition:top .55s var(--e-out),padding .55s var(--e-out),
 .cmsg.user{align-self:flex-end;background:rgb(var(--acc));color:#08090A;font-weight:500;border-bottom-right-radius:5px}
 .cmsg a{color:rgb(var(--acc));font-weight:600}
 .cmsg.user a{color:#08090A;text-decoration:underline}
+.typing{display:inline-flex;gap:4px;align-items:center}
+.typing i{width:6px;height:6px;border-radius:50%;background:var(--mu);animation:tdot 1s infinite}
+.typing i:nth-child(2){animation-delay:.15s}.typing i:nth-child(3){animation-delay:.3s}
+@keyframes tdot{0%,60%,100%{opacity:.3;transform:translateY(0)}30%{opacity:1;transform:translateY(-3px)}}
 .cbot-quick{display:flex;flex-wrap:wrap;gap:6px;padding:0 16px 10px}
 .cbot-chip{background:transparent;border:1px solid var(--ln);color:var(--mu);border-radius:100px;padding:7px 12px;font-size:12px;font-family:inherit;cursor:pointer;transition:.2s}
 .cbot-chip:hover{border-color:rgb(var(--acc));color:var(--tx);background:rgba(var(--acc),.08)}
@@ -1521,6 +1525,12 @@ const CONTACT_EMAIL = "getsitenow.in@gmail.com";
 const RAZORPAY_LIVE      = true;
 const RAZORPAY_ORDER_FN  = SUPABASE_URL.replace(/\/+$/,'') + "/functions/v1/razorpay-order";
 const RAZORPAY_VERIFY_FN = SUPABASE_URL.replace(/\/+$/,'') + "/functions/v1/razorpay-verify-";
+
+/* ── AI ASSISTANT — set AI_CHAT_ON=true once the 'ai-chat' Gemini function is
+      deployed (see ai-chat.ts). Until then the chatbot uses smart keyword replies.
+      Set to false anytime to fall back to the keyword bot.                     */
+const AI_CHAT_ON = true;
+const AI_CHAT_FN = SUPABASE_URL.replace(/\/+$/,'') + "/functions/v1/ai-chat";
 
 const HEADLINE = ["Business","websites","that","*pay for*","|","*themselves.*"];
 
@@ -2487,17 +2497,41 @@ addEventListener('keydown',e=>{ if(e.key==='Escape') closeLb(); });
     KB.forEach(it=>{ let sc=0; it.k.forEach(k=>{ if(s.indexOf(k)>-1) sc++; }); if(sc>score){score=sc;best=it;} });
     return (best&&score>0) ? best : { a:"I can help with <b>pricing</b>, <b>services</b>, <b>the demo</b>, <b>timelines</b> and <b>contact</b>. For anything specific, book a demo or email <b>"+EMAIL+"</b>.", act:'demo' };
   }
-  function add(who,html){ const d=document.createElement('div'); d.className='cmsg '+who; d.innerHTML=html; body.appendChild(d); body.scrollTop=body.scrollHeight; }
+  function add(who,html){ const d=document.createElement('div'); d.className='cmsg '+who; d.innerHTML=html; body.appendChild(d); body.scrollTop=body.scrollHeight; return d; }
   function renderQuick(act){ quick.innerHTML='';
     const mk=(t,fn)=>{ const b=document.createElement('button'); b.className='cbot-chip'; b.textContent=t; b.onclick=fn; quick.appendChild(b); };
     if(act==='services') mk('🧩 See all services',()=>{ location.hash='#services'; });
     if(act==='contact') mk('✉️ Email us',()=>{ location.href='mailto:'+EMAIL; });
-    mk('Pricing',()=>handle('pricing')); mk('Services',()=>handle('services'));
-    mk('How the demo works',()=>handle('how the demo works'));
+    mk('Pricing',()=>handle('What are your prices?')); mk('Services',()=>handle('What services do you offer?'));
+    mk('How the demo works',()=>handle('How does the demo work?'));
     mk('📅 Book a demo',()=>{ if(window.gsnOpenDrawer) window.gsnOpenDrawer('demo'); });
   }
   function botSay(html,act){ setTimeout(()=>{ add('bot',html); renderQuick(act); },340); }
-  function handle(q){ add('user',q); const r=reply(q); botSay(r.a,r.act); }
+
+  /* ── real AI (Gemini) with graceful keyword fallback ── */
+  const AI_ON=(typeof AI_CHAT_ON!=='undefined')&&AI_CHAT_ON&&(typeof AI_CHAT_FN!=='undefined')&&AI_CHAT_FN;
+  let history=[], busyAi=false, msgCount=0;
+  function escChat(s){ return String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c])); }
+  function fmtAi(s){ return escChat(s).replace(/\*\*(.+?)\*\*/g,'<b>$1</b>').replace(/\n/g,'<br>'); }
+  function typingRow(){ return add('bot','<span class="typing"><i></i><i></i><i></i></span>'); }
+  function aiReply(){
+    return fetch(AI_CHAT_FN,{ method:'POST', headers:{'Content-Type':'application/json','apikey':SUPABASE_ANON_KEY},
+      body:JSON.stringify({ messages:history }) })
+      .then(r=> r.ok ? r.json() : null).then(j=> (j&&j.reply&&j.reply.trim()) ? j.reply.trim() : null).catch(()=>null);
+  }
+  function handle(q){
+    if(busyAi) return;
+    add('user',q);
+    if(!AI_ON){ const r=reply(q); botSay(r.a,r.act); return; }
+    if(msgCount>=25){ add('bot',"You've asked a lot 🙂 For anything more, please <b>book a demo</b> or email <b>"+EMAIL+"</b>."); renderQuick('demo'); return; }
+    msgCount++; history.push({role:'user',text:q}); if(history.length>16) history=history.slice(-16);
+    busyAi=true; const row=typingRow();
+    aiReply().then(ans=>{
+      row.remove(); busyAi=false;
+      if(ans){ add('bot',fmtAi(ans)); history.push({role:'model',text:ans}); renderQuick(); }
+      else { const r=reply(q); add('bot',r.a); renderQuick(r.act); }   /* fallback to keyword bot */
+    });
+  }
   let greeted=false;
   function openBot(){ cbot.classList.add('on');
     if(!greeted){ greeted=true; add('bot',"Hi! 👋 I'm the GetSiteNow assistant. How can I help — pricing, services, or booking a demo?"); renderQuick(); }
